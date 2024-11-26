@@ -1,10 +1,3 @@
-import { DocumentData } from 'firebase/firestore'
-
-export interface IUserContextProps {
-  user: DocumentData | null
-  loading: boolean
-}
-
 export enum UserTypes {
   Admin,
   Player
@@ -15,4 +8,13 @@ export interface IUserDetails {
   teamId: string
   userType: string
   points: number
+}
+
+export interface IUserState {
+  user: IUserDetails | null
+  loading: boolean
+  setUser: (user: IUserDetails) => void
+  setLoading: (loading: boolean) => void
+  clearUser: () => void
+  initializeUser: () => void
 }

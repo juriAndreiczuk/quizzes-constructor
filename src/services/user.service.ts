@@ -1,6 +1,7 @@
 import { db } from '@/config/firebase'
-import { doc, setDoc, getDoc, DocumentData } from 'firebase/firestore'
+import { doc, setDoc, getDoc } from 'firebase/firestore'
 import { IAuthRegister } from '@/types/auth.types'
+import { IUserDetails } from '@/types/user.types'
 
 export const setUserData = async (data: IAuthRegister, uid: string)
 : Promise<void> => {
@@ -16,10 +17,11 @@ export const setUserData = async (data: IAuthRegister, uid: string)
 }
 
 export const getUserData = async (uid: string)
-: Promise<DocumentData | null> => {
+: Promise<IUserDetails | null> => {
   try {
     const userDoc = await getDoc(doc(db, 'users', uid))
-    return userDoc.exists() ? userDoc.data() : null
+    const { displayName, teamId, userType, points } = userDoc.data() as IUserDetails
+    return userDoc.exists() ? { displayName, teamId, userType, points } : null
   } catch(err) {
     console.log(err)
     throw err

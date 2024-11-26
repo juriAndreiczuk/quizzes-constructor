@@ -1,10 +1,10 @@
 import { logOut } from '@/services/auth.service'
-import { useUser } from '@/context/UserContext'
+import useUserStore from '@/store/userStore'
 import { useRouter } from 'next/navigation'
 import Routes from '@/constants/routes'
 
 const UserProfile = () => {
-  const { user } = useUser()
+  const user = useUserStore(state => state.user)
   const router = useRouter()
 
   const handleLogOut = async () => {
