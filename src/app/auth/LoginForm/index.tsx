@@ -2,13 +2,13 @@
 
 import { userAuth } from '@/services/auth.service'
 import { Field, Form, Formik } from 'formik'
-import { IUserLogin, AuthMode } from '@/types/auth.types'
+import { IAuthLogin, AuthMode } from '@/types/auth.types'
 import { useRouter } from 'next/navigation'
 import Routes from '@/constants/routes'
 
 const LoginForm = () => {
   const router = useRouter()
-  const handleSubmit = async (values: IUserLogin) => {
+  const handleSubmit = async (values: IAuthLogin) => {
     await userAuth(values, AuthMode.Login)
     router.push(Routes.Home)
   }

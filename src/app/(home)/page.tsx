@@ -1,15 +1,12 @@
 'use client'
 
-import { logOut } from '@/services/auth.service'
-import { useAuth } from '@/context/AuthContext'
+import UserProfile from '@/app/components/UserProfile'
 
 const Home = () => {
-  const { user } = useAuth()
-
+  
   return (
     <main>
-      {user?.displayName}
-      <button onClick={logOut}>Logout</button>
+      <UserProfile />
     </main>
   )
 }

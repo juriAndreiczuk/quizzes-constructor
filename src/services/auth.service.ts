@@ -2,38 +2,34 @@ import Cookies from 'js-cookie'
 import { auth } from '@/config/firebase'
 import {
   createUserWithEmailAndPassword, onAuthStateChanged,
-  signInWithEmailAndPassword, signOut, UserCredential, updateProfile
+  signInWithEmailAndPassword, signOut, UserCredential, User
 } from 'firebase/auth'
-import {
-  IUser, AuthMode, AuthTokens, IUserLogin, IUserRegister
-} from '@/types/auth.types'
+import { AuthMode, AuthTokens, IAuthLogin, IAuthRegister } from '@/types/auth.types'
+import { setUserData } from './user.service'
 
 export const onAuthChange = (
-  callback: (user: IUser | null) => void
+  callback: (user: User | null) => void
 ): (() => void) => {
-  const unsubscribe = onAuthStateChanged(auth, (user) => {
-    callback(user)
-  })
-  return unsubscribe
+  return onAuthStateChanged(auth, (user) => { callback(user) })
 }
 
-const register = async (data: IUserRegister)
+const register = async (data: IAuthRegister)
 :Promise<UserCredential> => {
-  const { email, password, displayName } = data
+  const { email, password, displayName, teamId, userType } = data
   const userData = await createUserWithEmailAndPassword(auth, email, password)
   if (auth.currentUser) {
-    await updateProfile(auth.currentUser, { displayName })
+    await setUserData({ displayName, teamId, userType } as IAuthRegister, auth.currentUser.uid)
   }
   return userData
 }
 
-export const userAuth = async (data: (IUserLogin | IUserRegister), mode: AuthMode)
-: Promise<IUser | undefined> => {
+export const userAuth = async (data: (IAuthLogin | IAuthRegister), mode: AuthMode)
+: Promise<User | undefined> => {
   try {
     const userData = await (
       mode === AuthMode.Login
         ? signInWithEmailAndPassword(auth, data.email, data.password)
-        : register(data as IUserRegister)
+        : register(data as IAuthRegister)
     )
     const token = await userData.user?.getIdToken()
     Cookies.set(AuthTokens.ID_TOKEN, token)
