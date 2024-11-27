@@ -9,7 +9,6 @@ const useUserStore = create<IUserState>(set => ({
   loading: true,
 
   setUser: (user: IUserDetails) => set({ user, loading: false }),
-  clearUser: () => set({ user: null, loading: false }),
   initializeUser: () => {
     set({ loading: true })
     onAuthChange(async data => {

@@ -5,11 +5,17 @@ import { Field, Form, Formik } from 'formik'
 import { IAuthRegister, AuthMode } from '@/types/auth.types'
 import { useRouter } from 'next/navigation'
 import Routes from '@/constants/routes'
+import useAlertStore from '@/store/alert.store'
+import { AlertKind } from '@/types/alert.types'
 
 const RegisterForm = () => {
   const router = useRouter()
+  const setAlert = useAlertStore(state => state.setAlert)
+
   const handleSubmit = async (values: IAuthRegister) => {
-    await userAuth(values, AuthMode.Registration)
+    await userAuth(values, AuthMode.Registration, (val: string) => {
+      setAlert({ message: val, kind: AlertKind.Error, show: true })
+    })
     router.push(Routes.Home)
   }
 

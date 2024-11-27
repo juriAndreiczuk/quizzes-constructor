@@ -9,9 +9,7 @@ import { setUserData } from './user.service'
 
 export const onAuthChange = (
   callback: (user: User | null) => void
-): (() => void) => {
-  return onAuthStateChanged(auth, (user) => { callback(user) })
-}
+): (() => void) => onAuthStateChanged(auth, (user) => { callback(user) })
 
 const register = async (data: IAuthRegister)
 :Promise<UserCredential> => {
@@ -23,8 +21,11 @@ const register = async (data: IAuthRegister)
   return userData
 }
 
-export const userAuth = async (data: (IAuthLogin | IAuthRegister), mode: AuthMode)
-: Promise<User | undefined> => {
+export const userAuth = async (
+  data: (IAuthLogin | IAuthRegister),
+  mode: AuthMode,
+  errorHandler: (error: any) => void
+): Promise<User | undefined> => {
   try {
     const userData = await (
       mode === AuthMode.Login
@@ -35,17 +36,17 @@ export const userAuth = async (data: (IAuthLogin | IAuthRegister), mode: AuthMod
     Cookies.set(AuthTokens.ID_TOKEN, token)
     return userData.user
   } catch (err) {
-    console.log(err)
+    err instanceof Error && errorHandler(err.message)
     throw err
   }
 }
 
-export const logOut = async ():Promise<void> => {
+export const logOut = async (errorHandler: (error: any) => void):Promise<void> => {
   try {
     signOut(auth)
     Cookies.remove(AuthTokens.ID_TOKEN)
   } catch (err) {
-    console.log(err)
+    err instanceof Error && errorHandler(err.message)
     throw err
   }
 }

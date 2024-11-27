@@ -11,19 +11,20 @@ export const setUserData = async (data: IAuthRegister, uid: string)
       displayName, teamId, userType, points: 0
     })
   } catch (err) {
-    console.log(err)
-    throw err
+    throw new Error('Error setting user data')
   }
 }
 
 export const getUserData = async (uid: string)
-: Promise<IUserDetails | null> => {
+: Promise<IUserDetails | null | undefined> => {
   try {
     const userDoc = await getDoc(doc(db, 'users', uid))
-    const { displayName, teamId, userType, points } = userDoc.data() as IUserDetails
-    return userDoc.exists() ? { displayName, teamId, userType, points } : null
-  } catch(err) {
-    console.log(err)
-    throw err
+    if (userDoc.exists()) {
+      const { displayName, teamId, userType, points } = userDoc.data() as IUserDetails
+      return { displayName, teamId, userType, points }
+    }
+    return null
+  } catch (err) {
+    throw new Error('Error getting user data')
   }
 }

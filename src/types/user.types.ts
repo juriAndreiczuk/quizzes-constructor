@@ -15,6 +15,5 @@ export interface IUserState {
   loading: boolean
   setUser: (user: IUserDetails) => void
   setLoading: (loading: boolean) => void
-  clearUser: () => void
   initializeUser: () => void
 }
