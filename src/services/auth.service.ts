@@ -5,20 +5,26 @@ import {
   signInWithEmailAndPassword, signOut, UserCredential, User
 } from 'firebase/auth'
 import { AuthMode, AuthTokens, IAuthLogin, IAuthRegister } from '@/types/auth.types'
+import { IAlerts } from '@/types/alert.types'
 import { UserTypes } from '@/types/user.types'
-import alerts from '@/content/auth.json'
+import { IUpdateOperation } from '@/types/team.types'
+import alertsData from '@/content/auth.json'
 import { getUserData, setUserData } from './user.service'
+import { updateTeamMembers } from './teams.service'
+
+const alerts: IAlerts = alertsData as IAlerts
 
 export const onAuthChange = (
   callback: (user: User | null) => void
 ): (() => void) => onAuthStateChanged(auth, (user) => { callback(user) })
 
 const register = async (data: IAuthRegister)
-:Promise<UserCredential> => {
+: Promise<UserCredential> => {
   const { email, password, displayName, teamId, userType } = data
   const userData = await createUserWithEmailAndPassword(auth, email, password)
   if (auth.currentUser) {
     await setUserData({ displayName, teamId, userType } as IAuthRegister, auth.currentUser.uid)
+    await updateTeamMembers(teamId, auth.currentUser.uid, IUpdateOperation.Add)
   }
   return userData
 }
@@ -45,7 +51,8 @@ export const userAuth = async (
   }
 }
 
-export const logOut = async (errorHandler: (error: string) => void):Promise<void> => {
+export const logOut = async (errorHandler: (error: string) => void)
+: Promise<void> => {
   try {
     signOut(auth)
     Cookies.remove(AuthTokens.ID_TOKEN)

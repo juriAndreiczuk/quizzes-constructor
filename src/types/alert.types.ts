@@ -3,6 +3,12 @@ export enum AlertKind {
   Info = 'info'
 }
 
+export type IAlerts = {
+  errors: {
+    [key: string]: string
+  }
+}
+
 export interface IAlert {
   kind: AlertKind
   message: string

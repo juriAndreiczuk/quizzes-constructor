@@ -1,5 +1,7 @@
 'use client'
 
+// todo: remove any types
+
 import { useRouter } from 'next/navigation'
 import { Form, Formik } from 'formik'
 import { userAuth } from '@/services/auth.service'
@@ -8,13 +10,12 @@ import { IAuthLogin, AuthMode, IAuthRegister } from '@/types/auth.types'
 import { AlertKind } from '@/types/alert.types'
 import Routes from '@/constants/routes'
 
-import formData from '@/content/auth.json'
 import FormInput from '@/app/components/ui/FormInput'
 import validationSchema from '../validationSchema'
 
 const AuthForm = (
-  { mode, startValues, dataType } :
-  { mode: AuthMode, startValues: IAuthLogin | IAuthRegister, dataType: 'login' | 'registration' }
+  { mode, startValues, formContent } :
+  { mode: AuthMode, startValues: IAuthLogin | IAuthRegister, formContent: any }
 ) => {
   const router = useRouter()
   const setAlert = useAlertStore(state => state.setAlert)
@@ -33,18 +34,21 @@ const AuthForm = (
       onSubmit={handleSubmit}
     >
       <Form>
-        { formData.forms[dataType].fields && formData.forms[dataType].fields.map((f, n) => (
-          f.type !== 'select' ? (
-            <FormInput key={`${f.name}--${n}`} inputData={f} />
+        {Object.keys(formContent.fields).map((key: string, n: number) => {
+          const field = formContent.fields[key]
+
+          return field.type !== 'select' ? (
+            <FormInput key={`${field.name}--${n}`} inputData={field} />
           ) : (
-            <FormInput key={f.name} inputData={f}>
-              <option value="" disabled>{f.label}</option>
-              { 'options' in f && f.options?.map(o => (
-                <option key={`${o.name}-option--${o.id}`} value={o.id}>{o.name}</option>
+            <FormInput key={field.name} inputData={field}>
+              <option value="" disabled>{field.label}</option>
+              { 'options' in field && field.options?.map((opt: any) => (
+                <option key={`${opt.name}-option--${opt.id}`} value={opt.id}>{opt.name}</option>
               )) }
             </FormInput>
-          )))}
-        <button>{formData.forms[dataType].button}</button>
+          )
+        })}
+        <button>{formContent.button}</button>
       </Form>
     </Formik>
   )
