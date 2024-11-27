@@ -25,7 +25,8 @@ export interface IAuthInput {
 }
 
 export enum AuthTokens {
-  'ID_TOKEN' = 'idToken'
+  'ID_TOKEN' = 'idToken',
+  'USER_ROLE' = 'userRole'
 }
 
 

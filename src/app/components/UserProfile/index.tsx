@@ -1,3 +1,5 @@
+'use client'
+
 import { logOut } from '@/services/auth.service'
 import useUserStore from '@/store/user.store'
 import { useRouter } from 'next/navigation'

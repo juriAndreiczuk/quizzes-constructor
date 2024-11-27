@@ -5,8 +5,9 @@ import {
   signInWithEmailAndPassword, signOut, UserCredential, User
 } from 'firebase/auth'
 import { AuthMode, AuthTokens, IAuthLogin, IAuthRegister } from '@/types/auth.types'
+import { UserTypes } from '@/types/user.types'
 import alerts from '@/content/auth.json'
-import { setUserData } from './user.service'
+import { getUserData, setUserData } from './user.service'
 
 export const onAuthChange = (
   callback: (user: User | null) => void
@@ -34,7 +35,9 @@ export const userAuth = async (
         : register(data as IAuthRegister)
     )
     const token = await userData.user?.getIdToken()
+    const user = await getUserData(userData.user?.uid)
     Cookies.set(AuthTokens.ID_TOKEN, token)
+    Cookies.set(AuthTokens.USER_ROLE, user?.userType || UserTypes[1])
     return userData.user
   } catch (err) {
     err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
