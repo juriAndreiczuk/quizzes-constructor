@@ -29,4 +29,16 @@ export enum AuthTokens {
   'USER_ROLE' = 'userRole'
 }
 
+export interface IFormField {
+  name: string
+  label: string
+  type: string
+  options?: { id: string; name: string }[]
+}
 
+export interface IFormContent {
+  fields: {
+    [key: string]: IFormField
+  }
+  button: string
+}
