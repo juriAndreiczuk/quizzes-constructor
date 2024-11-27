@@ -1,9 +1,8 @@
 import { db } from '@/config/firebase'
 import {
-  doc, setDoc, getDoc, collection, query, where,
+  doc, setDoc, getDoc, collection,
   getDocs, updateDoc, arrayUnion, arrayRemove
 } from 'firebase/firestore'
-import { IUserDetails } from '@/types/user.types'
 import { ITeam, IUpdateOperation } from '@/types/team.types'
 import { IAlerts } from '@/types/alert.types'
 import alertsData from '@/content/auth.json'
@@ -51,25 +50,6 @@ export const getTeamData = async (
       return teamDoc.data() as ITeam
     }
     return null
-  } catch (err) {
-    err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
-    throw err
-  }
-}
-
-export const getUsersByTeam = async (
-  teamId: string,
-  errorHandler: (error: string) => void
-): Promise<IUserDetails[]> => {
-  try {
-    const usersRef = collection(db, 'users')
-    const q = query(usersRef, where('teamId', '==', teamId))
-    const querySnapshot = await getDocs(q)
-    const users: IUserDetails[] = []
-    querySnapshot.forEach(item => {
-      users.push(item.data() as IUserDetails)
-    })
-    return users
   } catch (err) {
     err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
     throw err

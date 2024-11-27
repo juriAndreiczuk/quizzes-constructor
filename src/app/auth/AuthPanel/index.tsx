@@ -11,7 +11,7 @@ import { registrationSchema, loginSchema } from './validationSchema'
 
 const AuthPanel = () => {
   const [currentForm, setCurrentForm] = useState(false)
-  const teams = useTeams()
+  const { teams } = useTeams()
   const [content, setContent] = useState({
     login: formData.forms.login,
     registration: formData.forms.registration

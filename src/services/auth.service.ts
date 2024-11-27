@@ -58,6 +58,7 @@ export const logOut = async (errorHandler: (error: string) => void)
   try {
     signOut(auth)
     Cookies.remove(AuthTokens.ID_TOKEN)
+    Cookies.remove(AuthTokens.USER_ROLE)
   } catch (err) {
     err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
     throw err
