@@ -51,3 +51,19 @@ export const getUsersByTeam = async (
     throw err
   }
 }
+
+export const getAllUsers = async (errorHandler: (error: string) => void)
+: Promise<IUserDetails[]> => {
+  try {
+    const users: IUserDetails[] = []
+    const snapshot = await getDocs(collection(db, 'users'))
+    snapshot.forEach(item => {
+      const data = item.data() as IUserDetails
+      users.push(data)
+    })
+    return users
+  } catch (err) {
+    err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
+    throw err
+  }
+}

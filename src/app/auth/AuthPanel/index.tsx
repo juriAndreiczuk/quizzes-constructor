@@ -5,13 +5,15 @@ import { AuthMode } from '@/types/auth.types'
 import { UserTypes } from '@/types/user.types'
 import formData from '@/content/auth.json'
 import AuthForm from '@/app/auth/AuthForm'
-import useTeams from '@/app/hooks/auth/useTeams'
+import useCollection from '@/app/hooks/useCollection'
+import { ITeam } from '@/types/team.types'
+import { getAllTeams } from '@/services/teams.service'
 import _set from 'lodash/set'
 import { registrationSchema, loginSchema } from './validationSchema'
 
 const AuthPanel = () => {
   const [currentForm, setCurrentForm] = useState(false)
-  const { teams } = useTeams()
+  const teams = useCollection(getAllTeams) as ITeam[]
   const [content, setContent] = useState({
     login: formData.forms.login,
     registration: formData.forms.registration
