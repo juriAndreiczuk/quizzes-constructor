@@ -11,11 +11,10 @@ import { AlertKind } from '@/types/alert.types'
 import Routes from '@/constants/routes'
 
 import FormInput from '@/app/components/ui/FormInput'
-import validationSchema from '../validationSchema'
 
 const AuthForm = (
-  { mode, startValues, formContent } :
-  { mode: AuthMode, startValues: IAuthLogin | IAuthRegister, formContent: any }
+  { mode, startValues, formContent, validation } :
+  { mode: AuthMode, startValues: IAuthLogin | IAuthRegister, formContent: any, validation: any }
 ) => {
   const router = useRouter()
   const setAlert = useAlertStore(state => state.setAlert)
@@ -30,7 +29,7 @@ const AuthForm = (
   return (
     <Formik
       initialValues={startValues}
-      validationSchema={validationSchema}
+      validationSchema={validation}
       onSubmit={handleSubmit}
     >
       <Form>
