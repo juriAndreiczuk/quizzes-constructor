@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword, signOut, UserCredential, User
 } from 'firebase/auth'
 import { AuthMode, AuthTokens, IAuthLogin, IAuthRegister } from '@/types/auth.types'
+import alerts from '@/content/alerts.json'
 import { setUserData } from './user.service'
 
 export const onAuthChange = (
@@ -24,7 +25,7 @@ const register = async (data: IAuthRegister)
 export const userAuth = async (
   data: (IAuthLogin | IAuthRegister),
   mode: AuthMode,
-  errorHandler: (error: any) => void
+  errorHandler: (error: string) => void
 ): Promise<User | undefined> => {
   try {
     const userData = await (
@@ -36,17 +37,17 @@ export const userAuth = async (
     Cookies.set(AuthTokens.ID_TOKEN, token)
     return userData.user
   } catch (err) {
-    err instanceof Error && errorHandler(err.message)
+    err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
     throw err
   }
 }
 
-export const logOut = async (errorHandler: (error: any) => void):Promise<void> => {
+export const logOut = async (errorHandler: (error: string) => void):Promise<void> => {
   try {
     signOut(auth)
     Cookies.remove(AuthTokens.ID_TOKEN)
   } catch (err) {
-    err instanceof Error && errorHandler(err.message)
+    err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
     throw err
   }
 }

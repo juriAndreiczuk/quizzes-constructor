@@ -3,7 +3,6 @@ import { getUserData } from '@/services/user.service'
 import { onAuthChange } from '@/services/auth.service'
 import { IUserDetails, IUserState } from '@/types/user.types'
 
-
 const useUserStore = create<IUserState>(set => ({
   user: null,
   loading: true,

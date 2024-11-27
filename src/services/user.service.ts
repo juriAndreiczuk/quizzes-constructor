@@ -2,6 +2,7 @@ import { db } from '@/config/firebase'
 import { doc, setDoc, getDoc } from 'firebase/firestore'
 import { IAuthRegister } from '@/types/auth.types'
 import { IUserDetails } from '@/types/user.types'
+import alerts from '@/content/alerts.json'
 
 export const setUserData = async (data: IAuthRegister, uid: string)
 : Promise<void> => {
@@ -11,7 +12,7 @@ export const setUserData = async (data: IAuthRegister, uid: string)
       displayName, teamId, userType, points: 0
     })
   } catch (err) {
-    throw new Error('Error setting user data')
+    throw new Error(alerts.errors.setUser)
   }
 }
 
@@ -25,6 +26,6 @@ export const getUserData = async (uid: string)
     }
     return null
   } catch (err) {
-    throw new Error('Error getting user data')
+    throw new Error(alerts.errors.getUser)
   }
 }

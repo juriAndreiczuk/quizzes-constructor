@@ -1,0 +1,10 @@
+{
+  "errors": {
+    "setUser": "Error setting user data",
+    "getUser": "Error getting user data",
+    "Firebase: Error (auth/invalid-email).": "invalid email",
+    "Firebase: Error (auth/missing-password).": "missing password",
+    "Firebase: Error (auth/invalid-credential).": "invalid credential",
+    "Firebase: Password should be at least 6 characters (auth/weak-password).": "Password should be at least 6 characters"
+  }
+}
