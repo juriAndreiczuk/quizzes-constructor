@@ -18,6 +18,7 @@ export interface IAuthInput {
   name: string
   teamId?: string
   type: string
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void
   options?: {
     id: string
     name: string
