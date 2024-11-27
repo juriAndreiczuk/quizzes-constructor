@@ -2,11 +2,12 @@
 
 import * as Yup from 'yup'
 import { useRouter } from 'next/navigation'
-import { Form, Formik } from 'formik'
+import { Form, Formik, FormikProps } from 'formik'
 import { userAuth } from '@/services/auth.service'
 import useAlertStore from '@/store/alert.store'
 import { IAuthLogin, AuthMode, IAuthRegister, IFormContent } from '@/types/auth.types'
 import { AlertKind } from '@/types/alert.types'
+import { UserTypes } from '@/types/user.types'
 import Routes from '@/constants/routes'
 import FormInput from '@/app/components/ui/FormInput'
 
@@ -22,8 +23,12 @@ const AuthForm = (
   const router = useRouter()
   const setAlert = useAlertStore(state => state.setAlert)
 
-  const handleSubmit = async (values: IAuthLogin) => {
-    await userAuth(values, mode, (val: string) => {
+  const handleSubmit = async (values: IAuthLogin | IAuthRegister) => {
+    const userData = 'userType' in values && mode === AuthMode.Registration ? {
+      ...values,
+      teamId: values.userType === UserTypes[0] ? UserTypes[0] : values.teamId
+    } : { ...values }
+    await userAuth(userData, mode, (val: string) => {
       setAlert({ message: val, kind: AlertKind.Error, show: true })
     })
     router.push(Routes.Home)
@@ -35,23 +40,27 @@ const AuthForm = (
       validationSchema={validation}
       onSubmit={handleSubmit}
     >
-      <Form>
-        {Object.keys(formContent.fields).map((key: string, n: number) => {
-          const field = formContent.fields[key]
+      {(props: FormikProps<any>) => (
+        <Form>
+          {Object.keys(formContent.fields).map((key: string, n: number) => {
+            const field = formContent.fields[key]
 
-          return field.type !== 'select' ? (
-            <FormInput key={`${field.name}--${n}`} inputData={field} />
-          ) : (
-            <FormInput key={field.name} inputData={field}>
-              <option value="" disabled>{field.label}</option>
-              { 'options' in field && field.options?.map(opt => (
-                <option key={`${opt.name}-option--${opt.id}`} value={opt.id}>{opt.name}</option>
-              )) }
-            </FormInput>
-          )
-        })}
-        <button>{formContent.button}</button>
-      </Form>
+            return field.type !== 'select' ? (
+              <FormInput key={`${field.name}--${n}`} inputData={field} />
+            ) : (
+              props.values.userType === UserTypes[0] && field.name === 'teamId' ? '' : (
+                <FormInput key={field.name} inputData={field}>
+                  <option value="" disabled>{field.label}</option>
+                  { 'options' in field && field.options?.map(opt => (
+                    <option key={`${opt.name}-option--${opt.id}`} value={opt.id}>{opt.name}</option>
+                  )) }
+                </FormInput>
+              )
+            )
+          })}
+          <button>{formContent.button}</button>
+        </Form>
+      )}
     </Formik>
   )
 }

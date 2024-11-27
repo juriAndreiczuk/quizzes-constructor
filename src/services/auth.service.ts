@@ -24,7 +24,9 @@ const register = async (data: IAuthRegister)
   const userData = await createUserWithEmailAndPassword(auth, email, password)
   if (auth.currentUser) {
     await setUserData({ displayName, teamId, userType } as IAuthRegister, auth.currentUser.uid)
-    await updateTeamMembers(teamId, auth.currentUser.uid, IUpdateOperation.Add)
+    if (teamId !== UserTypes[0]) {
+      await updateTeamMembers(teamId, auth.currentUser.uid, IUpdateOperation.Add)
+    }
   }
   return userData
 }

@@ -10,8 +10,12 @@ const schemas = {
   displayName: Yup.string()
     .required(messagesData.validation.required)
     .min(3, messagesData.validation.name),
+  userType: Yup.string(),
   teamId: Yup.string()
-    .required(messagesData.validation.required)
+    .when('userType', {
+      is: (value: string) => value === 'Player',
+      then: () => Yup.string().required(messagesData.validation.required)
+    })
 }
 
 export const loginSchema = Yup.object().shape({
