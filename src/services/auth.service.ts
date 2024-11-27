@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword, signOut, UserCredential, User
 } from 'firebase/auth'
 import { AuthMode, AuthTokens, IAuthLogin, IAuthRegister } from '@/types/auth.types'
-import alerts from '@/content/alerts.json'
+import alerts from '@/content/auth.json'
 import { setUserData } from './user.service'
 
 export const onAuthChange = (

@@ -2,7 +2,7 @@ import { db } from '@/config/firebase'
 import { doc, setDoc, getDoc } from 'firebase/firestore'
 import { IAuthRegister } from '@/types/auth.types'
 import { IUserDetails } from '@/types/user.types'
-import alerts from '@/content/alerts.json'
+import alerts from '@/content/auth.json'
 
 export const setUserData = async (data: IAuthRegister, uid: string)
 : Promise<void> => {

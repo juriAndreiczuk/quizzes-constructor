@@ -17,16 +17,20 @@ const UserProfile = () => {
     router.push(Routes.Auth)
   }
 
-  return user && (
+  return (
     <div>
-      <dl>
-        <dt>Name</dt>
-        <dd>{user.displayName}</dd>
-        <dt>Team</dt>
-        <dd>{user.teamId}</dd>
-        <dt>Points</dt>
-        <dd>{user.points}</dd>
-      </dl>
+      {
+        user && (
+          <dl>
+            <dt>Name</dt>
+            <dd>{user.displayName}</dd>
+            <dt>Team</dt>
+            <dd>{user.teamId}</dd>
+            <dt>Points</dt>
+            <dd>{user.points}</dd>
+          </dl>
+        )
+      }
       <button onClick={handleLogOut}>Logout</button>
     </div>
   )
