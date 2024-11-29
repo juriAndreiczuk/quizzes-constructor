@@ -18,7 +18,9 @@ const RootLayout = (
     <body className={inter.className}>
       <UserInitialize />
       <AlertBox />
-      {children}
+      <div className="container">
+        {children}
+      </div>
     </body>
   </html>
 )
