@@ -4,9 +4,7 @@ import * as Yup from 'yup'
 import { useRouter } from 'next/navigation'
 import { Form, Formik, FormikProps } from 'formik'
 import { userAuth } from '@/services/auth.service'
-import useAlertStore from '@/store/alert.store'
 import { IAuthLogin, AuthMode, IAuthRegister, IFormContent } from '@/types/auth.types'
-import { AlertKind } from '@/types/alert.types'
 import { UserTypes } from '@/types/user.types'
 import Routes from '@/constants/routes'
 import FormInput from '@/app/components/ui/FormInput'
@@ -21,16 +19,13 @@ const AuthForm = (
   }
 ) => {
   const router = useRouter()
-  const setAlert = useAlertStore(state => state.setAlert)
 
   const handleSubmit = async (values: IAuthLogin | IAuthRegister) => {
     const userData = 'userType' in values && mode === AuthMode.Registration ? {
       ...values,
       teamId: values.userType === UserTypes[0] ? UserTypes[0] : values.teamId
     } : { ...values }
-    await userAuth(userData, mode, (val: string) => {
-      setAlert({ message: val, kind: AlertKind.Error, show: true })
-    })
+    await userAuth(userData, mode)
     router.push(Routes.Home)
   }
 

@@ -1,5 +1,4 @@
 import { db } from '@/config/firebase'
-import { getAllDocuments, getDocumentData } from '@/services/docs.service'
 import {
   doc, setDoc, collection, query, where,
   getDocs, updateDoc, arrayUnion, arrayRemove
@@ -9,17 +8,9 @@ import { IAlerts } from '@/types/alert.types'
 import alertsData from '@/content/auth.json'
 
 const alerts: IAlerts = alertsData as IAlerts
-
-export const getAllTeams = async (errorHandler: (error: string) => void)
-: Promise<ITeam[]> => getAllDocuments<ITeam>('teams', errorHandler)
-
-export const getTeamData = async (teamId: string)
-: Promise<ITeam | null | undefined> => getDocumentData<ITeam>(teamId, 'teams')
-
-export const createTeam = async (
-  data: ITeam,
-  errorHandler: (error: string) => void
-): Promise<void> => {
+// create new team
+export const createTeam = async (data: ITeam)
+: Promise<void> => {
   try {
     const teamsCollection = collection(db, 'teams')
     const teamRef = doc(teamsCollection)
@@ -31,11 +22,10 @@ export const createTeam = async (
       await setDoc(teamRef, data)
     }
   } catch (err) {
-    err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
-    throw err
+    throw new Error(alertsData.errors.createDoc)
   }
 }
-
+// add/remove team memebers
 export const updateTeamMembers = async (
   teamId: string,
   userId: string,

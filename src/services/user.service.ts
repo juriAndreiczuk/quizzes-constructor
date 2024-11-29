@@ -1,5 +1,4 @@
 import { db } from '@/config/firebase'
-import { getDocumentData, getAllDocuments } from '@/services/docs.service'
 import {
   doc, setDoc, query, where, collection, getDocs
 } from 'firebase/firestore'
@@ -9,13 +8,7 @@ import alertsData from '@/content/auth.json'
 import { IAlerts } from '@/types/alert.types'
 
 const alerts: IAlerts = alertsData as IAlerts
-
-export const getAllUsers = async (errorHandler: (error: string) => void)
-: Promise<IUserDetails[]> => getAllDocuments<IUserDetails>('users', errorHandler)
-
-export const getUserData = async (uid: string)
-: Promise<IUserDetails | null | undefined> => getDocumentData<IUserDetails>(uid, 'users')
-
+// change user data in firestore
 export const setUserData = async (data: IAuthRegister, uid: string)
 : Promise<void> => {
   try {
@@ -27,11 +20,9 @@ export const setUserData = async (data: IAuthRegister, uid: string)
     throw new Error(alerts.errors.setUser)
   }
 }
-
-export const getUsersByTeam = async (
-  teamId: string,
-  errorHandler: (error: string) => void
-): Promise<IUserDetails[]> => {
+// change user by team id
+export const getUsersByTeam = async (teamId: string)
+: Promise<IUserDetails[]> => {
   try {
     const usersRef = collection(db, 'users')
     const q = query(usersRef, where('teamId', '==', teamId))
@@ -42,7 +33,6 @@ export const getUsersByTeam = async (
     })
     return users
   } catch (err) {
-    err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
-    throw err
+    throw new Error(alerts.errors.getDoc)
   }
 }

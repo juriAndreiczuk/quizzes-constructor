@@ -1,14 +1,16 @@
 'use client'
 
 import useCollection from '@/app/hooks/useCollection'
-import { getAllTeams } from '@/services/teams.service'
-import { getAllUsers } from '@/services/user.service'
+import { getAllDocuments } from '@/services/docs.service'
 import { ITeam } from '@/types/team.types'
 import { IUserDetails } from '@/types/user.types'
 
 const TeamsList = () => {
-  const teams = useCollection(getAllTeams) as ITeam[]
-  const users = useCollection(getAllUsers) as IUserDetails[]
+  const teamsService = (): Promise<ITeam[]> => getAllDocuments<ITeam>('teams')
+  const usersService = (): Promise<IUserDetails[]> => getAllDocuments<IUserDetails>('users')
+
+  const teams = useCollection(teamsService) as ITeam[]
+  const users = useCollection(usersService) as IUserDetails[]
 
   return (
     <ul>

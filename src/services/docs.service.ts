@@ -4,7 +4,7 @@ import alertsData from '@/content/auth.json'
 import { IAlerts } from '@/types/alert.types'
 
 const alerts: IAlerts = alertsData as IAlerts
-
+// get  document by id
 export const getDocumentData = async <T>(uid: string, docName: string)
 : Promise<T | null | undefined> => {
   try {
@@ -17,8 +17,8 @@ export const getDocumentData = async <T>(uid: string, docName: string)
     throw new Error(alerts.errors.getDoc)
   }
 }
-
-export const getAllDocuments = async <T>(docName: string, errorHandler: (error: string) => void)
+// get  all documents by collection name
+export const getAllDocuments = async <T>(docName: string)
 : Promise<T[]> => {
   try {
     const documents: T[] = []
@@ -32,7 +32,6 @@ export const getAllDocuments = async <T>(docName: string, errorHandler: (error: 
     })
     return documents
   } catch (err) {
-    err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
-    throw err
+    throw new Error(alerts.errors.getDoc)
   }
 }

@@ -4,18 +4,13 @@ import { logOut } from '@/services/auth.service'
 import useUserStore from '@/store/user.store'
 import { useRouter } from 'next/navigation'
 import Routes from '@/constants/routes'
-import useAlertStore from '@/store/alert.store'
-import { AlertKind } from '@/types/alert.types'
 
 const UserProfile = () => {
   const user = useUserStore(state => state.user)
   const router = useRouter()
-  const setAlert = useAlertStore(state => state.setAlert)
 
   const handleLogOut = async () => {
-    await logOut((val: string) => {
-      setAlert({ message: val, kind: AlertKind.Error, show: true })
-    })
+    await logOut()
     router.push(Routes.Auth)
   }
 

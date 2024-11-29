@@ -7,13 +7,16 @@ import formData from '@/content/auth.json'
 import AuthForm from '@/app/auth/AuthForm'
 import useCollection from '@/app/hooks/useCollection'
 import { ITeam } from '@/types/team.types'
-import { getAllTeams } from '@/services/teams.service'
 import _set from 'lodash/set'
+import { getAllDocuments } from '@/services/docs.service'
 import { registrationSchema, loginSchema } from './validationSchema'
 
 const AuthPanel = () => {
   const [currentForm, setCurrentForm] = useState(false)
-  const teams = useCollection(getAllTeams) as ITeam[]
+
+  const teamsService = (): Promise<ITeam[]> => getAllDocuments<ITeam>('teams')
+
+  const teams = useCollection(teamsService) as ITeam[]
   const [content, setContent] = useState({
     login: formData.forms.login,
     registration: formData.forms.registration
