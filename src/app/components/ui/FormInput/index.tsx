@@ -13,6 +13,7 @@ const Input = (
 
   return (
     <>
+      <label htmlFor={inputData.name}>{inputData.label}</label>
       <Field
         id={inputData.name}
         type={inputData.type}

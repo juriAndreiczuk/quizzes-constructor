@@ -14,7 +14,7 @@ export const setUserData = async (data: IAuthRegister, uid: string)
   try {
     const { displayName, teamId, userType } = data
     await setDoc(doc(db, 'users', uid), {
-      displayName, teamId, userType, points: 0
+      displayName, teamId, userType, isBlocked: false, points: 0
     })
   } catch (err) {
     throw new Error(alerts.errors.setUser)

@@ -9,6 +9,7 @@ export interface IUserDetails {
   teamId: string
   userType: string
   points: number
+  isBlocked?: boolean
 }
 
 export interface IUserState {
@@ -18,3 +19,5 @@ export interface IUserState {
   setLoading: (loading: boolean) => void
   initializeUser: () => void
 }
+
+export interface IUserUpdate extends Pick<IUserDetails, 'displayName' | 'teamId' | 'isBlocked'> {}

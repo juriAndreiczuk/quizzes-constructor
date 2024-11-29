@@ -23,6 +23,11 @@
           "label": "teamId",
           "name": "teamId",
           "type": "select"
+        },
+        "isBlocked": {
+          "label": "isBlocked",
+          "name": "isBlocked",
+          "type": "checkbox"
         }
       },
       "button": "Save"

@@ -1,9 +1,7 @@
-import UserProfile from '@/app/components/UserProfile'
+import StatusChecker from './components/StatusChecker'
 
 const Home = () => (
-  <main>
-    <UserProfile />
-  </main>
+  <StatusChecker />
 )
 
 export default Home

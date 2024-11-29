@@ -1,34 +1,42 @@
 import { Form, Formik } from 'formik'
 import FormInput from '@/app/components/ui/FormInput'
-// import schema from '@/app/components/TeamsForm/validationSchema'
+import schema from '@/app/components/TeamsUser/validationSchema'
 import contentData from '@/content/teams.json'
-import { ITeam, IUpdateOperation } from '@/types/team.types'
-import { IUserDetails } from '@/types/user.types'
-import { updateDocument } from '@/services/docs.service'
-import { updateTeamMembers } from '@/services/teams.service'
+import { ITeam } from '@/types/team.types'
+import { IUserDetails, IUserUpdate } from '@/types/user.types'
+import useUserOperations from '@/app/hooks/useUserOperations'
 
-const TeamsUser = ({ teamsList, userData }: { teamsList: ITeam[], userData: IUserDetails }) => {
-  const handleSubmit = async (values: { displayName: string, teamId: string }) => {
-    if (userData.displayName !== values.displayName || userData.teamId !== values.teamId) {
-      if (userData.id) {
-        updateTeamMembers(userData.teamId, userData.id, IUpdateOperation.Remove)
-        updateTeamMembers(values.teamId, userData.id, IUpdateOperation.Add)
-        updateDocument({ ...values }, 'users', userData.id)
-      }
-    }
+const TeamsUser = (
+  { teamsList, userData, finishEditing }
+  : { teamsList: ITeam[], userData: IUserDetails, finishEditing: () => void }
+) => {
+  const { updateUser } = useUserOperations()
+
+  const handleSubmit = async (values: IUserUpdate) => {
+    await updateUser(values, userData)
+    finishEditing()
   }
+
   const content = contentData.userEdit
 
   return (
     <div>
-      <h3>{content.title}</h3>
+      <h3>
+        {content.title}
+        <button onClick={() => finishEditing()}>Close</button>
+      </h3>
       <Formik
-        initialValues={{ displayName: userData.displayName, teamId: userData.teamId }}
+        initialValues={{
+          displayName: userData.displayName,
+          teamId: userData.teamId,
+          isBlocked: userData.isBlocked || false
+        }}
         onSubmit={handleSubmit}
-        // validationSchema={schema}
+        validationSchema={schema}
       >
         <Form>
           <FormInput inputData={content.form.fields.displayName} />
+          <FormInput inputData={content.form.fields.isBlocked} />
           <FormInput inputData={content.form.fields.teamId}>
             <option value="" disabled>{userData.teamId}</option>
             { teamsList.length && teamsList.map(opt => (

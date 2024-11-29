@@ -24,6 +24,7 @@ const TeamsList = () => {
             key={selectedUser ? selectedUser.displayName : 'default'}
             teamsList={teams}
             userData={selectedUser}
+            finishEditing={() => setSelectedUser(null)}
           />
         )
         : '' }
