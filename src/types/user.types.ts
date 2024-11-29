@@ -4,6 +4,7 @@ export enum UserTypes {
 }
 
 export interface IUserDetails {
+  id?: string
   displayName: string
   teamId: string
   userType: string

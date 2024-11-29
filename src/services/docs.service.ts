@@ -1,5 +1,7 @@
 import { db } from '@/config/firebase'
-import { doc, getDoc, collection, getDocs } from 'firebase/firestore'
+import {
+  doc, getDoc, collection, getDocs, updateDoc
+} from 'firebase/firestore'
 import alertsData from '@/content/auth.json'
 import { IAlerts } from '@/types/alert.types'
 
@@ -33,5 +35,14 @@ export const getAllDocuments = async <T>(docName: string)
     return documents
   } catch (err) {
     throw new Error(alerts.errors.getDoc)
+  }
+}
+// update document by id and collection name
+export const updateDocument = async <T>(data: T, docName: string, id: string)
+: Promise<void> => {
+  try {
+    await updateDoc(doc(db, docName, id), data as Partial<T>)
+  } catch (err) {
+    throw new Error(alerts.errors.updateDoc)
   }
 }

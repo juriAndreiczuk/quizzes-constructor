@@ -12,7 +12,6 @@ export interface IAuthLogin {
 
 export interface IAuthRegister extends IAuthLogin, Omit<IUserDetails, 'points'> {}
 
-
 export interface IAuthInput {
   label: string
   name: string

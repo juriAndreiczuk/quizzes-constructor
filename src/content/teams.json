@@ -9,5 +9,23 @@
       }
     },
     "button": "Send"
+  },
+  "userEdit": {
+    "title": "Edit User",
+    "form": {
+      "fields": {
+        "displayName": {
+          "label": "displayName",
+          "name": "displayName",
+          "type": "text"
+        },
+        "teamId": {
+          "label": "teamId",
+          "name": "teamId",
+          "type": "select"
+        }
+      },
+      "button": "Save"
+    }
   }
 }

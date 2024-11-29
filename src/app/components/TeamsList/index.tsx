@@ -1,11 +1,15 @@
 'use client'
 
+import { useState } from 'react'
 import useCollection from '@/app/hooks/useCollection'
 import { getAllDocuments } from '@/services/docs.service'
 import { ITeam } from '@/types/team.types'
 import { IUserDetails } from '@/types/user.types'
+import TeamsUser from '../TeamsUser'
 
 const TeamsList = () => {
+  const [selectedUser, setSelectedUser] = useState<IUserDetails | null>(null)
+
   const teamsService = (): Promise<ITeam[]> => getAllDocuments<ITeam>('teams')
   const usersService = (): Promise<IUserDetails[]> => getAllDocuments<IUserDetails>('users')
 
@@ -13,24 +17,36 @@ const TeamsList = () => {
   const users = useCollection(usersService) as IUserDetails[]
 
   return (
-    <ul>
-      { teams && teams.map(team => (
-        <li key={team.id}>
-          {team.name}
-          { team.members && team.members.length && (
-            <ul>
-              { users.length && users
-                .filter(user => user.teamId === team.id)
-                .map(user => (
-                  <li key={user.displayName}>
-                    {user.displayName}
-                  </li>
-                ))}
-            </ul>
-          )}
-        </li>
-      )) }
-    </ul>
+    <>
+      { selectedUser
+        ? (
+          <TeamsUser
+            key={selectedUser ? selectedUser.displayName : 'default'}
+            teamsList={teams}
+            userData={selectedUser}
+          />
+        )
+        : '' }
+      <ul>
+        { teams && teams.map(team => (
+          <li key={team.id}>
+            {team.name}
+            { team.members && team.members.length && (
+              <ul>
+                { users.length && users
+                  .filter(user => user.teamId === team.id)
+                  .map(user => (
+                    <li key={user.displayName}>
+                      {user.displayName}
+                      <button onClick={() => setSelectedUser(user)}>Edit</button>
+                    </li>
+                  ))}
+              </ul>
+            )}
+          </li>
+        )) }
+      </ul>
+    </>
   )
 }
 
