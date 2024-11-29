@@ -1,6 +1,7 @@
 import { db } from '@/config/firebase'
+import { getAllDocuments, getDocumentData } from '@/services/docs.service'
 import {
-  doc, setDoc, getDoc, collection, query, where,
+  doc, setDoc, collection, query, where,
   getDocs, updateDoc, arrayUnion, arrayRemove
 } from 'firebase/firestore'
 import { ITeam, IUpdateOperation } from '@/types/team.types'
@@ -8,6 +9,12 @@ import { IAlerts } from '@/types/alert.types'
 import alertsData from '@/content/auth.json'
 
 const alerts: IAlerts = alertsData as IAlerts
+
+export const getAllTeams = async (errorHandler: (error: string) => void)
+: Promise<ITeam[]> => getAllDocuments<ITeam>('teams', errorHandler)
+
+export const getTeamData = async (teamId: string)
+: Promise<ITeam | null | undefined> => getDocumentData<ITeam>(teamId, 'teams')
 
 export const createTeam = async (
   data: ITeam,
@@ -23,40 +30,6 @@ export const createTeam = async (
     } else {
       await setDoc(teamRef, data)
     }
-  } catch (err) {
-    err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
-    throw err
-  }
-}
-
-export const getAllTeams = async (errorHandler: (error: string) => void): Promise<ITeam[]> => {
-  try {
-    const teams: ITeam[] = []
-    const snapshot = await getDocs(collection(db, 'teams'))
-    snapshot.forEach(item => {
-      const data = item.data() as ITeam
-      teams.push({
-        id: item.id,
-        ...data
-      })
-    })
-    return teams
-  } catch (err) {
-    err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
-    throw err
-  }
-}
-
-export const getTeamData = async (
-  teamId: string,
-  errorHandler: (error: string) => void
-): Promise<ITeam | null | undefined> => {
-  try {
-    const teamDoc = await getDoc(doc(db, 'teams', teamId))
-    if (teamDoc.exists()) {
-      return teamDoc.data() as ITeam
-    }
-    return null
   } catch (err) {
     err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
     throw err
