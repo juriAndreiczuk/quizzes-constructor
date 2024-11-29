@@ -1,0 +1,13 @@
+{
+  "title": "Create a new team",
+  "form": {
+    "fields": {
+      "teamName": {
+        "label": "Team",
+        "name": "name",
+        "type": "text"
+      }
+    },
+    "button": "Send"
+  }
+}

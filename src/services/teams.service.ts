@@ -1,6 +1,6 @@
 import { db } from '@/config/firebase'
 import {
-  doc, setDoc, getDoc, collection,
+  doc, setDoc, getDoc, collection, query, where,
   getDocs, updateDoc, arrayUnion, arrayRemove
 } from 'firebase/firestore'
 import { ITeam, IUpdateOperation } from '@/types/team.types'
@@ -14,8 +14,15 @@ export const createTeam = async (
   errorHandler: (error: string) => void
 ): Promise<void> => {
   try {
-    const teamRef = doc(collection(db, 'teams'))
-    await setDoc(teamRef, data)
+    const teamsCollection = collection(db, 'teams')
+    const teamRef = doc(teamsCollection)
+    const q = query(teamsCollection, where('name', '==', data.name))
+    const querySnapshot = await getDocs(q)
+    if (querySnapshot.size > 0) {
+      throw new Error(alerts.errors.teamExists)
+    } else {
+      await setDoc(teamRef, data)
+    }
   } catch (err) {
     err instanceof Error && errorHandler(alerts.errors[err.message] || err.message)
     throw err
