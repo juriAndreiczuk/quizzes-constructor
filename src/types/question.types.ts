@@ -22,6 +22,7 @@ export interface IQuestionsState {
   selectedQuestion: IQuestionDetails | null
   setSelectedQuestion: (question: IQuestionDetails | null) => void
   fetchQuestions: () => Promise<void>,
-  updateQuestion: (vals: IQuestionDetails, questionData: IQuestionDetails) => Promise<void>
+  updateQuestion: (vals: IQuestionDetails) => Promise<void>
   removeQuestion: () => Promise<void>
+  createQuestion: (vals: IQuestionDetails) => Promise<void>
 }

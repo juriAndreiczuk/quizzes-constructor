@@ -11,6 +11,7 @@ const answerSchema = Yup.object().shape({
 })
 
 const schema = Yup.object().shape({
+  quizId: Yup.string(),
   question: Yup.string()
     .required(required)
     .min(1, required),

@@ -8,7 +8,12 @@ import { IQuizDetails } from '@/types/question.types'
 
 const QuizzesQuestion = () => {
   const {
-    selectedQuestion, setSelectedQuestion, updateQuestion, fetchQuestions, removeQuestion
+    selectedQuestion,
+    setSelectedQuestion,
+    createQuestion,
+    updateQuestion,
+    fetchQuestions,
+    removeQuestion
   } = useQuestionsStore()
 
   const {
@@ -17,7 +22,11 @@ const QuizzesQuestion = () => {
 
   const handleSubmit = (values: any) => {
     if (selectedQuestion) {
-      updateQuestion(values, selectedQuestion)
+      if (selectedQuestion.id) {
+        updateQuestion(values)
+      } else {
+        createQuestion(values)
+      }
       setSelectedQuestion(null)
       fetchQuestions()
       fetchQuizzes()

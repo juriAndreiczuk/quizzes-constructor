@@ -1,6 +1,6 @@
 import { db } from '@/config/firebase'
 import {
-  doc, getDoc, collection, getDocs, updateDoc,
+  doc, getDoc, collection, getDocs, updateDoc, DocumentData,
   arrayUnion, arrayRemove, deleteDoc, setDoc, query, where
 } from 'firebase/firestore'
 import alertsData from '@/content/auth.json'
@@ -60,7 +60,7 @@ export const removeDocument = async (docName: string, id: string)
 }
 // create new document
 export const createDocument = async <T>(docName: string, data: T, uniqueField: string)
-: Promise<void> => {
+: Promise<void | DocumentData> => {
   try {
     const collectionRef = collection(db, docName)
     const documentRef = doc(collectionRef)
@@ -72,13 +72,14 @@ export const createDocument = async <T>(docName: string, data: T, uniqueField: s
       throw new Error(alerts.errors.createDoc)
     } else {
       await setDoc(documentRef, data)
+      return getDoc(documentRef)
     }
   } catch (err) {
     throw new Error(alerts.errors.createDoc)
   }
 }
 // update collection item by id and collection name
-export const updateCollectionItem = async (
+export const updateCollectionItems = async (
   collectionName: string,
   itemsName: string,
   docId: string,

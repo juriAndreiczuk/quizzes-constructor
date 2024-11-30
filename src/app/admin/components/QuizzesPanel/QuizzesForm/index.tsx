@@ -1,6 +1,7 @@
 'use client'
 
 import { useQuizzesCollectionStore } from '@/store/collections.store'
+import useQuestionsStore from '@/store/questions.strore'
 import quizzesData from '@/content/quizzes.json'
 import { IQuizDetails } from '@/types/question.types'
 import { IFormContent } from '@/types/auth.types'
@@ -11,7 +12,8 @@ import schema from '@/app/admin/components/QuizzesPanel/QuizzesForm/validationSc
 const formData = quizzesData.createForm as IFormContent
 
 const QuizzesForm = () => {
-  const { createItem: createQuiz } = useQuizzesCollectionStore()
+  const { createItem: createQuiz, items: quizzes } = useQuizzesCollectionStore()
+  const { setSelectedQuestion } = useQuestionsStore()
 
   const handleSubmit = async (values: IQuizDetails, { resetForm }: FormikHelpers<IQuizDetails>) => {
     const newQuizValues: IQuizDetails = { ...values, items: [] }
@@ -39,6 +41,16 @@ const QuizzesForm = () => {
           <button type="submit">{formData.button}</button>
         </Form>
       </Formik>
+      <button onClick={
+        () => {
+          quizzes.length && quizzes[0].id && setSelectedQuestion({
+            quizId: quizzes[0].id, question: '', cost: 0, answers: []
+          })
+        }
+      }
+      >
+        New question
+      </button>
     </div>
   )
 }
