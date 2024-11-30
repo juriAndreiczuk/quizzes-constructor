@@ -3,17 +3,24 @@ import FormInput from '@/app/components/ui/FormInput'
 import useQuestionsStore from '@/store/questions.strore'
 import schema from '@/app/admin/components/QuizzesPanel/QuizzesQuestion/validationSchema'
 import contentData from '@/content/quizzes.json'
+import useQuizzesStore from '@/store/quizzes.store'
+import { IQuiz } from '@/types/quiz.types'
 
 const QuizzesQuestion = () => {
   const {
     selectedQuestion, setSelectedQuestion, updateQuestion, fetchQuestions, removeQuestion
   } = useQuestionsStore()
 
+  const {
+    fetchQuizzes, quizzes
+  } = useQuizzesStore()
+
   const handleSubmit = (values: any) => {
     if (selectedQuestion) {
       updateQuestion(values, selectedQuestion)
       setSelectedQuestion(null)
       fetchQuestions()
+      fetchQuizzes()
     }
   }
 
@@ -27,18 +34,28 @@ const QuizzesQuestion = () => {
 
   return selectedQuestion && (
     <div>
+      <button onClick={() => setSelectedQuestion(null)}>Close</button>
       <button onClick={() => handleRemove()}>{contentData.form.removeQuestion}</button>
       <Formik
         validationSchema={schema}
         initialValues={{
           question: selectedQuestion.question,
           cost: selectedQuestion.cost,
-          answers: selectedQuestion.answers
+          answers: selectedQuestion.answers,
+          quizId: selectedQuestion.quizId
         }}
         onSubmit={handleSubmit}
       >
         {({ values, isValid }) => (
           <Form>
+            <FormInput
+              inputData={{ label: 'quiz id', name: 'quizId', type: 'select' }}
+            >
+              <option value="" disabled>{selectedQuestion.quizId}</option>
+              { quizzes.length && quizzes.map((opt : IQuiz) => (
+                <option key={`${opt.id}--option`} value={opt.id}>{opt.label}</option>
+              )) }
+            </FormInput>
             <FormInput
               inputData={{ label: contentData.form.questionLabel, name: 'question', type: 'text' }}
             />

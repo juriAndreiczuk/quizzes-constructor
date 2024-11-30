@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import useQuizzesStore from '@/store/quizzes.store'
 import useQuestionsStore from '@/store/questions.strore'
+import QuizzesForm from '@/app/admin/components/QuizzesPanel/QuizzesForm'
 import QuizzesList from '@/app/admin/components/QuizzesPanel/QuizzesList'
 import QuizzesQuestion from '@/app/admin/components/QuizzesPanel/QuizzesQuestion'
 
@@ -17,6 +18,7 @@ const TeamsPanel = () => {
   return (
     <div>
       Quizzez panel
+      <QuizzesForm />
       <QuizzesList />
       <QuizzesQuestion
         key={selectedQuestion?.question}

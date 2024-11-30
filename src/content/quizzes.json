@@ -15,5 +15,15 @@
     "required": "This field is required",
     "atLeastOneRight": "At least one answer should be right",
     "notAllRight": "Not all answers can be right"
+  },
+  "createForm": {
+    "fields": {
+      "teamName": {
+        "label": "Quiz",
+        "name": "label",
+        "type": "text"
+      }
+    },
+    "button": "Send"
   }
 }

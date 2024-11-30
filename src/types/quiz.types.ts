@@ -1,5 +1,5 @@
 export interface IQuiz {
-  id: string
+  id?: string
   label: string
   items: string[]
 }
@@ -7,4 +7,5 @@ export interface IQuiz {
 export interface IQuizzesState {
   quizzes: IQuiz[]
   fetchQuizzes: () => Promise<void>
+  createQuiz: (quiz: IQuiz) => Promise<void>
 }
