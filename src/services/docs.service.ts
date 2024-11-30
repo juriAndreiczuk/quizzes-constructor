@@ -1,9 +1,11 @@
 import { db } from '@/config/firebase'
 import {
-  doc, getDoc, collection, getDocs, updateDoc, deleteDoc
+  doc, getDoc, collection, getDocs, updateDoc,
+  arrayUnion, arrayRemove, deleteDoc, setDoc, query, where
 } from 'firebase/firestore'
 import alertsData from '@/content/auth.json'
 import { IAlerts } from '@/types/alert.types'
+import { IUpdateOperation } from '@/types/collection.types'
 
 const alerts: IAlerts = alertsData as IAlerts
 // get  document by id
@@ -54,5 +56,47 @@ export const removeDocument = async (docName: string, id: string)
     await deleteDoc(doc(db, docName, id))
   } catch (err) {
     throw new Error(alerts.errors.deleteDoc)
+  }
+}
+// create new document
+export const createDocument = async <T>(docName: string, data: T, uniqueField: string)
+: Promise<void> => {
+  try {
+    const collectionRef = collection(db, docName)
+    const documentRef = doc(collectionRef)
+
+    const q = query(collectionRef, where(uniqueField, '==', (data as any)[uniqueField]))
+    const querySnapshot = await getDocs(q)
+
+    if (querySnapshot.size > 0) {
+      throw new Error(alerts.errors.createDoc)
+    } else {
+      await setDoc(documentRef, data)
+    }
+  } catch (err) {
+    throw new Error(alerts.errors.createDoc)
+  }
+}
+// update collection item by id and collection name
+export const updateCollectionItem = async (
+  collectionName: string,
+  itemsName: string,
+  docId: string,
+  itemId: string,
+  action: IUpdateOperation
+): Promise<void> => {
+  try {
+    const collectionRef = doc(db, collectionName, docId)
+    if (action === IUpdateOperation.Add) {
+      await updateDoc(collectionRef, {
+        [itemsName]: arrayUnion(itemId)
+      })
+    } else if (action === IUpdateOperation.Remove) {
+      await updateDoc(collectionRef, {
+        [itemsName]: arrayRemove(itemId)
+      })
+    }
+  } catch (err) {
+    throw new Error(alertsData.errors.updateDoc)
   }
 }

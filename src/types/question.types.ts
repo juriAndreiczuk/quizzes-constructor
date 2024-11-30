@@ -1,5 +1,5 @@
 export interface IQuizDetails {
-  id: string
+  id?: string
   label: string
   items: string[]
 }

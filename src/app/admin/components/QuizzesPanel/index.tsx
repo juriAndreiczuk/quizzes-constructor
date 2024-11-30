@@ -1,14 +1,14 @@
 'use client'
 
 import { useEffect } from 'react'
-import useQuizzesStore from '@/store/quizzes.store'
+import { useQuizzesCollectionStore } from '@/store/collections.store'
 import useQuestionsStore from '@/store/questions.strore'
 import QuizzesForm from '@/app/admin/components/QuizzesPanel/QuizzesForm'
 import QuizzesList from '@/app/admin/components/QuizzesPanel/QuizzesList'
 import QuizzesQuestion from '@/app/admin/components/QuizzesPanel/QuizzesQuestion'
 
 const TeamsPanel = () => {
-  const { fetchQuizzes } = useQuizzesStore()
+  const { fetchItems: fetchQuizzes } = useQuizzesCollectionStore()
   const { fetchQuestions, selectedQuestion } = useQuestionsStore()
 
   useEffect(() => {

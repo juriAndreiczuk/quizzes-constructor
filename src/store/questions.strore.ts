@@ -1,8 +1,7 @@
 import { create } from 'zustand'
-import { getAllDocuments, updateDocument, removeDocument } from '@/services/docs.service'
-import { updateQuizQuestions } from '@/services/quizzes.service'
+import { getAllDocuments, updateDocument, removeDocument, updateCollectionItem } from '@/services/docs.service'
 import { IQuestionDetails, IQuestionsState } from '@/types/question.types'
-import { IUpdateOperation } from '@/types/team.types'
+import { IUpdateOperation } from '@/types/collection.types'
 
 const useQuestionsStore = create<IQuestionsState>(set => ({
   questions: [],
@@ -16,12 +15,8 @@ const useQuestionsStore = create<IQuestionsState>(set => ({
   updateQuestion: async (vals: IQuestionDetails) => {
     const { selectedQuestion: question, fetchQuestions } = useQuestionsStore.getState()
     if (question !== null && question.id) {
-      await updateQuizQuestions(
-        question.quizId,
-        question.id,
-        IUpdateOperation.Remove
-      )
-      await updateQuizQuestions(vals.quizId, question.id, IUpdateOperation.Add)
+      await updateCollectionItem('quizzes', 'items', question.quizId, question.id, IUpdateOperation.Remove)
+      await updateCollectionItem('quizzes', 'items', vals.quizId, question.id, IUpdateOperation.Add)
       await updateDocument({ ...vals }, 'questions', question.id)
       await fetchQuestions()
     }

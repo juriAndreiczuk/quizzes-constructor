@@ -1,8 +1,7 @@
 import { create } from 'zustand'
 import { IUserDetails, IUserUpdate, IUsersState } from '@/types/user.types'
-import { getAllDocuments, updateDocument } from '@/services/docs.service'
-import { updateTeamMembers } from '@/services/teams.service'
-import { IUpdateOperation } from '@/types/team.types'
+import { getAllDocuments, updateDocument, updateCollectionItem } from '@/services/docs.service'
+import { IUpdateOperation } from '@/types/collection.types'
 
 const useTeamStore = create<IUsersState>(set => ({
   selectedUser: null,
@@ -15,8 +14,8 @@ const useTeamStore = create<IUsersState>(set => ({
   },
   updateUser: async (vals: IUserUpdate, userData: IUserDetails) => {
     if (userData.id) {
-      await updateTeamMembers(userData.teamId, userData.id, IUpdateOperation.Remove)
-      await updateTeamMembers(vals.teamId, userData.id, IUpdateOperation.Add)
+      await updateCollectionItem('teams', 'members', userData.teamId, userData.id, IUpdateOperation.Remove)
+      await updateCollectionItem('teams', 'members', vals.teamId, userData.id, IUpdateOperation.Add)
       await updateDocument({ ...vals }, 'users', userData.id)
       await useTeamStore.getState().fetchUsers()
     }

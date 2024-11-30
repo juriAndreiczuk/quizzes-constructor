@@ -7,11 +7,10 @@ import {
 import { AuthMode, AuthTokens, IAuthLogin, IAuthRegister } from '@/types/auth.types'
 import { IAlerts } from '@/types/alert.types'
 import { UserTypes, IUserDetails } from '@/types/user.types'
-import { IUpdateOperation } from '@/types/team.types'
+import { IUpdateOperation } from '@/types/collection.types'
 import alertsData from '@/content/auth.json'
-import { getDocumentData } from '@/services/docs.service'
+import { getDocumentData, updateCollectionItem } from '@/services/docs.service'
 import { setUserData } from './user.service'
-import { updateTeamMembers } from './teams.service'
 
 const alerts: IAlerts = alertsData as IAlerts
 // auth event listener
@@ -27,7 +26,7 @@ const register = async (data: IAuthRegister)
   if (auth.currentUser) {
     await setUserData({ displayName, teamId, userType } as IAuthRegister, auth.currentUser.uid)
     if (teamId !== UserTypes[0]) {
-      await updateTeamMembers(teamId, auth.currentUser.uid, IUpdateOperation.Add)
+      await updateCollectionItem('teams', 'members', teamId, auth.currentUser.uid, IUpdateOperation.Add)
     }
   }
   return userData

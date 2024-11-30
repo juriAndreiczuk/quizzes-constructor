@@ -1,12 +1,11 @@
 'use client'
 
-import useTeamsStore from '@/store/teams.store'
+import { useTeamsCollectionStore } from '@/store/collections.store'
 import useUsersStore from '@/store/users.store'
-import { ITeam } from '@/types/team.types'
-import { IUserDetails } from '@/types/user.types'
+import { IUserDetails, ITeam } from '@/types/user.types'
 
 const TeamsList = () => {
-  const { teams, removeTeam } = useTeamsStore()
+  const { items: teams, removeItem: removeTeam } = useTeamsCollectionStore()
   const { setSelectedUser, users } = useUsersStore()
 
   const getMembers = (team: ITeam): IUserDetails[] => (

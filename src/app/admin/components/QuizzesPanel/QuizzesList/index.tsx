@@ -1,12 +1,11 @@
 'use client'
 
-import useQuizzesStore from '@/store/quizzes.store'
+import { useQuizzesCollectionStore } from '@/store/collections.store'
 import useQuestionsStore from '@/store/questions.strore'
-import { IQuestionDetails } from '@/types/question.types'
-import { IQuizDetails } from '@/types/quiz.types'
+import { IQuestionDetails, IQuizDetails } from '@/types/question.types'
 
 const QuestionsList = () => {
-  const { quizzes, removeQuiz } = useQuizzesStore()
+  const { items: quizzes, removeItem: removeQuiz } = useQuizzesCollectionStore()
   const { questions, setSelectedQuestion } = useQuestionsStore()
 
   const getQuestions = (quiz: IQuizDetails): IQuestionDetails[] => (

@@ -29,3 +29,9 @@ export interface IUsersState {
   fetchUsers: () => Promise<void>
   updateUser: (vals: IUserUpdate, userData: IUserDetails) => Promise<void>
 }
+
+export interface ITeam {
+  name: string,
+  id?: string,
+  members?: []
+}

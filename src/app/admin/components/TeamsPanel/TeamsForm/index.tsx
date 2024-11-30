@@ -1,8 +1,8 @@
 'use client'
 
-import useTeamsStore from '@/store/teams.store'
+import { useTeamsCollectionStore } from '@/store/collections.store'
 import teamsData from '@/content/teams.json'
-import { ITeam } from '@/types/team.types'
+import { ITeam } from '@/types/user.types'
 import { IFormContent } from '@/types/auth.types'
 import { Form, Formik, FormikHelpers } from 'formik'
 import FormInput from '@/app/components/ui/FormInput'
@@ -11,7 +11,7 @@ import schema from '@/app/admin/components/TeamsPanel/TeamsForm/validationSchema
 const formData = teamsData.form as IFormContent
 
 const TeamsForm = () => {
-  const { createTeam } = useTeamsStore()
+  const { createItem: createTeam } = useTeamsCollectionStore()
 
   const handleSubmit = async (values: ITeam, { resetForm }: FormikHelpers<ITeam>) => {
     const newTeamValues: ITeam = { ...values, members: [] }

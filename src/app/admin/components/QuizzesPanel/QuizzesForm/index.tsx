@@ -1,8 +1,8 @@
 'use client'
 
-import useQuizzesStore from '@/store/quizzes.store'
+import { useQuizzesCollectionStore } from '@/store/collections.store'
 import quizzesData from '@/content/quizzes.json'
-import { IQuizDetails } from '@/types/quiz.types'
+import { IQuizDetails } from '@/types/question.types'
 import { IFormContent } from '@/types/auth.types'
 import { Form, Formik, FormikHelpers } from 'formik'
 import FormInput from '@/app/components/ui/FormInput'
@@ -11,7 +11,7 @@ import schema from '@/app/admin/components/QuizzesPanel/QuizzesForm/validationSc
 const formData = quizzesData.createForm as IFormContent
 
 const QuizzesForm = () => {
-  const { createQuiz } = useQuizzesStore()
+  const { createItem: createQuiz } = useQuizzesCollectionStore()
 
   const handleSubmit = async (values: IQuizDetails, { resetForm }: FormikHelpers<IQuizDetails>) => {
     const newQuizValues: IQuizDetails = { ...values, items: [] }

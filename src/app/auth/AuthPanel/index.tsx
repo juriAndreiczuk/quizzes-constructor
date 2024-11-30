@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { AuthMode } from '@/types/auth.types'
-import { UserTypes } from '@/types/user.types'
+import { UserTypes, ITeam } from '@/types/user.types'
 import formData from '@/content/auth.json'
 import AuthForm from '@/app/auth/AuthForm'
 import useCollection from '@/app/hooks/useCollection'
-import { ITeam } from '@/types/team.types'
 import _set from 'lodash/set'
 import { getAllDocuments } from '@/services/docs.service'
 import { registrationSchema, loginSchema } from './validationSchema'

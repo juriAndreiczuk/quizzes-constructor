@@ -1,14 +1,14 @@
 'use client'
 
 import { useEffect } from 'react'
-import useTeamsStore from '@/store/teams.store'
+import { useTeamsCollectionStore } from '@/store/collections.store'
 import useUsersStore from '@/store/users.store'
 import TeamsForm from '@/app/admin/components/TeamsPanel/TeamsForm'
 import TeamsList from '@/app/admin/components/TeamsPanel/TeamsList'
 import TeamsUser from '@/app/admin/components/TeamsPanel/TeamsUser'
 
 const TeamsPanel = () => {
-  const { fetchTeams } = useTeamsStore()
+  const { fetchItems: fetchTeams } = useTeamsCollectionStore()
   const { fetchUsers, selectedUser } = useUsersStore()
 
   useEffect(() => {

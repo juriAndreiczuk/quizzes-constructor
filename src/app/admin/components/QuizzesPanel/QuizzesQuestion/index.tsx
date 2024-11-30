@@ -3,8 +3,8 @@ import FormInput from '@/app/components/ui/FormInput'
 import useQuestionsStore from '@/store/questions.strore'
 import schema from '@/app/admin/components/QuizzesPanel/QuizzesQuestion/validationSchema'
 import contentData from '@/content/quizzes.json'
-import useQuizzesStore from '@/store/quizzes.store'
-import { IQuizDetails } from '@/types/quiz.types'
+import { useQuizzesCollectionStore } from '@/store/collections.store'
+import { IQuizDetails } from '@/types/question.types'
 
 const QuizzesQuestion = () => {
   const {
@@ -12,8 +12,8 @@ const QuizzesQuestion = () => {
   } = useQuestionsStore()
 
   const {
-    fetchQuizzes, quizzes
-  } = useQuizzesStore()
+    fetchItems: fetchQuizzes, items: quizzes
+  } = useQuizzesCollectionStore()
 
   const handleSubmit = (values: any) => {
     if (selectedQuestion) {

@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik'
-import useTeamsStore from '@/store/teams.store'
+import { useTeamsCollectionStore } from '@/store/collections.store'
 import useUsersStore from '@/store/users.store'
 import FormInput from '@/app/components/ui/FormInput'
 import schema from '@/app/admin/components/TeamsPanel/TeamsUser/validationSchema'
@@ -7,7 +7,7 @@ import contentData from '@/content/teams.json'
 import { IUserUpdate } from '@/types/user.types'
 
 const TeamsUser = () => {
-  const { teams, fetchTeams } = useTeamsStore()
+  const { items: teams, fetchItems: fetchTeams } = useTeamsCollectionStore()
   const { selectedUser, setSelectedUser, updateUser } = useUsersStore()
 
   const handleSubmit = async (values: IUserUpdate) => {
