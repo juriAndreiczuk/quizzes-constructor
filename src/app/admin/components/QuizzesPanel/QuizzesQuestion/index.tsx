@@ -1,35 +1,22 @@
-import { Formik, Form, FieldArray, Field } from 'formik'
-import FormInput from '@/app/components/ui/FormInput'
+import { Formik, Form } from 'formik'
 import useQuestionsStore from '@/store/questions.strore'
-import schema from '@/app/admin/components/QuizzesPanel/QuizzesQuestion/validationSchema'
 import contentData from '@/content/quizzes.json'
-import { useQuizzesCollectionStore } from '@/store/collections.store'
-import { IQuizDetails } from '@/types/question.types'
+import { IQuestionDetails } from '@/types/question.types'
+import schema from './validationSchema'
+import QuestionFields from './QuestionFields'
+import QuestionAnswers from './QuestionAnswers'
 
 const QuizzesQuestion = () => {
   const {
-    selectedQuestion,
-    setSelectedQuestion,
-    createQuestion,
-    updateQuestion,
-    fetchQuestions,
-    removeQuestion
+    selectedQuestion, setSelectedQuestion,
+    createQuestion, updateQuestion, removeQuestion
   } = useQuestionsStore()
 
-  const {
-    fetchItems: fetchQuizzes, items: quizzes
-  } = useQuizzesCollectionStore()
-
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: IQuestionDetails) => {
     if (selectedQuestion) {
-      if (selectedQuestion.id) {
-        updateQuestion(values)
-      } else {
-        createQuestion(values)
-      }
+      const currentOperation = selectedQuestion.id ? updateQuestion : createQuestion
+      currentOperation(values)
       setSelectedQuestion(null)
-      fetchQuestions()
-      fetchQuizzes()
     }
   }
 
@@ -37,7 +24,6 @@ const QuizzesQuestion = () => {
     if (selectedQuestion) {
       removeQuestion()
       setSelectedQuestion(null)
-      fetchQuestions()
     }
   }
 
@@ -57,49 +43,8 @@ const QuizzesQuestion = () => {
       >
         {({ values, isValid }) => (
           <Form>
-            <FormInput
-              inputData={{ label: 'quiz name', name: 'quizId', type: 'select' }}
-            >
-              <option value="" disabled>{selectedQuestion.quizId}</option>
-              { quizzes.length && quizzes.map((opt : IQuizDetails) => (
-                <option key={`${opt.id}--option`} value={opt.id}>{opt.label}</option>
-              )) }
-            </FormInput>
-            <FormInput
-              inputData={{ label: contentData.form.questionLabel, name: 'question', type: 'text' }}
-            />
-            <FormInput
-              inputData={{ label: contentData.form.costLabel, name: 'cost', type: 'text' }}
-            />
-            <p>{contentData.form.answersLabel}</p>
-            <FieldArray name="answers">
-              {({ push, remove }) => (
-                <div>
-                  {values.answers && values.answers.map((_, n) => (
-                    <div key={n}>
-                      <FormInput
-                        inputData={{
-                          label: `${contentData.form.answerLabel} ${n + 1}:`,
-                          name: `answers.${n}.answer`,
-                          type: 'text'
-                        }}
-                      />
-                      <div>
-                        <Field type="checkbox" name={`answers.${n}.right`} />
-                        {contentData.form.correctAnswer}
-                      </div>
-                      <button type="button" onClick={() => remove(n)}>{contentData.form.removeAnswer}</button>
-                    </div>
-                  ))}
-                  <button
-                    type="button"
-                    onClick={() => push({ answer: '', right: false })}
-                  >
-                    {contentData.form.addAnswer}
-                  </button>
-                </div>
-              )}
-            </FieldArray>
+            <QuestionFields />
+            <QuestionAnswers formValues={values} />
             <button type="submit" disabled={!isValid}>{contentData.form.submit}</button>
           </Form>
         )}
