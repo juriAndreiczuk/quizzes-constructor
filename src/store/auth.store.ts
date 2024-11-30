@@ -3,7 +3,7 @@ import { getDocumentData } from '@/services/docs.service'
 import { onAuthChange } from '@/services/auth.service'
 import { IUserDetails, IUserState } from '@/types/user.types'
 
-const useUserStore = create<IUserState>(set => ({
+const useAuthStore = create<IUserState>(set => ({
   user: null,
   loading: true,
 
@@ -20,4 +20,4 @@ const useUserStore = create<IUserState>(set => ({
   setLoading: (loading: boolean) => set(() => ({ loading }))
 }))
 
-export default useUserStore
+export default useAuthStore

@@ -1,11 +1,13 @@
 'use client'
 
 import useTeamsStore from '@/store/teams.store'
+import useUsersStore from '@/store/users.store'
 import { ITeam } from '@/types/team.types'
 import { IUserDetails } from '@/types/user.types'
 
 const TeamsList = () => {
-  const { teams, users, setSelectedUser, removeTeam } = useTeamsStore()
+  const { teams, removeTeam } = useTeamsStore()
+  const { setSelectedUser, users } = useUsersStore()
 
   const getMembers = (team: ITeam): IUserDetails[] => (
     users.length ? users.filter(user => user.teamId === team.id) : []

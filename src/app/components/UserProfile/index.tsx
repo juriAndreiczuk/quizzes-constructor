@@ -1,12 +1,12 @@
 'use client'
 
 import { logOut } from '@/services/auth.service'
-import useUserStore from '@/store/user.store'
+import useAuthStore from '@/store/auth.store'
 import { useRouter } from 'next/navigation'
 import Routes from '@/constants/routes'
 
 const UserProfile = () => {
-  const user = useUserStore(state => state.user)
+  const user = useAuthStore(state => state.user)
   const router = useRouter()
 
   const handleLogOut = async () => {

@@ -27,3 +27,11 @@ export interface IUserCompare {
   data: IUserDetails,
   elements: (keyof IUserUpdate)[]
 }
+
+export interface IUsersState {
+  users: IUserDetails[]
+  selectedUser: IUserDetails | null
+  setSelectedUser: (user: IUserDetails | null) => void
+  fetchUsers: () => Promise<void>
+  updateUser: (vals: IUserUpdate, userData: IUserDetails) => Promise<void>
+}
