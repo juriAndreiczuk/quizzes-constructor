@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 const useCollection = <T>(
-  collectionService: () => Promise<T[]>
+  collectionService: () => Promise<T[]>, dependency: any = null
 ) => {
   const [data, setData] = useState<T[]>([])
   const getData = async () => {
@@ -12,7 +12,7 @@ const useCollection = <T>(
     }
   }
 
-  useEffect(() => { getData() }, [])
+  useEffect(() => { getData() }, [dependency])
 
   return data
 }

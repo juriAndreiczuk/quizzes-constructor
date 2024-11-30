@@ -13,8 +13,8 @@ const TeamsList = () => {
   const teamsService = (): Promise<ITeam[]> => getAllDocuments<ITeam>('teams')
   const usersService = (): Promise<IUserDetails[]> => getAllDocuments<IUserDetails>('users')
 
-  const teams = useCollection(teamsService) as ITeam[]
-  const users = useCollection(usersService) as IUserDetails[]
+  const teams = useCollection(teamsService, selectedUser) as ITeam[]
+  const users = useCollection(usersService, selectedUser) as IUserDetails[]
 
   return (
     <>
