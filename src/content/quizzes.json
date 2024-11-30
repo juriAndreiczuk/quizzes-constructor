@@ -1,0 +1,19 @@
+{
+  "form": {
+    "correctAnswer": "Correct",
+    "addAnswer": "Add answer",
+    "removeAnswer": "Remove answer",
+    "removeQuestion": "Remove question",
+    "submit": "Submit",
+    "answersLabel": "Answers list",
+    "answerLabel": "Answer",
+    "questionLabel": "Question",
+    "costLabel": "Cost"
+  },
+  "validation": {
+    "costMin": "Cost should be at least 1",
+    "required": "This field is required",
+    "atLeastOneRight": "At least one answer should be right",
+    "notAllRight": "Not all answers can be right"
+  }
+}

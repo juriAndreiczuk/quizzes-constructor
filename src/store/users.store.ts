@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { IUserDetails, IUserUpdate, IUserCompare, IUsersState } from '@/types/user.types'
+import { IUserDetails, IUserUpdate, IUsersState } from '@/types/user.types'
 import { getAllDocuments, updateDocument } from '@/services/docs.service'
 import { updateTeamMembers } from '@/services/teams.service'
 import { IUpdateOperation } from '@/types/team.types'
@@ -14,13 +14,7 @@ const useTeamStore = create<IUsersState>(set => ({
     set({ users })
   },
   updateUser: async (vals: IUserUpdate, userData: IUserDetails) => {
-    const hasUserChanged = ({ userVals, data, elements } : IUserCompare)
-    : boolean => elements.some(elt => userVals[elt] !== data[elt])
-
-    if (
-      hasUserChanged({ userVals: vals, data: userData, elements: ['displayName', 'teamId', 'isBlocked'] })
-      && userData.id
-    ) {
+    if (userData.id) {
       await updateTeamMembers(userData.teamId, userData.id, IUpdateOperation.Remove)
       await updateTeamMembers(vals.teamId, userData.id, IUpdateOperation.Add)
       await updateDocument({ ...vals }, 'users', userData.id)

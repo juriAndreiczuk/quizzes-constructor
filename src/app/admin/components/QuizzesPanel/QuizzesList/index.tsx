@@ -1,15 +1,12 @@
 'use client'
 
-import useCollection from '@/app/hooks/useCollection'
-import { getAllDocuments } from '@/services/docs.service'
+import useQuizzesStore from '@/store/quizzes.store'
+import useQuestionsStore from '@/store/questions.strore'
 import { IQuestionDetails, IQuizDetails } from '@/types/question.types'
 
 const QuestionsList = () => {
-  const quizzesService = (): Promise<IQuizDetails[]> => getAllDocuments<IQuizDetails>('quizzes')
-  const quizzes = useCollection(quizzesService) as IQuizDetails[]
-
-  const questionsService = (): Promise<IQuestionDetails[]> => getAllDocuments<IQuestionDetails>('questions')
-  const questions = useCollection(questionsService) as IQuestionDetails[]
+  const { quizzes } = useQuizzesStore()
+  const { questions, setSelectedQuestion } = useQuestionsStore()
 
   const getQuestions = (quiz: IQuizDetails): IQuestionDetails[] => (
     questions.length ? questions.filter(q => q.quizId === quiz.id) : []
@@ -27,6 +24,7 @@ const QuestionsList = () => {
                   .map(item => (
                     <li key={item.question}>
                       {item.question}
+                      <button onClick={() => setSelectedQuestion(item)}>Edit</button>
                     </li>
                   ))}
               </ul>

@@ -22,12 +22,6 @@ export interface IUserState {
 
 export interface IUserUpdate extends Pick<IUserDetails, 'displayName' | 'teamId' | 'isBlocked'> {}
 
-export interface IUserCompare {
-  userVals: IUserUpdate,
-  data: IUserDetails,
-  elements: (keyof IUserUpdate)[]
-}
-
 export interface IUsersState {
   users: IUserDetails[]
   selectedUser: IUserDetails | null
