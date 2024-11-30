@@ -9,23 +9,26 @@ const QuestionsList = () => {
   const questions = useCollection(questionsService) as IQuestionDetails[]
 
   return (
-    <ul>
-      { questions && questions.map(q => (
-        <li key={q.question}>
-          {q.question}
-          <ul>
-            { q.answers && q.answers.length && (
-              q.answers.map(answer => (
-                <li key={answer.answer}>
-                  {answer.answer}
-                  { answer.right ? ' (right)' : '' }
-                </li>
-              ))
-            )}
-          </ul>
-        </li>
-      )) }
-    </ul>
+    <div>
+      Questions Panel
+      <ul>
+        { questions && questions.map(q => (
+          <li key={q.question}>
+            {q.question}
+            <ul>
+              { q.answers && q.answers.length && (
+                q.answers.map(answer => (
+                  <li key={answer.answer}>
+                    {answer.answer}
+                    { answer.right ? ' (right)' : '' }
+                  </li>
+                ))
+              )}
+            </ul>
+          </li>
+        )) }
+      </ul>
+    </div>
   )
 }
 

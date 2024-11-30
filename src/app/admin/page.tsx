@@ -1,13 +1,11 @@
 import UserProfile from '@/app/components/UserProfile'
-import TeamsList from '@/app/admin/components/TeamsList'
-import TeamsForm from '@/app/admin/components/TeamsForm'
+import TeamsPanel from '@/app/admin/components/TeamsPanel'
 
 const Admin = () => (
   <main>
     Admin panel
     <UserProfile />
-    <TeamsList />
-    <TeamsForm />
+    <TeamsPanel />
   </main>
 )
 
