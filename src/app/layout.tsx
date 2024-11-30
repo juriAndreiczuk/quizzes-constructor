@@ -7,7 +7,7 @@ import AlertBox from './components/ui/AlertBox'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Smits',
+  title: 'Quizzes Builder',
   description: 'Education and fun for everyone',
 }
 
