@@ -1,6 +1,6 @@
 import { db } from '@/config/firebase'
 import {
-  doc, getDoc, collection, getDocs, updateDoc
+  doc, getDoc, collection, getDocs, updateDoc, deleteDoc
 } from 'firebase/firestore'
 import alertsData from '@/content/auth.json'
 import { IAlerts } from '@/types/alert.types'
@@ -44,5 +44,15 @@ export const updateDocument = async <T>(data: T, docName: string, id: string)
     await updateDoc(doc(db, docName, id), data as Partial<T>)
   } catch (err) {
     throw new Error(alerts.errors.updateDoc)
+  }
+}
+
+// remove document by id and collection name
+export const removeDocument = async (docName: string, id: string)
+: Promise<void> => {
+  try {
+    await deleteDoc(doc(db, docName, id))
+  } catch (err) {
+    throw new Error(alerts.errors.deleteDoc)
   }
 }

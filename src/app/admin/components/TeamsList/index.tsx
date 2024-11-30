@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import useCollection from '@/app/hooks/useCollection'
-import { getAllDocuments } from '@/services/docs.service'
+import { getAllDocuments, removeDocument } from '@/services/docs.service'
 import { ITeam } from '@/types/team.types'
 import { IUserDetails } from '@/types/user.types'
 import TeamsUser from '@/app/admin/components/TeamsUser'
@@ -15,6 +15,10 @@ const TeamsList = () => {
 
   const teams = useCollection(teamsService, selectedUser) as ITeam[]
   const users = useCollection(usersService, selectedUser) as IUserDetails[]
+
+  const getMembers = (team: ITeam): IUserDetails[] => (
+    users.length ? users.filter(user => user.teamId === team.id) : []
+  )
 
   return (
     <>
@@ -32,10 +36,16 @@ const TeamsList = () => {
         { teams && teams.map(team => (
           <li key={team.id}>
             {team.name}
+            {!getMembers(team).length && (
+              <button
+                onClick={() => { team.id && removeDocument('teams', team.id) }}
+              >
+                Delete
+              </button>
+            )}
             { team.members && team.members.length && (
               <ul>
-                { users.length && users
-                  .filter(user => user.teamId === team.id)
+                {getMembers(team)
                   .map(user => (
                     <li key={user.displayName}>
                       {user.displayName}
