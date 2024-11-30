@@ -2,10 +2,11 @@
 
 import useQuizzesStore from '@/store/quizzes.store'
 import useQuestionsStore from '@/store/questions.strore'
-import { IQuestionDetails, IQuizDetails } from '@/types/question.types'
+import { IQuestionDetails } from '@/types/question.types'
+import { IQuizDetails } from '@/types/quiz.types'
 
 const QuestionsList = () => {
-  const { quizzes } = useQuizzesStore()
+  const { quizzes, removeQuiz } = useQuizzesStore()
   const { questions, setSelectedQuestion } = useQuestionsStore()
 
   const getQuestions = (quiz: IQuizDetails): IQuestionDetails[] => (
@@ -18,6 +19,13 @@ const QuestionsList = () => {
         { quizzes && quizzes.map(quiz => (
           <li key={quiz.id}>
             {quiz.label}
+            {!getQuestions(quiz).length && (
+              <button
+                onClick={() => { quiz.id && removeQuiz(quiz.id) }}
+              >
+                Delete
+              </button>
+            )}
             { quiz.items && quiz.items.length && (
               <ul>
                 {getQuestions(quiz)

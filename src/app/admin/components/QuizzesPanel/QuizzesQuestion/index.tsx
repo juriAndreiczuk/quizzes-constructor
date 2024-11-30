@@ -4,7 +4,7 @@ import useQuestionsStore from '@/store/questions.strore'
 import schema from '@/app/admin/components/QuizzesPanel/QuizzesQuestion/validationSchema'
 import contentData from '@/content/quizzes.json'
 import useQuizzesStore from '@/store/quizzes.store'
-import { IQuiz } from '@/types/quiz.types'
+import { IQuizDetails } from '@/types/quiz.types'
 
 const QuizzesQuestion = () => {
   const {
@@ -49,10 +49,10 @@ const QuizzesQuestion = () => {
         {({ values, isValid }) => (
           <Form>
             <FormInput
-              inputData={{ label: 'quiz id', name: 'quizId', type: 'select' }}
+              inputData={{ label: 'quiz name', name: 'quizId', type: 'select' }}
             >
               <option value="" disabled>{selectedQuestion.quizId}</option>
-              { quizzes.length && quizzes.map((opt : IQuiz) => (
+              { quizzes.length && quizzes.map((opt : IQuizDetails) => (
                 <option key={`${opt.id}--option`} value={opt.id}>{opt.label}</option>
               )) }
             </FormInput>

@@ -4,7 +4,7 @@ import TestsPanel from '@/app/admin/components/QuizzesPanel'
 
 const Admin = () => (
   <main>
-    Admin panel
+    <h1>Admin panel</h1>
     <UserProfile />
     <TeamsPanel />
     <TestsPanel />

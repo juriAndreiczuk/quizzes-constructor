@@ -15,9 +15,11 @@ const TeamsPanel = () => {
     fetchQuizzes()
     fetchQuestions()
   }, [fetchQuizzes, fetchQuestions])
+
   return (
     <div>
-      Quizzez panel
+      <hr />
+      <h1>Quizzez panel</h1>
       <QuizzesForm />
       <QuizzesList />
       <QuizzesQuestion

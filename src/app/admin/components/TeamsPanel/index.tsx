@@ -18,7 +18,8 @@ const TeamsPanel = () => {
 
   return (
     <main>
-      Teams panel
+      <hr />
+      <h1>Teams panel</h1>
       <TeamsForm />
       <TeamsUser
         key={selectedUser ? selectedUser.displayName : 'default'}

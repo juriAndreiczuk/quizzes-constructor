@@ -1,5 +1,5 @@
 import { db } from '@/config/firebase'
-import { IQuiz } from '@/types/quiz.types'
+import { IQuizDetails } from '@/types/quiz.types'
 import { IUpdateOperation } from '@/types/team.types'
 import {
   doc, setDoc, collection, query, where,
@@ -11,7 +11,7 @@ import { IAlerts } from '@/types/alert.types'
 const alerts: IAlerts = alertsData as IAlerts
 
 // create new quiz
-export const createQuiz = async (data: IQuiz)
+export const createQuiz = async (data: IQuizDetails)
 : Promise<void> => {
   try {
     const quizzesCollection = collection(db, 'quizzes')

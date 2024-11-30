@@ -2,7 +2,7 @@
 
 import useQuizzesStore from '@/store/quizzes.store'
 import quizzesData from '@/content/quizzes.json'
-import { IQuiz } from '@/types/quiz.types'
+import { IQuizDetails } from '@/types/quiz.types'
 import { IFormContent } from '@/types/auth.types'
 import { Form, Formik, FormikHelpers } from 'formik'
 import FormInput from '@/app/components/ui/FormInput'
@@ -13,8 +13,8 @@ const formData = quizzesData.createForm as IFormContent
 const QuizzesForm = () => {
   const { createQuiz } = useQuizzesStore()
 
-  const handleSubmit = async (values: IQuiz, { resetForm }: FormikHelpers<IQuiz>) => {
-    const newQuizValues: IQuiz = { ...values, items: [] }
+  const handleSubmit = async (values: IQuizDetails, { resetForm }: FormikHelpers<IQuizDetails>) => {
+    const newQuizValues: IQuizDetails = { ...values, items: [] }
     await createQuiz(newQuizValues)
 
     resetForm()
@@ -22,7 +22,7 @@ const QuizzesForm = () => {
 
   return (
     <div>
-      <h2>Create quiz</h2>
+      <h4>Create quiz</h4>
       <Formik
         initialValues={{ label: '', items: [] }}
         validationSchema={schema}

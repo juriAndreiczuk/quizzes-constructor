@@ -22,7 +22,7 @@ const TeamsForm = () => {
 
   return (
     <div>
-      <h2>{teamsData.title}</h2>
+      <h4>{teamsData.title}</h4>
       <Formik
         initialValues={{ name: '' }}
         validationSchema={schema}
