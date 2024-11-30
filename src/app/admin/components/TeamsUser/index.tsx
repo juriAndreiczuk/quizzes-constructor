@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik'
 import FormInput from '@/app/components/ui/FormInput'
-import schema from '@/app/components/TeamsUser/validationSchema'
+import schema from '@/app/admin/components/TeamsUser/validationSchema'
 import contentData from '@/content/teams.json'
 import { ITeam } from '@/types/team.types'
 import { IUserDetails, IUserUpdate } from '@/types/user.types'

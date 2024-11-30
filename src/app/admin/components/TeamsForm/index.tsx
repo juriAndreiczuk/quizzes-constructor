@@ -6,7 +6,7 @@ import { ITeam } from '@/types/team.types'
 import { IFormContent } from '@/types/auth.types'
 import { Form, Formik, FormikHelpers } from 'formik'
 import FormInput from '@/app/components/ui/FormInput'
-import schema from '@/app/components/TeamsForm/validationSchema'
+import schema from '@/app/admin/components/TeamsForm/validationSchema'
 
 const formData = teamsData.form as IFormContent
 

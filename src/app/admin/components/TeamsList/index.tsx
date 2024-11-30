@@ -5,7 +5,7 @@ import useCollection from '@/app/hooks/useCollection'
 import { getAllDocuments } from '@/services/docs.service'
 import { ITeam } from '@/types/team.types'
 import { IUserDetails } from '@/types/user.types'
-import TeamsUser from '../TeamsUser'
+import TeamsUser from '@/app/admin/components/TeamsUser'
 
 const TeamsList = () => {
   const [selectedUser, setSelectedUser] = useState<IUserDetails | null>(null)
