@@ -1,10 +1,16 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Ubuntu } from 'next/font/google'
 import './globals.css'
 import UserInitialize from './components/UserInitialize'
 import AlertBox from './components/ui/AlertBox'
 
-const inter = Inter({ subsets: ['latin'] })
+const ubuntu = Ubuntu({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  fallback: ['Arial', 'sans-serif']
+})
+
 
 export const metadata: Metadata = {
   title: 'Quizzes Builder',
@@ -15,7 +21,7 @@ const RootLayout = (
   { children } : Readonly<{ children: React.ReactNode }>
 ) => (
   <html lang="en">
-    <body className={inter.className}>
+    <body className={ubuntu.className}>
       <UserInitialize />
       <AlertBox />
       <div className="container">
