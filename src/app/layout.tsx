@@ -24,7 +24,7 @@ const RootLayout = (
     <body className={ubuntu.className}>
       <UserInitialize />
       <AlertBox />
-      <div className="container">
+      <div className="container max-w-[850px]">
         {children}
       </div>
     </body>

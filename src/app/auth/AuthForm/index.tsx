@@ -8,6 +8,7 @@ import { IAuthLogin, AuthMode, IAuthRegister, IFormContent } from '@/types/auth.
 import { UserTypes } from '@/types/user.types'
 import Routes from '@/constants/routes'
 import FormInput from '@/app/components/ui/FormInput'
+import Button from '@/app/components/ui/Button'
 
 const AuthForm = (
   { mode, startValues, formContent, validation } :
@@ -36,7 +37,7 @@ const AuthForm = (
       onSubmit={handleSubmit}
     >
       {(props: FormikProps<any>) => (
-        <Form>
+        <Form className='w-full sm:w-2/3 mx-auto bg-light my-32 p-16 sm:p-32 rounded-xl'>
           {Object.keys(formContent.fields).map((key: string, n: number) => {
             const field = formContent.fields[key]
 
@@ -53,7 +54,9 @@ const AuthForm = (
               )
             )
           })}
-          <button>{formContent.button}</button>
+          <div className='mt-16'>
+            <Button>{formContent.button}</Button>
+          </div>
         </Form>
       )}
     </Formik>

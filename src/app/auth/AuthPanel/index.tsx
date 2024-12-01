@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { AuthMode } from '@/types/auth.types'
 import { UserTypes, ITeam } from '@/types/user.types'
+import Button from '@/app/components/ui/Button'
 import formData from '@/content/auth.json'
 import AuthForm from '@/app/auth/AuthForm'
 import useCollection from '@/app/hooks/useCollection'
@@ -48,7 +49,14 @@ const AuthPanel = () => {
           />
         )
       }
-      <button onClick={() => { setCurrentForm(!currentForm) }}>switch</button>
+      <div className='flex justify-center mb-32'>
+        <Button
+          btnMod='bg-accent text-white'
+          buttonClick={() => { setCurrentForm(!currentForm) }}
+        >
+          Switch
+        </Button>
+      </div>
     </>
   )
 }

@@ -13,10 +13,14 @@ const Input = (
 
   return (
     <>
-      <label htmlFor={inputData.name}>{inputData.label}</label>
+      <label
+        className='block px-4 text-dark text-16 font-normal mb-8 my-4'
+        htmlFor={inputData.name}
+      >{inputData.label}</label>
       <Field
         id={inputData.name}
         type={inputData.type}
+        className='block w-full bg-white p-8 rounded-lg my-8 focus:outline-addl appearance-none cursor-pointer'
         as={types[inputData.type]}
         name={inputData.name}
         component={types[inputData.type]}
@@ -24,6 +28,7 @@ const Input = (
         {children}
       </Field>
       <ErrorMessage
+        className='block text-accent text-14 font-normal mb-8'
         name={inputData.name}
         component="div"
       />
