@@ -6,6 +6,7 @@ export default {
       fontSize: {
         '14': '0.875rem',
         '16': '1rem',
+        '18': '1.12rem',
         '20': '1.25rem',
         '34': '2.125rem'
       },

@@ -8,6 +8,7 @@ import { IFormContent } from '@/types/auth.types'
 import { Form, Formik, FormikHelpers } from 'formik'
 import FormInput from '@/app/components/ui/FormInput'
 import schema from '@/app/admin/components/QuizzesPanel/QuizzesForm/validationSchema'
+import Button from '@/app/components/ui/Button'
 
 const formData = quizzesData.createForm as IFormContent
 
@@ -23,25 +24,29 @@ const QuizzesForm = () => {
   }
 
   return (
-    <div>
-      <h4>Create quiz</h4>
-      <Formik
-        initialValues={{ label: '', items: [] }}
-        validationSchema={schema}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          {Object.keys(formData.fields).map((key: string, n: number) => {
-            const field = formData.fields[key]
+    <div className='mb-32'>
+      <div className='mb-16'>
+        <h4 className='text-18 font-bold my-16'>Create quiz</h4>
+        <Formik
+          initialValues={{ label: '', items: [] }}
+          validationSchema={schema}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            {Object.keys(formData.fields).map((key: string, n: number) => {
+              const field = formData.fields[key]
 
-            return (
-              <FormInput key={`${field.name}--${n}`} inputData={field} />
-            )
-          })}
-          <button type="submit">{formData.button}</button>
-        </Form>
-      </Formik>
-      <button onClick={
+              return (
+                <FormInput key={`${field.name}--${n}`} inputData={field} />
+              )
+            })}
+            <Button btnMod='primary-small'>{formData.button}</Button>
+          </Form>
+        </Formik>
+      </div>
+      <Button
+        btnMod='primary-small'
+        buttonClick={
         () => {
           quizzes.length && quizzes[0].id && setSelectedQuestion({
             quizId: quizzes[0].id, question: '', cost: 0, answers: []
@@ -50,7 +55,7 @@ const QuizzesForm = () => {
       }
       >
         New question
-      </button>
+      </Button>
     </div>
   )
 }

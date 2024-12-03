@@ -3,6 +3,7 @@
 import { useQuizzesCollectionStore } from '@/store/collections.store'
 import useQuestionsStore from '@/store/questions.strore'
 import { IQuestionDetails, IQuizDetails } from '@/types/question.types'
+import Button from '@/app/components/ui/Button'
 
 const QuestionsList = () => {
   const { items: quizzes, removeItem: removeQuiz } = useQuizzesCollectionStore()
@@ -14,24 +15,34 @@ const QuestionsList = () => {
 
   return (
     <div>
+      <h4 className='text-18 font-bold'>Questions</h4>
       <ul>
         { quizzes && quizzes.map(quiz => (
-          <li key={quiz.id}>
-            {quiz.label}
+          <li
+            className='text-14 mt-16 border-t-[1px] pt-16 border-t-addl'
+            key={quiz.id}
+          >
+            <h5 className='font-16 font-bold mb-8'>{quiz.label}</h5>
             {!getQuestions(quiz).length && (
-              <button
-                onClick={() => { quiz.id && removeQuiz(quiz.id) }}
+              <Button
+                btnMod='accent-small'
+                buttonClick={() => { quiz.id && removeQuiz(quiz.id) }}
               >
                 Delete
-              </button>
+              </Button>
             )}
             { quiz.items && quiz.items.length && (
               <ul>
                 {getQuestions(quiz)
                   .map(item => (
-                    <li key={item.question}>
-                      {item.question}
-                      <button onClick={() => setSelectedQuestion(item)}>Edit</button>
+                    <li className='flex items-center mb-8' key={item.question}>
+                      <span className='font-16 mr-8'>{item.question}</span>
+                      <Button
+                        btnMod='accent-small'
+                        buttonClick={() => setSelectedQuestion(item)}
+                      >
+                        Edit
+                      </Button>
                     </li>
                   ))}
               </ul>

@@ -3,6 +3,7 @@ import FormInput from '@/app/components/ui/FormInput'
 import useQuestionsStore from '@/store/questions.strore'
 import contentData from '@/content/quizzes.json'
 import { IQuestionDetails } from '@/types/question.types'
+import Button from '@/app/components/ui/Button'
 
 const QuestionAnswers = ({ formValues }: { formValues: IQuestionDetails }) => {
   const { selectedQuestion } = useQuestionsStore()
@@ -11,9 +12,9 @@ const QuestionAnswers = ({ formValues }: { formValues: IQuestionDetails }) => {
       <p>{contentData.form.answersLabel}</p>
       <FieldArray name="answers">
         {({ push, remove }) => (
-          <div>
+          <div className='mb-32'>
             {formValues.answers && formValues.answers.map((_, n) => (
-              <div key={n}>
+              <div key={n} className='mb-16'>
                 <FormInput
                   inputData={{
                     label: `${contentData.form.answerLabel} ${n + 1}:`,
@@ -21,19 +22,24 @@ const QuestionAnswers = ({ formValues }: { formValues: IQuestionDetails }) => {
                     type: 'text'
                   }}
                 />
-                <div>
+                <div className='mb-8 flex items-center'>
                   <Field type="checkbox" name={`answers.${n}.right`} />
-                  {contentData.form.correctAnswer}
+                  <span className='px-8 text-16 font-medium'>{contentData.form.correctAnswer}</span>
                 </div>
-                <button type="button" onClick={() => remove(n)}>{contentData.form.removeAnswer}</button>
+                <Button
+                  btnMod='accent-small'
+                  buttonClick={() => remove(n)}
+                >
+                  {contentData.form.removeAnswer}
+                </Button>
               </div>
             ))}
-            <button
-              type="button"
-              onClick={() => push({ answer: '', right: false })}
+            <Button
+              btnMod='primary-small'
+              buttonClick={() => push({ answer: '', right: false })}
             >
               {contentData.form.addAnswer}
-            </button>
+            </Button>
           </div>
         )}
       </FieldArray>

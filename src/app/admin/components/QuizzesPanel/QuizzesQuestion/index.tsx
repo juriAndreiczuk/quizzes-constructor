@@ -5,6 +5,7 @@ import { IQuestionDetails } from '@/types/question.types'
 import schema from './validationSchema'
 import QuestionFields from './QuestionFields'
 import QuestionAnswers from './QuestionAnswers'
+import Button from '@/app/components/ui/Button'
 
 const QuizzesQuestion = () => {
   const {
@@ -28,27 +29,46 @@ const QuizzesQuestion = () => {
   }
 
   return selectedQuestion && (
-    <div>
-      <button onClick={() => setSelectedQuestion(null)}>Close</button>
-      <button onClick={() => handleRemove()}>{contentData.form.removeQuestion}</button>
-      <Formik
-        validationSchema={schema}
-        initialValues={{
-          question: selectedQuestion.question,
-          cost: selectedQuestion.cost,
-          answers: selectedQuestion.answers,
-          quizId: selectedQuestion.quizId
-        }}
-        onSubmit={handleSubmit}
-      >
-        {({ values, isValid }) => (
-          <Form>
-            <QuestionFields />
-            <QuestionAnswers formValues={values} />
-            <button type="submit" disabled={!isValid}>{contentData.form.submit}</button>
-          </Form>
-        )}
-      </Formik>
+    <div className='fixed w-full h-screen top-0 left-0 overflow-auto'>
+      <div className='relative py-32'>
+        <div className='absolute bg-main w-full h-full min-h-screen top-0 left-0 z-10 opacity-50'></div>
+        <div className='container relative z-20'>
+          <div className='bg-light p-16 rounded-xl'>
+            <div className='flex justify-between mb-16'>
+              <Button
+                btnMod='accent-small'
+                buttonClick={() => handleRemove()}
+              >
+                {contentData.form.removeQuestion}
+              </Button>
+              <Button
+                btnMod='primary-small'
+                buttonClick={() => setSelectedQuestion(null)}
+              >
+                Close
+              </Button>
+            </div>
+            <Formik
+              validationSchema={schema}
+              initialValues={{
+                question: selectedQuestion.question,
+                cost: selectedQuestion.cost,
+                answers: selectedQuestion.answers,
+                quizId: selectedQuestion.quizId
+              }}
+              onSubmit={handleSubmit}
+            >
+              {({ values, isValid }) => (
+                <Form>
+                  <QuestionFields />
+                  <QuestionAnswers formValues={values} />
+                  <Button btnDisabled={!isValid}>{contentData.form.submit}</Button>
+                </Form>
+              )}
+            </Formik>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

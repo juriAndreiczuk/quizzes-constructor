@@ -17,15 +17,14 @@ const TeamsPanel = () => {
   }, [fetchTeams, fetchUsers])
 
   return (
-    <main>
-      <hr />
-      <h1>Teams panel</h1>
+    <div className='bg-light p-16 rounded-xl'>
+      <h2 className='text-20 font-bold text-main'>Teams panel</h2>
       <TeamsForm />
       <TeamsUser
         key={selectedUser ? selectedUser.displayName : 'default'}
       />
       <TeamsList />
-    </main>
+    </div>
   )
 }
 

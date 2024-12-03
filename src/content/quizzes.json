@@ -1,8 +1,8 @@
 {
   "form": {
     "correctAnswer": "Correct",
-    "addAnswer": "Add answer",
-    "removeAnswer": "Remove answer",
+    "addAnswer": "+ Add answer",
+    "removeAnswer": "- Remove answer",
     "removeQuestion": "Remove question",
     "submit": "Submit",
     "answersLabel": "Answers list",

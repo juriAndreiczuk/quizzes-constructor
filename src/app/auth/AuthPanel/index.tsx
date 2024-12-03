@@ -51,7 +51,7 @@ const AuthPanel = () => {
       }
       <div className='flex justify-center mb-32'>
         <Button
-          btnMod='bg-accent text-white'
+          btnMod='accent'
           buttonClick={() => { setCurrentForm(!currentForm) }}
         >
           Switch

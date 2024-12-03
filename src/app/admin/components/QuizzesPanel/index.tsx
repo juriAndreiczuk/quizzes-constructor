@@ -17,9 +17,8 @@ const TeamsPanel = () => {
   }, [fetchQuizzes, fetchQuestions])
 
   return (
-    <div>
-      <hr />
-      <h1>Quizzez panel</h1>
+    <div className='bg-light p-16 rounded-xl mt-32'>
+      <h2 className='text-20 font-bold text-main'>Quizzez panel</h2>
       <QuizzesForm />
       <QuizzesList />
       <QuizzesQuestion
