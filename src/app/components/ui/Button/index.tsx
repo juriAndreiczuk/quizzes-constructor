@@ -5,7 +5,7 @@ const Button = (
   { 
     children: React.ReactNode,
     btnLink?: string,
-    btnMod?: string,
+    btnMod?: 'primary' | 'accent' | 'primary-small' | 'accent-small',
     btnDisabled?: boolean,
     buttonClick?: () => void
   }
