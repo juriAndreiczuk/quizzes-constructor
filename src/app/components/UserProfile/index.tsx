@@ -2,12 +2,16 @@
 
 import { logOut } from '@/services/auth.service'
 import useAuthStore from '@/store/auth.store'
+import { useTeamsCollectionStore } from '@/store/collections.store'
 import { useRouter } from 'next/navigation'
 import Routes from '@/constants/routes'
 import Button from '@/app/components/ui/Button'
 
 const UserProfile = () => {
   const user = useAuthStore(state => state.user)
+  const { items: teams } = useTeamsCollectionStore()
+  const userTeam = teams.filter(team => team.id === user?.teamId)[0]
+
   const router = useRouter()
 
   const handleLogOut = async () => {
@@ -26,7 +30,7 @@ const UserProfile = () => {
             </div>
             <div className='flex mb-4'>
               <h3 className='font-bold '>Team</h3>
-              <p className='font-light px-8'>{user.teamId}</p>
+              <p className='font-light px-8'>{userTeam?.name}</p>
             </div>
             <div className='flex mb-4'>
               <h3 className='font-bold '>Points</h3>
