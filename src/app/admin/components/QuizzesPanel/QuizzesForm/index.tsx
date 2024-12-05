@@ -24,11 +24,11 @@ const QuizzesForm = () => {
   }
 
   return (
-    <div className='mb-32'>
-      <div className='mb-16'>
+    <div className='mb-16'>
+      <div className='mb-16 border-b-[1px] pb-16 border-b-addl'>
         <h4 className='text-18 font-bold my-16'>Create quiz</h4>
         <Formik
-          initialValues={{ label: '', items: [] }}
+          initialValues={{ label: '', description: '', items: [] }}
           validationSchema={schema}
           onSubmit={handleSubmit}
         >
@@ -54,7 +54,7 @@ const QuizzesForm = () => {
         }
       }
       >
-        New question
+        + New question
       </Button>
     </div>
   )

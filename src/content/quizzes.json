@@ -18,9 +18,14 @@
   },
   "createForm": {
     "fields": {
-      "teamName": {
-        "label": "Quiz",
+      "quizName": {
+        "label": "Quiz name",
         "name": "label",
+        "type": "text"
+      },
+      "quizDesc": {
+        "label": "Short description (optional)",
+        "name": "description",
         "type": "text"
       }
     },
