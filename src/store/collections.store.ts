@@ -1,8 +1,8 @@
 import { create } from 'zustand'
-import { IQuizDetails } from '@/types/question.types';
-import { ITeam } from '@/types/user.types';
+import { IQuizDetails } from '@/types/question.types'
+import { ITeam } from '@/types/user.types'
 
-import { getAllDocuments, removeDocument, createDocument as createDocApi } from '@/services/docs.service'
+import { getAllDocuments, removeDocument, getDocumentData, createDocument as createDocApi } from '@/services/docs.service'
 import { ICollectionState } from '@/types/collection.types'
 
 const createCollectionStore = <T>(
@@ -10,10 +10,16 @@ const createCollectionStore = <T>(
   uniqueField: keyof T
 ) => create<ICollectionState<T>>(set => ({
   items: [],
+  currentItem: null,
 
   fetchItems: async () => {
     const items = await getAllDocuments<T>(collectionName)
     set({ items })
+  },
+
+  fetchItem: async (itemId: string) => {
+    const currentItem = await getDocumentData<T>(itemId, collectionName)
+    set({ currentItem })
   },
 
   removeItem: async (itemId: string) => {
