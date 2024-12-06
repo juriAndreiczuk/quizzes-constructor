@@ -19,7 +19,7 @@ const QuizzesLinks = () => {
                   <p className='text-12 text-dark font-light my-16'>{quizz.description}</p>
                 </div>
                 <div className='flex justify-end'>
-                  <Button btnLink='#' btnMod='primary-small'>Show more</Button>
+                  <Button btnLink={`/quizzes/${quizz.id}`} btnMod='primary-small'>Show more</Button>
                 </div>
               </div>
             </li>

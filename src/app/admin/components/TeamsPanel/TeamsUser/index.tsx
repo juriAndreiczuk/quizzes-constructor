@@ -1,10 +1,11 @@
-import { Form, Formik } from 'formik'
+import { Form, Formik, Field } from 'formik'
 import { useTeamsCollectionStore } from '@/store/collections.store'
 import useUsersStore from '@/store/users.store'
 import FormInput from '@/app/components/ui/FormInput'
 import schema from '@/app/admin/components/TeamsPanel/TeamsUser/validationSchema'
 import contentData from '@/content/teams.json'
 import { IUserUpdate } from '@/types/user.types'
+import Button from '@/app/components/ui/Button'
 
 const TeamsUser = () => {
   const { items: teams, fetchItems: fetchTeams } = useTeamsCollectionStore()
@@ -22,33 +23,52 @@ const TeamsUser = () => {
 
   return (
     selectedUser && (
-      <div>
-        <h3>
-          {content.title}
-          <button onClick={() => setSelectedUser(null)}>Close</button>
-        </h3>
-        <Formik
-          initialValues={{
-            displayName: selectedUser.displayName,
-            teamId: selectedUser.teamId,
-            isBlocked: selectedUser.isBlocked || false
-          }}
-          onSubmit={handleSubmit}
-          validationSchema={schema}
-        >
-          <Form>
-            <FormInput inputData={content.form.fields.displayName} />
-            <FormInput inputData={content.form.fields.isBlocked} />
-            <FormInput inputData={content.form.fields.teamId}>
-              <option value="" disabled>{selectedUser.teamId}</option>
-              { teams.length && teams.map(opt => (
-                <option key={`${opt.name}-option--${opt.id}`} value={opt.id}>{opt.name}</option>
-              )) }
-            </FormInput>
-            <button type="submit">submit</button>
-          </Form>
-        </Formik>
+      <div className='fixed w-full h-screen top-0 left-0 overflow-auto'>
+        <div className='relative py-32'>
+          <div className='absolute bg-main w-full h-full min-h-screen top-0 left-0 z-10 opacity-50'></div>
+          <div className='container relative z-20'>
+            <div className='bg-light p-16 rounded-xl'>
+            <div className='flex justify-between mb-16'>
+              <h3 className='text-20 font-bold text-main'>
+                {content.title}
+              </h3>
+              <Button
+                btnMod='accent-small'
+                buttonClick={() => setSelectedUser(null)}
+              >
+                Close
+              </Button>
+            </div>
+            <Formik
+              initialValues={{
+                displayName: selectedUser.displayName,
+                teamId: selectedUser.teamId,
+                isBlocked: selectedUser.isBlocked || false
+              }}
+              onSubmit={handleSubmit}
+              validationSchema={schema}
+            >
+              <Form>
+                <FormInput inputData={content.form.fields.displayName} />
+                <div className='flex'>
+                  <Field type="checkbox" name={content.form.fields.isBlocked.name} />
+                  <span className='px-8 text-16 font-medium'>{content.form.fields.isBlocked.label}</span>
+                </div>
+                <FormInput inputData={content.form.fields.teamId}>
+                  <option value="" disabled>{selectedUser.teamId}</option>
+                  { teams.length && teams.map(opt => (
+                    <option key={`${opt.name}-option--${opt.id}`} value={opt.id}>{opt.name}</option>
+                  )) }
+                </FormInput>
+                <div className='mt-32'>
+                  <Button>Submit</Button>
+                </div>
+              </Form>
+            </Formik>
+          </div>
+        </div>
       </div>
+    </div>
     )
   )
 }

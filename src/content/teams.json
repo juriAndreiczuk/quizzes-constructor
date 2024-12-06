@@ -15,7 +15,7 @@
     "form": {
       "fields": {
         "displayName": {
-          "label": "displayName",
+          "label": "Name",
           "name": "displayName",
           "type": "text"
         },
