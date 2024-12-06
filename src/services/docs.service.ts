@@ -59,7 +59,7 @@ export const removeDocument = async (docName: string, id: string)
   }
 }
 // create new document
-export const createDocument = async <T>(docName: string, data: T, uniqueField: string)
+export const createDocument = async <T extends { [key: string]: any }>(docName: string, data: T, uniqueField: string)
 : Promise<void | DocumentData> => {
   try {
     const collectionRef = collection(db, docName)

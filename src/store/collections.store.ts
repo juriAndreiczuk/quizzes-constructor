@@ -5,7 +5,7 @@ import { ITeam } from '@/types/user.types'
 import { getAllDocuments, removeDocument, getDocumentData, createDocument as createDocApi } from '@/services/docs.service'
 import { ICollectionState } from '@/types/collection.types'
 
-const createCollectionStore = <T>(
+const createCollectionStore = <T extends { [key: string]: any }>(
   collectionName: string,
   uniqueField: keyof T
 ) => create<ICollectionState<T>>(set => ({
