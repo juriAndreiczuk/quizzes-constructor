@@ -26,4 +26,5 @@ export interface IQuestionsState {
   updateQuestion: (vals: IQuestionDetails) => Promise<void>
   removeQuestion: () => Promise<void>
   createQuestion: (vals: IQuestionDetails) => Promise<void>
+  getQuestionsByQuiz: (vals: IQuizDetails) => IQuestionDetails[]
 }

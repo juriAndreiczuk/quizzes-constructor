@@ -3,7 +3,7 @@ import {
   getAllDocuments, createDocument,
   updateDocument, removeDocument, updateCollectionItems
 } from '@/services/docs.service'
-import { IQuestionDetails, IQuestionsState } from '@/types/question.types'
+import { IQuestionDetails, IQuestionsState, IQuizDetails } from '@/types/question.types'
 import { IUpdateOperation } from '@/types/collection.types'
 
 const useQuestionsStore = create<IQuestionsState>(set => ({
@@ -11,10 +11,12 @@ const useQuestionsStore = create<IQuestionsState>(set => ({
   selectedQuestion: null,
 
   setSelectedQuestion: (selectedQuestion: IQuestionDetails | null) => set({ selectedQuestion }),
+
   fetchQuestions: async () => {
     const questions = await getAllDocuments<IQuestionDetails>('questions')
     set({ questions })
   },
+
   updateQuestion: async (vals: IQuestionDetails) => {
     const { selectedQuestion: question, fetchQuestions } = useQuestionsStore.getState()
     if (question !== null && question.id) {
@@ -24,6 +26,7 @@ const useQuestionsStore = create<IQuestionsState>(set => ({
       await fetchQuestions()
     }
   },
+
   removeQuestion: async () => {
     const { selectedQuestion, fetchQuestions } = useQuestionsStore.getState()
     if (selectedQuestion !== null && selectedQuestion.id) {
@@ -32,6 +35,7 @@ const useQuestionsStore = create<IQuestionsState>(set => ({
     }
     await fetchQuestions()
   },
+
   createQuestion: async (vals: IQuestionDetails) => {
     const { fetchQuestions } = useQuestionsStore.getState()
     const newQuestion = await createDocument<IQuestionDetails>('questions', vals, 'question')
@@ -39,6 +43,11 @@ const useQuestionsStore = create<IQuestionsState>(set => ({
       await updateCollectionItems('quizzes', 'items', vals.quizId, newQuestion.id, IUpdateOperation.Add)
       await fetchQuestions()
     }
+  },
+
+  getQuestionsByQuiz: (quiz: IQuizDetails): IQuestionDetails[]  => {
+    const { questions } = useQuestionsStore.getState()
+    return questions.length ? questions.filter(q => q.quizId === quiz.id) : []
   }
 }))
 

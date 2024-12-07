@@ -14,7 +14,11 @@ export const getDocumentData = async <T>(uid: string, docName: string)
   try {
     const document = await getDoc(doc(db, docName, uid))
     if (document.exists()) {
-      return document.data() as T
+      const data = {
+        id: uid,
+        ...document.data()
+      } 
+      return data as T
     }
     return null
   } catch (err) {

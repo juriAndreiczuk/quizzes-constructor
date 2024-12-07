@@ -1,15 +1,13 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, ReactNode } from 'react'
 import { logOut } from '@/services/auth.service'
 import { useRouter } from 'next/navigation'
 import { useTeamsCollectionStore, useQuizzesCollectionStore } from '@/store/collections.store'
-import UserProfile from '@/app/components/UserProfile'
-import QuizzesLinks from '@/app/(home)/components/QuizzesLinks'
 import useAuthStore from '@/store/auth.store'
 import Routes from '@/constants/routes'
 
-const StatusChecker = () => {
+const StatusChecker = ({ children }: { children: ReactNode }) => {
   const user = useAuthStore(state => state.user)
   const router = useRouter()
   const { fetchItems: fetchQuizzes } = useQuizzesCollectionStore()
@@ -34,11 +32,7 @@ const StatusChecker = () => {
             <button onClick={handleLogOut}>Logout</button>
           </div>
         )
-        : 
-        <>
-          <UserProfile />
-          <QuizzesLinks />
-        </>
+        : children
         }
     </main>
   )
