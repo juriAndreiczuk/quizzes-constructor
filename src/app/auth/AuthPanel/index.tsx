@@ -12,7 +12,7 @@ import { getAllDocuments } from '@/services/docs.service'
 import { registrationSchema, loginSchema } from './validationSchema'
 
 const AuthPanel = () => {
-  const [currentForm, setCurrentForm] = useState(false)
+  const [currentForm, setCurrentForm] = useState<boolean>(false)
 
   const teamsService = (): Promise<ITeam[]> => getAllDocuments<ITeam>('teams')
 
