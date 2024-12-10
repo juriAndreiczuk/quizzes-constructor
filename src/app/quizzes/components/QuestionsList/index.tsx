@@ -1,17 +1,20 @@
 import useQuestionsStore from '@/store/questions.strore'
 import QuestionPanel from '@/app/quizzes/components/QuestionPanel'
-import useTeamStore from '@/store/users.store'
+import useUsersStore from '@/store/users.store'
 import { IQuizDetails } from '@/types/question.types'
+import { IUserProgres } from '@/types/user.types'
 import { useEffect } from 'react'
 
 const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
   const { getQuestionsByQuiz, fetchQuestions } = useQuestionsStore()
-  const { currentUser } = useTeamStore()
+  const { currentUser } = useUsersStore()
 
   const allQuestions = getQuestionsByQuiz(currentQuiz)
-  const newQuestions = !currentUser?.progres ? allQuestions : allQuestions.filter(item => 
-    item &&  item.id && !currentUser?.progres[item.id]
+
+  const newQuestions = !currentUser?.progres ? allQuestions : allQuestions.filter(item =>
+    item.id && !currentUser.progres?.[item.id as keyof IUserProgres]
   )
+
   const currentIndex = allQuestions.length - newQuestions.length + 1 
 
   useEffect(() => {

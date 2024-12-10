@@ -3,7 +3,7 @@
 import { logOut } from '@/services/auth.service'
 import useAuthStore from '@/store/auth.store'
 import { useTeamsCollectionStore } from '@/store/collections.store'
-import useTeamStore from '@/store/users.store'
+import useUsersStore from '@/store/users.store'
 import { useRouter } from 'next/navigation'
 import Routes from '@/constants/routes'
 import Button from '@/app/components/ui/Button'
@@ -12,7 +12,7 @@ import { useEffect } from 'react'
 const UserProfile = () => {
   const user = useAuthStore(state => state.user)
   const { items: teams } = useTeamsCollectionStore()
-  const { setCurrentUser } = useTeamStore()
+  const { setCurrentUser } = useUsersStore()
   const userTeam = teams.filter(team => team.id === user?.teamId)[0]
 
   const router = useRouter()
