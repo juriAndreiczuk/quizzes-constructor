@@ -1,32 +1,25 @@
-import useQuestionsStore from '@/store/questions.strore'
+import useQuestions from '@/app/hooks/useQuestions'
 import QuestionPanel from '@/app/quizzes/components/QuestionPanel'
-import useUsersStore from '@/store/users.store'
 import { IQuizDetails } from '@/types/question.types'
-import { IUserProgres } from '@/types/user.types'
-import { useEffect } from 'react'
+import Button from '@/app/components/ui/Button'
 
 const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
-  const { getQuestionsByQuiz, fetchQuestions } = useQuestionsStore()
-  const { currentUser } = useUsersStore()
-
-  const allQuestions = getQuestionsByQuiz(currentQuiz)
-
-  const newQuestions = !currentUser?.progres ? allQuestions : allQuestions.filter(item =>
-    item.id && !currentUser.progres?.[item.id as keyof IUserProgres]
-  )
-
-  const currentIndex = allQuestions.length - newQuestions.length + 1 
-
-  useEffect(() => {
-    fetchQuestions()
-  }, [ currentQuiz ])
+  const { allQuestions, newQuestions, currentIndex, currentProgres } = useQuestions(currentQuiz)
 
   return (
     <div>
-      <h1 className='text-34 font-bold text-main'>{ currentQuiz.label }</h1>
+      <div className='flex items-center justify-between'>
+        <h1 className='text-34 font-bold text-main'>{ currentQuiz.label }</h1>
+        <Button
+          btnLink='/'
+          btnMod='accent-small'
+        >
+          Return to Quizes list
+        </Button>
+      </div>
       {
         currentIndex <= allQuestions.length && (
-          <p className='text-16 font-light text-deark'>{currentIndex}/{allQuestions.length} question</p>
+          <p className='text-16 font-light text-deark'>Progres: {currentProgres}%</p>
         )
       }
       { currentQuiz.items ? (

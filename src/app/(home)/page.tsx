@@ -2,12 +2,12 @@
 
 import StatusChecker from '@/app/components/StatusChecker'
 import UserProfile from '@/app/components/UserProfile'
-import QuizzesLinks from '@/app/(home)/components/QuizzesLinks'
+import QuizesLinks from '@/app/(home)/components/QuizesLinks'
 
 const Home = () => (
   <StatusChecker>
     <UserProfile />
-    <QuizzesLinks />
+    <QuizesLinks />
   </StatusChecker>
 )
 
