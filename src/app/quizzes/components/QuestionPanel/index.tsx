@@ -1,14 +1,24 @@
 import Button from '@/app/components/ui/Button'
 import { IQuestionDetails, IQuestionAnswer } from '@/types/question.types'
 import { useState } from 'react'
+import useUsersStore from '@/store/users.store'
+import { IUserProgres } from '@/types/user.types'
 
 const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => {
   const [userAnswer, setUserAnswer] = useState<IQuestionAnswer[]>([])
+  const { updateUserProgres } = useUsersStore()
 
   const changeAnswer = (answer: IQuestionAnswer): void => {
     userAnswer.includes(answer) 
       ? setUserAnswer(prev => prev.filter(item => item !== answer))
       : setUserAnswer(prev => [...prev, answer])
+  }
+
+  const sendAnswers = (questionID: string | undefined): void => {
+    if (!questionID) return
+
+    updateUserProgres({ questionID, answers: userAnswer } as IUserProgres)
+    setUserAnswer([])
   }
 
   return (
@@ -17,7 +27,7 @@ const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => 
         <h2 className='text-20 font-bold text-dark'>{ questionData.question }</h2>
         <small className='text-14 font-bold text-dark block ml-16 py-8 px-16 bg-white border-[1px] border-addl rounded-3xl'>{questionData.cost} points</small>
       </div>
-      { questionData.answers.length && questionData.answers.map((answer, index) => {
+      { questionData.answers && questionData.answers.map((answer, index) => {
         const isSelected = userAnswer.includes(answer)
         return (
           <button
@@ -33,7 +43,7 @@ const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => 
         )
       })}
       <div className='mt-16 flex justify-end'>
-        <Button>Send</Button>
+        <Button buttonClick={() => { sendAnswers(questionData.id) }}>Send</Button>
       </div>
     </div>
   )

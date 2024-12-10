@@ -8,6 +8,7 @@ const useAuthStore = create<IUserState>(set => ({
   loading: true,
 
   setUser: (user: IUserDetails) => set({ user, loading: false }),
+
   initializeUser: () => {
     set({ loading: true })
     onAuthChange(async data => {
@@ -17,6 +18,7 @@ const useAuthStore = create<IUserState>(set => ({
       }
     })
   },
+
   setLoading: (loading: boolean) => set(() => ({ loading }))
 }))
 

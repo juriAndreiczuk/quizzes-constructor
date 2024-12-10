@@ -1,6 +1,13 @@
+import { IQuestionAnswer } from '@/types/question.types'
+
 export enum UserTypes {
   Admin,
   Player
+}
+
+export interface IUserProgres {
+  questionID: string
+  answers: IQuestionAnswer[]
 }
 
 export interface IUserDetails {
@@ -10,6 +17,7 @@ export interface IUserDetails {
   userType: string
   points: number
   isBlocked?: boolean
+  progres?: IUserProgres
 }
 
 export interface IUserState {
@@ -25,9 +33,13 @@ export interface IUserUpdate extends Pick<IUserDetails, 'displayName' | 'teamId'
 export interface IUsersState {
   users: IUserDetails[]
   selectedUser: IUserDetails | null
+  currentUser: IUserDetails | null
   setSelectedUser: (user: IUserDetails | null) => void
+  setCurrentUser: (user: IUserDetails | null) => void
   fetchUsers: () => Promise<void>
+  fetchCurrentUser: () => Promise<void>
   updateUser: (vals: IUserUpdate, userData: IUserDetails) => Promise<void>
+  updateUserProgres: (vals: IUserProgres) => Promise<void>
 }
 
 export interface ITeam {

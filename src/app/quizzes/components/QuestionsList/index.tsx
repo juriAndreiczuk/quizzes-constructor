@@ -1,11 +1,18 @@
 import useQuestionsStore from '@/store/questions.strore'
 import QuestionPanel from '@/app/quizzes/components/QuestionPanel'
-
+import useTeamStore from '@/store/users.store'
 import { IQuizDetails } from '@/types/question.types'
 import { useEffect } from 'react'
 
 const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
   const { getQuestionsByQuiz, fetchQuestions } = useQuestionsStore()
+  const { currentUser } = useTeamStore()
+
+  const allQuestions = getQuestionsByQuiz(currentQuiz)
+  const newQuestions = !currentUser?.progres ? allQuestions : allQuestions.filter(item => 
+    item &&  item.id && !currentUser?.progres[item.id]
+  )
+  const currentIndex = allQuestions.length - newQuestions.length + 1 
 
   useEffect(() => {
     fetchQuestions()
@@ -14,14 +21,18 @@ const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
   return (
     <div>
       <h1 className='text-34 font-bold text-main'>{ currentQuiz.label }</h1>
-      { currentQuiz.items ? getQuestionsByQuiz(currentQuiz).map(question => (
+      {
+        currentIndex <= allQuestions.length && (
+          <p className='text-16 font-light text-deark'>{currentIndex}/{allQuestions.length} question</p>
+        )
+      }
+      { currentQuiz.items ? (
+        newQuestions.length ? 
         <QuestionPanel
-          key={question.id}
-          questionData={question}
-        />
-      )) : (
-        <p>Questions not founded</p>
-      ) }
+          questionData={newQuestions[0]}
+        /> : <p>Quiz completed</p>
+      ) : (<p>Questions not founded</p>)
+      }
     </div>
   )
 }
