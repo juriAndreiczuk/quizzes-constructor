@@ -1,17 +1,31 @@
 import Button from '@/app/components/ui/Button'
-import { IQuestionDetails, IQuestionAnswer } from '@/types/question.types'
-import { useState } from 'react'
+import { IQuestionDetails, IQuestionAnswer, IQuestionKind } from '@/types/question.types'
+import { useState, useEffect } from 'react'
 import useUsersStore from '@/store/users.store'
 import { IUserProgres } from '@/types/user.types'
 
 const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => {
   const [userAnswer, setUserAnswer] = useState<IQuestionAnswer[]>([])
+  const [answerKind, setAnswerKind] = useState<IQuestionKind>(IQuestionKind.Swither)
   const { updateUserProgres } = useUsersStore()
 
   const changeAnswer = (answer: IQuestionAnswer): void => {
+    if(answerKind !== IQuestionKind.Checkbox) setUserAnswer([])
+
     userAnswer.includes(answer) 
       ? setUserAnswer(prev => prev.filter(item => item !== answer))
       : setUserAnswer(prev => [...prev, answer])
+  }
+
+  const getQuestionKind = (): void => {
+    let result = IQuestionKind.Swither
+    
+    if(questionData.answers.length > 2) {
+      result = questionData.answers.filter(answer => answer.right).length > 1 
+        ? IQuestionKind.Checkbox : IQuestionKind.Radio
+    }
+
+    setAnswerKind(result)
   }
 
   const sendAnswers = (questionID: string | undefined): void => {
@@ -20,6 +34,10 @@ const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => 
     updateUserProgres({ questionID, answers: userAnswer } as IUserProgres)
     setUserAnswer([])
   }
+
+  useEffect(() => {
+    getQuestionKind()
+  }, [questionData.answers])
 
   return (
     <div key={questionData.id} className='bg-light p-16 rounded-xl my-8'>
@@ -35,7 +53,7 @@ const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => 
             className='flex items-center mb-8'
             onClick={() => { changeAnswer(answer) }}
           >
-            <span className={`${isSelected ? 'bg-main' : 'bg-addl'} rounded-full h-[3rem] w-[3rem] flex justify-center items-center mr-8`}>
+            <span className={`${isSelected ? 'bg-main' : 'bg-addl'} ${answerKind !== IQuestionKind.Checkbox ? 'rounded-full' : ''} h-[3rem] w-[3rem] flex justify-center items-center mr-8`}>
               <i className='not-italic text-white text-32 font-bold'>{ index + 1 }</i>
             </span>
             <p className={`text-16  text-dark ${isSelected ? 'font-medium' : 'font-normal'}`}>{ answer.answer }</p>
@@ -43,7 +61,12 @@ const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => 
         )
       })}
       <div className='mt-16 flex justify-end'>
-        <Button buttonClick={() => { sendAnswers(questionData.id) }}>Send</Button>
+        <Button 
+          btnDisabled={ userAnswer.length === 0 }
+          buttonClick={() => { sendAnswers(questionData.id) }}
+        >
+          Send
+        </Button>
       </div>
     </div>
   )

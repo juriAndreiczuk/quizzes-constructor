@@ -10,6 +10,12 @@ export interface IQuestionAnswer {
   right: boolean
 }
 
+export enum IQuestionKind {
+  Swither,
+  Radio,
+  Checkbox
+}
+
 export interface IQuestionDetails {
   id?: string
   quizId: string

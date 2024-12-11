@@ -19,7 +19,10 @@ const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
       </div>
       {
         currentIndex <= allQuestions.length && (
-          <p className='text-16 font-light text-deark'>Progres: {currentProgres}%</p>
+          <>
+            <p className='text-16 font-light text-deark'>Progres: {currentProgres}%</p>
+            <div style={{width: `${currentProgres}.1%` }} className={`h-[4px] transition-all bg-main`}></div>
+          </>
         )
       }
       { currentQuiz.items ? (
