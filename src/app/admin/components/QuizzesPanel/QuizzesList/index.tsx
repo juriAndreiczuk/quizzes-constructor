@@ -10,7 +10,7 @@ const QuestionsList = () => {
 
   return (
     <div>
-      <h4 className='text-18 font-bold'>Questions</h4>
+      <h4 className='text-18 font-bold'>Quizes</h4>
       <ul>
         { quizzes && quizzes.map(quiz => (
           <li

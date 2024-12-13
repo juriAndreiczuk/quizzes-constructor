@@ -1,0 +1,19 @@
+{
+  "boxesList": [
+    {
+      "title": "Quizzes",
+      "description": "All your quizzes",
+      "link": "/quizes"
+    },
+    {
+      "title": "Progress",
+      "description": "Completed questions",
+      "link": "/progres"
+    },
+    {
+      "title": "Teams",
+      "description": "Compare team results",
+      "link": "/teams"
+    }
+  ]
+}

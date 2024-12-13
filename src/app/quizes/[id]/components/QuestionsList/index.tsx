@@ -29,7 +29,7 @@ const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
         newQuestions.length ? 
         <QuestionPanel
           questionData={newQuestions[0]}
-        /> : <p>Quiz completed</p>
+        /> : <p className='text-20 text-main font-bold mt-32'>Quiz completed</p>
       ) : (<p>Questions not founded</p>)
       }
     </div>

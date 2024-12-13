@@ -25,10 +25,10 @@ const UserProfile = () => {
   useEffect(() => { setCurrentUser(user) }, [user])
 
   return (
-    <div className='my-32'>
+    <div className='my-32 flex bg-light p-16 rounded-xl'>
       {
         user && (
-          <div className='text-16 mb-16 bg-light p-16 rounded-xl'>
+          <div className='text-16 w-2/3'>
             <div className='flex mb-4'>
               <h3 className='font-bold '>Name</h3>
               <p className='font-light px-8'>{user.displayName}</p>
@@ -44,12 +44,14 @@ const UserProfile = () => {
           </div>
         )
       }
-      <Button
-        btnMod='accent'
-        buttonClick={handleLogOut}
-      >
-        Logout
-      </Button>
+      <div className='w-1/3 flex justify-end items-start'>
+        <Button
+          btnMod='accent'
+          buttonClick={handleLogOut}
+        >
+          Logout
+        </Button>
+      </div>
     </div>
   )
 }

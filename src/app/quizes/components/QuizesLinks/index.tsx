@@ -1,11 +1,20 @@
 import { useQuizzesCollectionStore } from '@/store/collections.store'
 import QuizesBox from '../QuizesBox'
+import Button from '@/app/components/ui/Button'
 
 const QuizesLinks = () => {
   const { items: quizes } = useQuizzesCollectionStore() 
 
   return quizes && (
-    <section>
+    <section className='pb-32'>
+      <div className='flex mb-16'>
+        <Button
+          btnLink='/'
+          btnMod='accent-small'
+        >
+          Back to Home
+        </Button>
+      </div>
       { quizes && quizes.length && (
         <ul className='grid grid-cols-4 gap-5'>
           { quizes.map((quiz) => (
