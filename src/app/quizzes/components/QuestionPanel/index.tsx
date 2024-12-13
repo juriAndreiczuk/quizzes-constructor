@@ -1,43 +1,19 @@
 import Button from '@/app/components/ui/Button'
-import { IQuestionDetails, IQuestionAnswer, IQuestionKind } from '@/types/question.types'
-import { useState, useEffect } from 'react'
+import { IQuestionDetails, IQuestionKind } from '@/types/question.types'
 import useUsersStore from '@/store/users.store'
+import useLogic from '@/app/quizzes/components/QuestionPanel/useLogic'
 import { IUserProgres } from '@/types/user.types'
 
 const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => {
-  const [userAnswer, setUserAnswer] = useState<IQuestionAnswer[]>([])
-  const [answerKind, setAnswerKind] = useState<IQuestionKind>(IQuestionKind.Swither)
   const { updateUserProgres } = useUsersStore()
-
-  const changeAnswer = (answer: IQuestionAnswer): void => {
-    if(answerKind !== IQuestionKind.Checkbox) setUserAnswer([])
-
-    userAnswer.includes(answer) 
-      ? setUserAnswer(prev => prev.filter(item => item !== answer))
-      : setUserAnswer(prev => [...prev, answer])
-  }
-
-  const getQuestionKind = (): void => {
-    let result = IQuestionKind.Swither
-    
-    if(questionData.answers.length > 2) {
-      result = questionData.answers.filter(answer => answer.right).length > 1 
-        ? IQuestionKind.Checkbox : IQuestionKind.Radio
-    }
-
-    setAnswerKind(result)
-  }
+  const { userAnswer, answerKind, changeAnswer } = useLogic(questionData)
 
   const sendAnswers = (questionID: string | undefined): void => {
     if (!questionID) return
 
     updateUserProgres({ questionID, answers: userAnswer } as IUserProgres)
-    setUserAnswer([])
+    changeAnswer()
   }
-
-  useEffect(() => {
-    getQuestionKind()
-  }, [questionData.answers])
 
   return (
     <div key={questionData.id} className='bg-light p-16 rounded-xl my-8'>
