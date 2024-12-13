@@ -1,7 +1,7 @@
 import Button from '@/app/components/ui/Button'
 import { IQuestionDetails, IQuestionKind } from '@/types/question.types'
 import useUsersStore from '@/store/users.store'
-import useLogic from '@/app/quizzes/components/QuestionPanel/useLogic'
+import useLogic from '@/app/quizes/[id]/components/QuestionPanel/useLogic'
 import { IUserProgres } from '@/types/user.types'
 
 const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => {

@@ -1,5 +1,5 @@
 import useQuestions from '@/app/hooks/useQuestions'
-import QuestionPanel from '@/app/quizzes/components/QuestionPanel'
+import QuestionPanel from '@/app/quizes/[id]/components/QuestionPanel'
 import { IQuizDetails } from '@/types/question.types'
 import Button from '@/app/components/ui/Button'
 
@@ -11,7 +11,7 @@ const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
       <div className='flex items-center justify-between'>
         <h1 className='text-34 font-bold text-main'>{ currentQuiz.label }</h1>
         <Button
-          btnLink='/'
+          btnLink='/quizes'
           btnMod='accent-small'
         >
           Return to Quizes list

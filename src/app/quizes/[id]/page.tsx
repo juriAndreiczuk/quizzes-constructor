@@ -4,7 +4,7 @@ import { useEffect, use } from 'react'
 import StatusChecker from '@/app/components/StatusChecker'
 import UserProfile from '@/app/components/UserProfile/index'
 import { useQuizzesCollectionStore } from '@/store/collections.store'
-import QuestionsList from '@/app/quizzes/components/QuestionsList'
+import QuestionsList from '@/app/quizes/[id]/components/QuestionsList'
 
 const QuizzesPage = ({ params } : { params: Promise<{ id: string }> }) => {
   const { id } = use<{ id: string }>(params)
