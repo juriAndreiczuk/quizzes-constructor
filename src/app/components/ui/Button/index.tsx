@@ -10,14 +10,15 @@ const Button = (
     buttonClick?: () => void
   }
 ) => {
+
   const btnColor = {
-    'primary': 'bg-main text-20 py-8 px-16',
-    'accent': 'bg-accent text-20 py-8 px-16',
-    'primary-small': 'bg-main text-14 py-4 px-8',
-    'accent-small': 'bg-accent text-14 py-4 px-8'
+    'primary': 'text-20 text-white from-addl to-main px-16 py-8 shadow-addl border-addl',
+    'accent': 'from-accent to-addl text-20 py-8 px-16 shadow-accent border-accent',
+    'primary-small': 'from-addl to-main text-14 py-4 px-8 shadow-addl border-addl',
+    'accent-small': 'from-accent to-addl text-14 py-4 px-8 shadow-accent border-accent'
   }
 
-  const classNames = `${btnColor[btnMod]} text-white block rounded-lg font-medium transition-all lg:hover:scale-[1.05]`
+  const classNames = `${btnColor[btnMod]} text-white block border-[1px] bg-gradient-to-br rounded-lg font-medium transition-all lg:hover:scale-[1.025]`
 
   return btnLink ? (
     <a

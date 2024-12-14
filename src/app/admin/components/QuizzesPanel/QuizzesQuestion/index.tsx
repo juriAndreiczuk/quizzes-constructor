@@ -6,6 +6,7 @@ import schema from './validationSchema'
 import QuestionFields from './QuestionFields'
 import QuestionAnswers from './QuestionAnswers'
 import Button from '@/app/components/ui/Button'
+import ContentCard from '@/app/components/layout/ContentCard'
 
 const QuizzesQuestion = () => {
   const {
@@ -33,7 +34,7 @@ const QuizzesQuestion = () => {
       <div className='relative py-32'>
         <div className='absolute bg-main w-full h-full min-h-screen top-0 left-0 z-10 opacity-50'></div>
         <div className='container relative z-20'>
-          <div className='bg-light p-16 rounded-xl'>
+          <ContentCard>
             <div className='flex justify-between mb-16'>
               <Button
                 btnMod='accent-small'
@@ -66,7 +67,7 @@ const QuizzesQuestion = () => {
                 </Form>
               )}
             </Formik>
-          </div>
+          </ContentCard>
         </div>
       </div>
     </div>

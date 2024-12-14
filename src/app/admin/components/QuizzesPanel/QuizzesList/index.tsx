@@ -10,14 +10,14 @@ const QuestionsList = () => {
 
   return (
     <div>
-      <h4 className='text-18 font-bold'>Quizes</h4>
+      <h4 className='text-20 font-bold text-white'>Quizes</h4>
       <ul>
         { quizzes && quizzes.map(quiz => (
           <li
             className='text-14 mt-16 border-t-[1px] pt-16 border-t-addl'
             key={quiz.id}
           >
-            <h5 className='font-16 font-bold mb-8'>{quiz.label}</h5>
+            <h5 className='text-20 font-bold mb-8 text-white'>{quiz.label}</h5>
             {!getQuestionsByQuiz(quiz).length && (
               <Button
                 btnMod='accent-small'
@@ -31,7 +31,7 @@ const QuestionsList = () => {
                 {getQuestionsByQuiz(quiz)
                   .map(item => (
                     <li className='flex items-center mb-8' key={item.question}>
-                      <span className='font-16 mr-8'>{item.question}</span>
+                      <span className='text-16 text-white mr-16'>{item.question}</span>
                       <Button
                         btnMod='accent-small'
                         buttonClick={() => setSelectedQuestion(item)}

@@ -16,7 +16,7 @@ const QuizesLinks = () => {
         </Button>
       </div>
       { quizes && quizes.length && (
-        <ul className='grid grid-cols-4 gap-5'>
+        <ul className='grid md:grid-cols-3 gap-5'>
           { quizes.map((quiz) => (
             quiz && quiz.id && (
               <li

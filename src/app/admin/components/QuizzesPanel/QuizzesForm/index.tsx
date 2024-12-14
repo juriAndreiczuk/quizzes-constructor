@@ -26,7 +26,7 @@ const QuizzesForm = () => {
   return (
     <div className='mb-16'>
       <div className='mb-16 border-b-[1px] pb-16 border-b-addl'>
-        <h4 className='text-18 font-bold my-16'>Create quiz</h4>
+        <h4 className='text-18 font-bold my-16 text-white'>Create quiz</h4>
         <Formik
           initialValues={{ label: '', description: '', items: [] }}
           validationSchema={schema}
@@ -40,7 +40,9 @@ const QuizzesForm = () => {
                 <FormInput key={`${field.name}--${n}`} inputData={field} />
               )
             })}
-            <Button btnMod='primary-small'>{formData.button}</Button>
+            <div className='mt-16'>
+              <Button btnMod='primary-small'>{formData.button}</Button>
+            </div>
           </Form>
         </Formik>
       </div>

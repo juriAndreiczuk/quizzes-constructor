@@ -6,6 +6,7 @@ import useUsersStore from '@/store/users.store'
 import TeamsForm from '@/app/admin/components/TeamsPanel/TeamsForm'
 import TeamsList from '@/app/admin/components/TeamsPanel/TeamsList'
 import TeamsUser from '@/app/admin/components/TeamsPanel/TeamsUser'
+import ContentCard from '@/app/components/layout/ContentCard'
 
 const TeamsPanel = () => {
   const { fetchItems: fetchTeams } = useTeamsCollectionStore()
@@ -17,14 +18,14 @@ const TeamsPanel = () => {
   }, [fetchTeams, fetchUsers])
 
   return (
-    <div className='bg-light p-16 rounded-xl'>
-      <h2 className='text-20 font-bold text-main'>Teams panel</h2>
+    <ContentCard>
+      <h2 className='text-27 font-bold text-light'>Teams panel</h2>
       <TeamsForm />
       <TeamsUser
         key={selectedUser ? selectedUser.displayName : 'default'}
       />
       <TeamsList />
-    </div>
+    </ContentCard>
   )
 }
 

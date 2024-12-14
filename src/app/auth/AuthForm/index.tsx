@@ -9,6 +9,7 @@ import { UserTypes } from '@/types/user.types'
 import Routes from '@/constants/routes'
 import FormInput from '@/app/components/ui/FormInput'
 import Button from '@/app/components/ui/Button'
+import ContentCard from '@/app/components/layout/ContentCard'
 
 const AuthForm = (
   { mode, startValues, formContent, validation } :
@@ -37,27 +38,29 @@ const AuthForm = (
       onSubmit={handleSubmit}
     >
       {(props: FormikProps<any>) => (
-        <Form className='w-full sm:w-2/3 mx-auto bg-light my-32 p-16 sm:p-32 rounded-xl'>
-          {Object.keys(formContent.fields).map((key: string, n: number) => {
-            const field = formContent.fields[key]
+        <ContentCard cardClasses='w-full sm:w-2/3 mx-auto'>
+          <Form>
+            {Object.keys(formContent.fields).map((key: string, n: number) => {
+              const field = formContent.fields[key]
 
-            return field.type !== 'select' ? (
-              <FormInput key={`${field.name}--${n}`} inputData={field} />
-            ) : (
-              props.values.userType === UserTypes[0] && field.name === 'teamId' ? '' : (
-                <FormInput key={field.name} inputData={field}>
-                  <option value="" disabled>{field.label}</option>
-                  { 'options' in field && field.options?.map(opt => (
-                    <option key={`${opt.name}-option--${opt.id}`} value={opt.id}>{opt.name}</option>
-                  )) }
-                </FormInput>
+              return field.type !== 'select' ? (
+                <FormInput key={`${field.name}--${n}`} inputData={field} />
+              ) : (
+                props.values.userType === UserTypes[0] && field.name === 'teamId' ? '' : (
+                  <FormInput key={field.name} inputData={field}>
+                    <option value="" disabled>{field.label}</option>
+                    { 'options' in field && field.options?.map(opt => (
+                      <option key={`${opt.name}-option--${opt.id}`} value={opt.id}>{opt.name}</option>
+                    )) }
+                  </FormInput>
+                )
               )
-            )
-          })}
-          <div className='mt-16'>
-            <Button>{formContent.button}</Button>
-          </div>
-        </Form>
+            })}
+            <div className='mt-32'>
+              <Button>{formContent.button}</Button>
+            </div>
+          </Form>
+        </ContentCard>
       )}
     </Formik>
   )

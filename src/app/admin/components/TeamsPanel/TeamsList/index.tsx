@@ -15,14 +15,14 @@ const TeamsList = () => {
 
   return (
     <div>
-      <h4 className='text-18 font-bold'>Teams</h4>
+      <h4 className='text-20 font-bold text-white'>Teams</h4>
       <ul>
         { teams && teams.map(team => (
           <li
             className='text-14 mt-16 border-t-[1px] pt-16 border-t-addl'
             key={team.id}
           >
-            <h5 className='font-16 font-bold mb-8'>{team.name}</h5>
+            <h5 className='text-20 font-bold mb-8 text-white'>{team.name}</h5>
             {!getMembers(team).length && (
               <Button
                 btnMod='accent-small'
@@ -36,7 +36,7 @@ const TeamsList = () => {
                 {getMembers(team)
                   .map(user => (
                     <li className='flex items-center mb-8' key={user.displayName}>
-                      <span className='font-16 mr-8'>{user.displayName}</span>
+                      <span className='text-16 text-white mr-16'>{user.displayName}</span>
                       <Button
                         buttonClick={() => setSelectedUser(user)}
                         btnMod='accent-small'

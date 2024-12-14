@@ -3,19 +3,24 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      boxShadow: {
+        'accent': '0px 0px 9px -1px #FA58B6',
+        'addl': '0px 0px 9px -1px #7A0BC0',
+      },
       fontSize: {
         '14': '0.875rem',
         '16': '1rem',
         '18': '1.12rem',
         '20': '1.25rem',
+        '27': '1.68rem',
         '34': '2.125rem'
       },
       colors: {
-        dark: '#000000',
-        light: '#F9F9E0',
-        accent: '#FF9EAA',
-        addl: '#FFD0D0',
-        main: '#3AA6B9'
+        dark: '#1A1A40',
+        main: '#270082',
+        addl: '#7A0BC0',
+        light: '#c9a1f7',
+        accent: '#FA58B6'
       },
       fontWeight: {
         light: 300,

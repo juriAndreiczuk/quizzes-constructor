@@ -9,7 +9,7 @@ const QuestionAnswers = ({ formValues }: { formValues: IQuestionDetails }) => {
   const { selectedQuestion } = useQuestionsStore()
   return selectedQuestion && (
     <>
-      <p>{contentData.form.answersLabel}</p>
+      <p className='my-16 text-27 font-bold text-white'>{contentData.form.answersLabel}</p>
       <FieldArray name="answers">
         {({ push, remove }) => (
           <div className='mb-32'>
@@ -24,7 +24,7 @@ const QuestionAnswers = ({ formValues }: { formValues: IQuestionDetails }) => {
                 />
                 <div className='mb-8 flex items-center'>
                   <Field type="checkbox" name={`answers.${n}.right`} />
-                  <span className='px-8 text-16 font-medium'>{contentData.form.correctAnswer}</span>
+                  <span className='px-8 text-16 text-white font-medium'>{contentData.form.correctAnswer}</span>
                 </div>
                 <Button
                   btnMod='accent-small'

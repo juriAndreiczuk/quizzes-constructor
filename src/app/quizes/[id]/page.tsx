@@ -19,7 +19,7 @@ const QuizzesPage = ({ params } : { params: Promise<{ id: string }> }) => {
       <UserProfile />
       { currentQuiz ? (
         <QuestionsList currentQuiz={currentQuiz} />
-      ) : 'quiz not founded' }
+      ) : <p className='text-16 text-white font-bold mt-32'>Quiz not founded</p> }
     </StatusChecker>
   )
 }

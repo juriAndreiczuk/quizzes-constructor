@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import Routes from '@/constants/routes'
 import Button from '@/app/components/ui/Button'
 import { useEffect } from 'react'
+import ContentCard from '@/app/components/layout/ContentCard'
 
 const UserProfile = () => {
   const user = useAuthStore(state => state.user)
@@ -25,21 +26,21 @@ const UserProfile = () => {
   useEffect(() => { setCurrentUser(user) }, [user])
 
   return (
-    <div className='my-32 flex bg-light p-16 rounded-xl'>
+    <ContentCard cardClasses='flex'>
       {
         user && (
           <div className='text-16 w-2/3'>
             <div className='flex mb-4'>
-              <h3 className='font-bold '>Name</h3>
-              <p className='font-light px-8'>{user.displayName}</p>
+              <h3 className='font-bold text-white'>Name</h3>
+              <p className='font-light px-8 text-white'>{user.displayName}</p>
             </div>
             <div className='flex mb-4'>
-              <h3 className='font-bold '>Team</h3>
-              <p className='font-light px-8'>{userTeam?.name}</p>
+              <h3 className='font-bold text-white'>Team</h3>
+              <p className='font-light px-8 text-white'>{userTeam?.name}</p>
             </div>
             <div className='flex mb-4'>
-              <h3 className='font-bold '>Points</h3>
-              <p className='font-light px-8'>{user.points}</p>
+              <h3 className='font-bold text-white'>Points</h3>
+              <p className='font-light px-8 text-white'>{user.points}</p>
             </div>
           </div>
         )
@@ -52,7 +53,7 @@ const UserProfile = () => {
           Logout
         </Button>
       </div>
-    </div>
+    </ContentCard>
   )
 }
 

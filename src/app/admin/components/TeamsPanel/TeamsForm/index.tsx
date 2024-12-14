@@ -23,7 +23,7 @@ const TeamsForm = () => {
 
   return (
     <div className="mb-32">
-      <h4 className='text-18 font-bold my-16'>{teamsData.title}</h4>
+      <h4 className='text-18 font-bold my-16 text-white'>{teamsData.title}</h4>
       <Formik
         initialValues={{ name: '' }}
         validationSchema={schema}
@@ -37,7 +37,9 @@ const TeamsForm = () => {
               <FormInput key={`${field.name}--${n}`} inputData={field} />
             )
           })}
-          <Button btnMod='primary-small'>{formData.button}</Button>
+          <div className='mt-16'>
+            <Button btnMod='primary-small'>{formData.button}</Button>
+          </div>
         </Form>
       </Formik>
     </div>

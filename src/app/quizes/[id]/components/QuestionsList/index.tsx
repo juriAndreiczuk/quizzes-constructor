@@ -8,8 +8,8 @@ const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
 
   return (
     <div>
-      <div className='flex items-center justify-between'>
-        <h1 className='text-34 font-bold text-main'>{ currentQuiz.label }</h1>
+      <div className='flex items-center justify-between mb-32'>
+        <h1 className='text-34 font-bold text-light'>{ currentQuiz.label }</h1>
         <Button
           btnLink='/quizes'
           btnMod='accent-small'
@@ -20,7 +20,7 @@ const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
       {
         currentIndex <= allQuestions.length && (
           <>
-            <p className='text-16 font-light text-deark'>Progres: {currentProgres}%</p>
+            <p className='text-20 font-light text-white'>Progres: <span className='font-normal text-accent'>{currentProgres}%</span></p>
             <div style={{width: `${currentProgres}.1%` }} className={`h-[4px] transition-all bg-main`}></div>
           </>
         )
@@ -29,8 +29,8 @@ const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
         newQuestions.length ? 
         <QuestionPanel
           questionData={newQuestions[0]}
-        /> : <p className='text-20 text-main font-bold mt-32'>Quiz completed</p>
-      ) : (<p>Questions not founded</p>)
+        /> : <p className='text-34 text-center text-white font-bold mt-32'>Quiz completed !</p>
+      ) : (<p className='text-16 text-white font-bold mt-32'>Questions not founded</p>)
       }
     </div>
   )

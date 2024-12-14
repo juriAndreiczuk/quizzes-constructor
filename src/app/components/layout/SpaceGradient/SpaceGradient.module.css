@@ -1,0 +1,14 @@
+.space {
+  background: 
+    radial-gradient(yellow 1px, transparent 0)
+    repeat left / 400px 400px,
+    radial-gradient(red 1px, transparent 0)
+    repeat right bottom / 300px 300px,
+    radial-gradient(white 1px, transparent 0)
+    repeat left top / 400px 400px,
+    radial-gradient(green 1px, transparent 0)
+    repeat center / 200px 200px,
+    radial-gradient(aqua 1px, transparent 0)
+    repeat left bottom / 500px 500px,
+    linear-gradient(#270082, #270082);
+}
