@@ -4,8 +4,11 @@ import useUsersStore from '@/store/users.store'
 import useLogic from '@/app/quizes/[id]/components/QuestionPanel/useLogic'
 import { IUserProgres } from '@/types/user.types'
 import ContentCard from '@/app/components/layout/ContentCard'
+import { useState } from 'react'
 
 const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => {
+  const [data, setData] = useState<null | { result: number | string, show: boolean }>(null)
+
   const { updateUserProgres } = useUsersStore()
   const { userAnswer, answerKind, changeAnswer, pointsCounter } = useLogic(questionData)
 
@@ -13,8 +16,13 @@ const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => 
     if (!questionID) return
   
     const { points: answerPoints, percents } =  pointsCounter()
-    updateUserProgres({ questionID, answers: userAnswer } as IUserProgres, answerPoints)
-    changeAnswer()
+    setData({ show: true, result: percents })
+
+    setTimeout(() => {
+      updateUserProgres({ questionID, answers: userAnswer } as IUserProgres, answerPoints)
+      changeAnswer()
+      setData(null)
+    }, 2000)
   }
 
   return (
@@ -35,13 +43,25 @@ const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => 
             <span className={`${isSelected ? 'bg-accent shadow-accent' : 'bg-addl opacity-50'} ${answerKind !== IQuestionKind.Checkbox ? 'rounded-full' : ''} h-[3rem] w-[3rem] flex justify-center items-center mr-8`}>
               <i className='not-italic text-white text-32 font-bold'>{ index + 1 }</i>
             </span>
-            <p className={`text-18 text-white mt-16 sm:mt-0 sm:mx-16 ${isSelected ? 'font-medium' : 'font-normal'}`}>{ answer.answer }</p>
+            <p className={`text-18 ${data?.show && answer.right ? 'text-green-500' : 'text-white'  } mt-16 sm:mt-0 sm:mx-16 ${isSelected ? 'font-medium' : 'font-normal'}`}>{ answer.answer }</p>
           </button>
         )
       })}
-      <div className='mt-16 flex justify-end'>
+      <div className='mt-16 flex justify-between items-center'>
+        <div>
+          { data?.show && (
+            <div>
+              <div className='bg-white py-8 px-16 rounded-xl shadow-accent animate-pulse'>
+                <p className='text-16 text-main font-medium'>
+                  You receive <span className='text-accent'>{data?.result}%</span> of the points.
+                </p>
+              </div>
+              <div className='h-[.2rem] w-full mt-8 bg-gradient-to-br from-accent to-light animate-loading-line origin-left'></div>
+            </div>
+          ) }
+        </div>
         <Button 
-          btnDisabled={ userAnswer.length === 0 }
+          btnDisabled={ userAnswer.length === 0 || data?.show }
           buttonClick={() => { sendAnswers(questionData.id) }}
         >
           Send

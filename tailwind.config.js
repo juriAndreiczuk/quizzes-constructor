@@ -38,6 +38,15 @@ export default {
         '128': '8rem'
       }
     },
+    keyframes: {
+      'line': {
+        '0%': { transform: 'scaleX(1)' },
+        '100%': { transform: 'scaleX(0)' },
+      }
+    },
+    animation: {
+      'loading-line': 'line 2s linear',
+    },
     container: {
       center: true,
       padding: {

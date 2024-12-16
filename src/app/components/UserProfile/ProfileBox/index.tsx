@@ -1,5 +1,5 @@
 const ProfileBox = ({ boxLabel, boxText }
-  : { boxLabel: string, boxText: string | undefined | number }
+  : { boxLabel: string, boxText: string | undefined }
 ) => (
   <div className='flex mb-4'>
     <h3 className='font-bold text-white'>{boxLabel}</h3>

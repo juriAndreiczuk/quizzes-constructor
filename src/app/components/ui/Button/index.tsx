@@ -30,7 +30,7 @@ const Button = (
   ) : (
     <button
       disabled={btnDisabled}
-      style={{ opacity: btnDisabled ? '.8' : '1' }}
+      style={{ opacity: btnDisabled ? '.7' : '1' }}
       className={classNames}
       onClick={buttonClick}
     >

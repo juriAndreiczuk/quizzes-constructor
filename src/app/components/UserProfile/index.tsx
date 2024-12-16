@@ -34,7 +34,7 @@ const UserProfile = () => {
             <ProfileBox boxLabel='Name' boxText={currentUser?.displayName} />
             <ProfileBox boxLabel='Team' boxText={userTeam?.name || 'Admin'} />
             { userTeam?.name && (
-              <ProfileBox boxLabel='Points' boxText={currentUser?.points} />
+              <ProfileBox boxLabel='Points' boxText={`${currentUser?.points}`} />
             ) }
           </div>
         )
