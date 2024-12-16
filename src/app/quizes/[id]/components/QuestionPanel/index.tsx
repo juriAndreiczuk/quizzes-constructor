@@ -1,17 +1,19 @@
 import Button from '@/app/components/ui/Button'
-import { IQuestionDetails, IQuestionKind } from '@/types/question.types'
+import { IQuestionDetails, IQuestionAnswer, IQuestionKind } from '@/types/question.types'
 import useUsersStore from '@/store/users.store'
 import useLogic from '@/app/quizes/[id]/components/QuestionPanel/useLogic'
 import { IUserProgres } from '@/types/user.types'
 import ContentCard from '@/app/components/layout/ContentCard'
+
 const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => {
   const { updateUserProgres } = useUsersStore()
-  const { userAnswer, answerKind, changeAnswer } = useLogic(questionData)
+  const { userAnswer, answerKind, changeAnswer, pointsCounter } = useLogic(questionData)
 
   const sendAnswers = (questionID: string | undefined): void => {
     if (!questionID) return
-
-    updateUserProgres({ questionID, answers: userAnswer } as IUserProgres)
+  
+    const { points: answerPoints, percents } =  pointsCounter()
+    updateUserProgres({ questionID, answers: userAnswer } as IUserProgres, answerPoints)
     changeAnswer()
   }
 
@@ -23,6 +25,7 @@ const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => 
       </div>
       { questionData.answers && questionData.answers.map((answer, index) => {
         const isSelected = userAnswer.includes(answer)
+
         return (
           <button
             key={`${questionData.id}-${index}`}

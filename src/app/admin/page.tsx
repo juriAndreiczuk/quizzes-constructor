@@ -5,8 +5,8 @@ import Tabs from '@/app/components/ui/Tabs'
 
 const Admin = () => (
   <main className='py-32'>
-    <h1 className="text-34 font-bold text-main">Admin panel</h1>
     <UserProfile />
+    <h1 className="text-34 font-bold text-light my-32">Admin panel</h1>
     <Tabs tabsLabels={['Users and teams', 'Quizes and questions']}>
       <TeamsPanel />
       <TestsPanel />

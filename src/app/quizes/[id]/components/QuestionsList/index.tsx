@@ -21,7 +21,10 @@ const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
         currentIndex <= allQuestions.length && (
           <>
             <p className='text-20 font-light text-white'>Progres: <span className='font-normal text-accent'>{currentProgres}%</span></p>
-            <div style={{width: `${currentProgres}.1%` }} className={`h-[4px] transition-all bg-main`}></div>
+            <div
+              style={{width: `${currentProgres}.1%` }}
+              className={`h-[4px] transition-all from-white to-addl bg-gradient-to-r mt-16`}
+            ></div>
           </>
         )
       }

@@ -39,7 +39,7 @@ export interface IUsersState {
   fetchUsers: () => Promise<void>
   fetchCurrentUser: () => Promise<void>
   updateUser: (vals: IUserUpdate, userData: IUserDetails) => Promise<void>
-  updateUserProgres: (vals: IUserProgres) => Promise<void>
+  updateUserProgres: (vals: IUserProgres, answerPoints: number) => Promise<void>
 }
 
 export interface ITeam {

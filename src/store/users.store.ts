@@ -35,14 +35,16 @@ const useTeamStore = create<IUsersState>(set => ({
     }
   },
 
-  updateUserProgres: async (vals: IUserProgres) => {
+  updateUserProgres: async (vals: IUserProgres, answerPoints: number) => {
     const { currentUser, fetchCurrentUser } = useTeamStore.getState()
     if (!currentUser || !currentUser.id) return
 
       const progres = (currentUser.progres || {}) as { [key: string]: IQuestionAnswer[] }
       progres[vals.questionID] = vals.answers      
 
-      await updateDocument({ progres }, 'users', currentUser.id)
+      const points = currentUser.points + answerPoints
+
+      await updateDocument({ progres, points }, 'users', currentUser.id)
       await fetchCurrentUser()
   }
 }))
