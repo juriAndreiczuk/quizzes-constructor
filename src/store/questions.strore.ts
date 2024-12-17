@@ -1,6 +1,7 @@
 import { create } from 'zustand'
+import _chunk from 'lodash/chunk'
 import {
-  getAllDocuments, createDocument,
+  getAllDocuments, createDocument, getDocumentsByIds,
   updateDocument, removeDocument, updateCollectionItems
 } from '@/services/docs.service'
 import { IQuestionDetails, IQuestionsState, IQuizDetails } from '@/types/question.types'
@@ -48,6 +49,14 @@ const useQuestionsStore = create<IQuestionsState>(set => ({
   getQuestionsByQuiz: (quiz: IQuizDetails): IQuestionDetails[]  => {
     const { questions } = useQuestionsStore.getState()
     return questions.length ? questions.filter(q => q.quizId === quiz.id) : []
+  },
+
+  getQuestionsByIds: async (ids: string[]): Promise<IQuestionDetails[] | []> => {
+    const promises = _chunk(ids, 10).map(chunk => getDocumentsByIds<IQuestionDetails>(chunk, 'questions'))
+    const data = await Promise.all(promises)
+    const result = data.filter((doc): doc is IQuestionDetails[] => doc !== null)
+
+    return result.flat()
   }
 }))
 

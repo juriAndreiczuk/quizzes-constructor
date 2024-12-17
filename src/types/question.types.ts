@@ -33,4 +33,5 @@ export interface IQuestionsState {
   removeQuestion: () => Promise<void>
   createQuestion: (vals: IQuestionDetails) => Promise<void>
   getQuestionsByQuiz: (vals: IQuizDetails) => IQuestionDetails[]
+  getQuestionsByIds: (ids: string[]) => Promise<IQuestionDetails[] | []>
 }

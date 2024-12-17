@@ -105,3 +105,26 @@ export const updateCollectionItems = async (
     throw new Error(alertsData.errors.updateDoc)
   }
 }
+
+export const getDocumentsByIds = async <T>(ids: string[], docName: string)
+:Promise<T[] | null> => {
+  try {
+    const documents: T[] = []
+
+    const q = query(collection(db, docName), where('id', 'in', ids))
+    const snapshot = await getDocs(collection(db, docName))
+    snapshot.forEach(item => {
+      if (ids.includes(item.id)) {
+        const data = item.data() as T
+        documents.push({
+          id: item.id,
+          ...data
+        })
+      }
+    })
+
+    return documents
+  } catch (err) {
+    throw new Error(alerts.errors.getDoc)
+  }
+}
