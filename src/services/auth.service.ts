@@ -9,16 +9,17 @@ import { IAlerts } from '@/types/alert.types'
 import { UserTypes, IUserDetails } from '@/types/user.types'
 import { IUpdateOperation } from '@/types/collection.types'
 import alertsData from '@/content/auth.json'
-import { getDocumentData, updateCollectionItems } from '@/services/docs.service'
+import { getDocument } from '@/services/docs.service'
+import { updateCollection } from '@/services/collections.service'
 import { setUserData } from './user.service'
 
 const alerts: IAlerts = alertsData as IAlerts
-// auth event listener
+
 export const onAuthChange = (callback: (user: User | null) => void)
 : void => {
   onAuthStateChanged(auth, (user) => { callback(user) })
 }
-// registration function
+
 const register = async (data: IAuthRegister)
 : Promise<UserCredential> => {
   const { email, password, displayName, teamId, userType } = data
@@ -26,12 +27,12 @@ const register = async (data: IAuthRegister)
   if (auth.currentUser) {
     await setUserData({ displayName, teamId, userType } as IAuthRegister, auth.currentUser.uid)
     if (teamId !== UserTypes[0]) {
-      await updateCollectionItems('teams', 'members', teamId, auth.currentUser.uid, IUpdateOperation.Add)
+      await updateCollection('teams', 'members', teamId, auth.currentUser.uid, IUpdateOperation.Add)
     }
   }
   return userData
 }
-// user authentication (login/registration)
+
 export const userAuth = async (
   data: (IAuthLogin | IAuthRegister),
   mode: AuthMode
@@ -43,7 +44,7 @@ export const userAuth = async (
         : register(data as IAuthRegister)
     )
     const token = await userData.user?.getIdToken()
-    const user = await getDocumentData<IUserDetails>(userData.user?.uid, 'users')
+    const user = await getDocument<IUserDetails>(userData.user?.uid, 'users')
     Cookies.set(AuthTokens.ID_TOKEN, token)
     Cookies.set(AuthTokens.USER_ROLE, user?.userType || UserTypes[1])
     return userData.user
@@ -51,7 +52,7 @@ export const userAuth = async (
     throw new Error(alerts.errors.auth)
   }
 }
-// logout function (firebase + clear cookies)
+
 export const logOut = async ()
 : Promise<void> => {
   try {

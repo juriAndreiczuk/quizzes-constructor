@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { getDocumentData } from '@/services/docs.service'
+import { getDocument } from '@/services/docs.service'
 import { onAuthChange } from '@/services/auth.service'
 import { IUserDetails, IUserState } from '@/types/user.types'
 
@@ -13,7 +13,7 @@ const useAuthStore = create<IUserState>(set => ({
     set({ loading: true })
     onAuthChange(async data => {
       if (data) {
-        const userData = await getDocumentData<IUserDetails>(data.uid, 'users')
+        const userData = await getDocument<IUserDetails>(data.uid, 'users')
         set({ user: userData, loading: false })
       }
     })

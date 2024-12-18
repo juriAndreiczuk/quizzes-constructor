@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import { IUserDetails, IUserProgres, IUserUpdate, IUsersState } from '@/types/user.types'
 import { IQuestionAnswer } from '@/types/question.types'
-import { getAllDocuments, updateDocument, updateCollectionItems, getDocumentData } from '@/services/docs.service'
+import { updateDocument, getDocument } from '@/services/docs.service'
+import { getCollection, updateCollection } from '@/services/collections.service'
 import { IUpdateOperation } from '@/types/collection.types'
 
 const useTeamStore = create<IUsersState>(set => ({
@@ -17,19 +18,19 @@ const useTeamStore = create<IUsersState>(set => ({
     const { currentUser } = useTeamStore.getState()
     if (!currentUser || !currentUser.id) return
 
-    const userData = await getDocumentData<IUserDetails>(currentUser.id, 'users')
+    const userData = await getDocument<IUserDetails>(currentUser.id, 'users')
     set({ currentUser: userData })
   },
 
   fetchUsers: async () => {
-    const users = await getAllDocuments<IUserDetails>('users')
+    const users = await getCollection<IUserDetails>('users')
     set({ users })
   },
 
   updateUser: async (vals: IUserUpdate, userData: IUserDetails) => {
     if (userData.id) {
-      await updateCollectionItems('teams', 'members', userData.teamId, userData.id, IUpdateOperation.Remove)
-      await updateCollectionItems('teams', 'members', vals.teamId, userData.id, IUpdateOperation.Add)
+      await updateCollection('teams', 'members', userData.teamId, userData.id, IUpdateOperation.Remove)
+      await updateCollection('teams', 'members', vals.teamId, userData.id, IUpdateOperation.Add)
       await updateDocument({ ...vals }, 'users', userData.id)
       await useTeamStore.getState().fetchUsers()
     }

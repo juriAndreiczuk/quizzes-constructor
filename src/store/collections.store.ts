@@ -1,8 +1,8 @@
 import { create } from 'zustand'
 import { IQuizDetails } from '@/types/question.types'
 import { ITeam } from '@/types/user.types'
-
-import { getAllDocuments, removeDocument, getDocumentData, createDocument as createDocApi } from '@/services/docs.service'
+import { removeDocument, getDocument } from '@/services/docs.service'
+import { getCollection, addToCollection } from '@/services/collections.service'
 import { ICollectionState } from '@/types/collection.types'
 
 const createCollectionStore = <T extends { [key: string]: any }>(
@@ -13,23 +13,23 @@ const createCollectionStore = <T extends { [key: string]: any }>(
   currentItem: null,
 
   fetchItems: async () => {
-    const items = await getAllDocuments<T>(collectionName)
+    const items = await getCollection<T>(collectionName)
     set({ items })
   },
 
   fetchItem: async (itemId: string) => {
-    const currentItem = await getDocumentData<T>(itemId, collectionName)
+    const currentItem = await getDocument<T>(itemId, collectionName)
     set({ currentItem })
   },
 
   removeItem: async (itemId: string) => {
     await removeDocument(collectionName, itemId)
-    set({ items: await getAllDocuments<T>(collectionName) })
+    set({ items: await getCollection<T>(collectionName) })
   },
 
   createItem: async (values: T) => {
-    await createDocApi<T>(collectionName, values, uniqueField as string)
-    set({ items: await getAllDocuments<T>(collectionName) })
+    await addToCollection<T>(collectionName, values, uniqueField as string)
+    set({ items: await getCollection<T>(collectionName) })
   }
 }))
 
