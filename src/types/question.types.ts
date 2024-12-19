@@ -24,6 +24,11 @@ export interface IQuestionDetails {
   answers: IQuestionAnswer[]
 }
 
+export interface IQuestionProgres {
+  questionData: IQuestionDetails
+  progres: IQuestionAnswer[] | []
+}
+
 export interface IQuestionsState {
   questions: IQuestionDetails[]
   selectedQuestion: IQuestionDetails | null

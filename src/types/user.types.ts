@@ -6,8 +6,7 @@ export enum UserTypes {
 }
 
 export interface IUserProgres {
-  questionID: string
-  answers: IQuestionAnswer[]
+  [key: string]: IQuestionAnswer[]
 }
 
 export interface IUserDetails {

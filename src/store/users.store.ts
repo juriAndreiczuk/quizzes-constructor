@@ -40,11 +40,10 @@ const useTeamStore = create<IUsersState>(set => ({
     const { currentUser, fetchCurrentUser } = useTeamStore.getState()
     if (!currentUser || !currentUser.id) return
 
-      const progres = (currentUser.progres || {}) as { [key: string]: IQuestionAnswer[] }
-      progres[vals.questionID] = vals.answers      
+      let progres = (currentUser.progres || {}) as { [key: string]: IQuestionAnswer[] }
+      progres = { ...progres, ...vals }
 
       const points = currentUser.points + answerPoints
-
       await updateDocument({ progres, points }, 'users', currentUser.id)
       await fetchCurrentUser()
   }
