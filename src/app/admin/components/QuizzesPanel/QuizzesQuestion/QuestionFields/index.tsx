@@ -7,6 +7,7 @@ import contentData from '@/content/quizzes.json'
 const QuestionFields = () => {
   const { items: quizzes } = useQuizzesCollectionStore()
   const { selectedQuestion } = useQuestionsStore()
+
   return selectedQuestion && (
     <>
       <FormInput

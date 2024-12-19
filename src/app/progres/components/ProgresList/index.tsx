@@ -3,6 +3,7 @@
 import useLogic from '@/app/progres/components/ProgresList/useLogic'
 import ContentCard from '@/app/components/layout/ContentCard'
 import Button from '@/app/components/ui/Button'
+import PageIntro from '@/app/components/layout/PageIntro'
 
 const ProgresList = () => {
   const { completedQuestions } = useLogic()
@@ -10,15 +11,10 @@ const ProgresList = () => {
   return (
     completedQuestions && (
       <>
-        <div className='flex flex-wrap justify-between items-center my-32'>
-          <h1 className='text-34 font-bold mr-8 text-light mb-8 sm:mb-0'>Your progres</h1>
-          <Button
-            btnLink='/'
-            btnMod='accent-small'
-          >
-            Back to Home
-          </Button>
-        </div>
+        <PageIntro
+          introTitle='Your progres'
+          introButton={{ url: '/', label: 'Back to Home' }}
+        />
         <ContentCard>
           { completedQuestions.length ? (
             <ul>

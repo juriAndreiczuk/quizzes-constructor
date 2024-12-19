@@ -7,14 +7,6 @@ const QuizesLinks = () => {
 
   return quizes && (
     <section className='pb-32'>
-      <div className='flex mb-16'>
-        <Button
-          btnLink='/'
-          btnMod='accent-small'
-        >
-          Back to Home
-        </Button>
-      </div>
       { quizes && quizes.length && (
         <ul className='grid md:grid-cols-3 gap-5'>
           { quizes.map((quiz) => (

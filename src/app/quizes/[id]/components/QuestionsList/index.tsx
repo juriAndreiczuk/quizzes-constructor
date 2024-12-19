@@ -1,22 +1,17 @@
 import useQuestions from '@/app/hooks/useQuestions'
 import QuestionPanel from '@/app/quizes/[id]/components/QuestionPanel'
 import { IQuizDetails } from '@/types/question.types'
-import Button from '@/app/components/ui/Button'
+import PageIntro from '@/app/components/layout/PageIntro'
 
 const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
   const { allQuestions, newQuestions, currentIndex, currentProgres } = useQuestions(currentQuiz)
 
   return (
     <div>
-      <div className='flex items-center justify-between mb-32'>
-        <h1 className='text-34 font-bold text-light'>{ currentQuiz.label }</h1>
-        <Button
-          btnLink='/quizes'
-          btnMod='accent-small'
-        >
-          Return to Quizes list
-        </Button>
-      </div>
+      <PageIntro
+        introTitle={ currentQuiz.label }
+        introButton={{ url: '/quizes', label: 'Return to Quizes list' }}
+      />
       {
         currentIndex <= allQuestions.length && (
           <>
