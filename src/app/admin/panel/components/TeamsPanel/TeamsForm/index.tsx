@@ -30,13 +30,13 @@ const TeamsForm = () => {
         onSubmit={handleSubmit}
       >
         <Form>
-          {Object.keys(formData.fields).map((key: string, n: number) => {
+          { Object.keys(formData.fields).map((key: string, n: number) => {
             const field = formData.fields[key]
 
             return (
               <FormInput key={`${field.name}--${n}`} inputData={field} />
             )
-          })}
+          }) }
           <div className='mt-16'>
             <Button btnMod='primary-small'>{formData.button}</Button>
           </div>

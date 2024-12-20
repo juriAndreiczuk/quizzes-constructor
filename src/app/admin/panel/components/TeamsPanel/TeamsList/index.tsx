@@ -23,17 +23,17 @@ const TeamsList = () => {
             key={team.id}
           >
             <h5 className='text-20 font-bold mb-8 text-white'>{team.name}</h5>
-            {!getMembers(team).length && (
+            { !getMembers(team).length && (
               <Button
                 btnMod='accent-small'
                 buttonClick={() => { team.id && removeTeam(team.id) }}
               >
                 Delete
               </Button>
-            )}
+            ) }
             { team.members && team.members.length && (
               <ul>
-                {getMembers(team)
+                { getMembers(team)
                   .map(user => (
                     <li className='flex items-center mb-8 pb-4' key={user.displayName}>
                       <span className='text-16 text-white mr-16'>{user.displayName}</span>
@@ -42,9 +42,9 @@ const TeamsList = () => {
                         btnMod='accent-small'
                       >Edit</Button>
                     </li>
-                  ))}
+                  )) }
               </ul>
-            )}
+            ) }
           </li>
         )) }
       </ul>

@@ -8,7 +8,7 @@ import alertsData from '@/content/auth.json'
 import { IAlerts } from '@/types/alert.types'
 
 const alerts: IAlerts = alertsData as IAlerts
-// change user data in firestore
+
 export const setUserData = async (data: IAuthRegister, uid: string)
 : Promise<void> => {
   try {
@@ -20,7 +20,7 @@ export const setUserData = async (data: IAuthRegister, uid: string)
     throw new Error(alerts.errors.setUser)
   }
 }
-// change user by team id
+
 export const getUsersByTeam = async (teamId: string)
 : Promise<IUserDetails[]> => {
   try {

@@ -37,7 +37,7 @@ const AuthForm = (
       validationSchema={validation}
       onSubmit={handleSubmit}
     >
-      {(props: FormikProps<any>) => (
+      { (props: FormikProps<any>) => (
         <ContentCard cardClasses='w-full sm:w-2/3 mx-auto'>
           <Form>
             {Object.keys(formContent.fields).map((key: string, n: number) => {
@@ -55,7 +55,7 @@ const AuthForm = (
                   </FormInput>
                 )
               )
-            })}
+            }) }
             <div className='mt-32'>
               <Button>{formContent.button}</Button>
             </div>

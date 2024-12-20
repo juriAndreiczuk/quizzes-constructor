@@ -8,7 +8,7 @@ const RatingUsers = ({ userList }: { userList: IUserDetails[] | null }) => (
       <div key={user.id}>
         <div className='mb-16'>
           <div className='flex items-start'>
-            <p className='text-34 leading-[1.1] text-accent font-bold mr-16'>{index + 1}</p>
+            <p className='text-34 leading-[1.2] text-accent font-bold mr-16'>{index + 1}</p>
             <div>
               <h4>
                 <span className='text-16 font-bold text-white'>{user.displayName}</span>
