@@ -2,7 +2,7 @@
 
 import StatusChecker from '@/app/components/StatusChecker'
 import UserProfile from '@/app/components/UserProfile'
-import ProgresList from '@/app/progres/components/ProgresList'
+import ProgresList from '@/app/dashboard/progres/components/ProgresList'
 
 const Progres = () => {
   return (

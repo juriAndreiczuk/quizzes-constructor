@@ -3,17 +3,17 @@
     {
       "title": "Quizzes",
       "description": "All your quizzes",
-      "link": "/quizes"
+      "link": "/dashboard/quizes"
     },
     {
       "title": "Progress",
       "description": "Completed questions",
-      "link": "/progres"
+      "link": "/dashboard/progres"
     },
     {
       "title": "Rating",
       "description": "Compare team results",
-      "link": "/rating"
+      "link": "/dashboard/rating"
     }
   ]
 }

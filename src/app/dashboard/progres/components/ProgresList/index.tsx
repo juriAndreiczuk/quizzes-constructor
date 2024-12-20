@@ -1,8 +1,7 @@
 'use client'
 
-import useLogic from '@/app/progres/components/ProgresList/useLogic'
+import useLogic from '@/app/dashboard/progres/components/ProgresList/useLogic'
 import ContentCard from '@/app/components/layout/ContentCard'
-import Button from '@/app/components/ui/Button'
 import PageIntro from '@/app/components/layout/PageIntro'
 
 const ProgresList = () => {
@@ -13,7 +12,7 @@ const ProgresList = () => {
       <>
         <PageIntro
           introTitle='Your progres'
-          introButton={{ url: '/', label: 'Back Home' }}
+          introButton={{ url: '/dashboard', label: 'Back Home' }}
         />
         <ContentCard>
           { completedQuestions.length ? (

@@ -15,7 +15,7 @@ const QuizesBox = ({ quizData }: { quizData: IQuizDetails }) => {
           <p className='text-12 text-white font-light my-16'>{quizData.description}</p>
         </div>
         <div className='flex justify-end'>
-          <Button btnLink={`/quizes/${quizData.id}`} btnMod='primary-small'>Start</Button>
+          <Button btnLink={`/dashboard/quizes/${quizData.id}`} btnMod='primary-small'>Start</Button>
         </div>
       </div>
     </ContentCard>

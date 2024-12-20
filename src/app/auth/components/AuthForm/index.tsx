@@ -28,7 +28,7 @@ const AuthForm = (
       teamId: values.userType === UserTypes[0] ? UserTypes[0] : values.teamId
     } : { ...values }
     await userAuth(userData, mode)
-    router.push(Routes.Home)
+    router.push(Routes.Dashboard)
   }
 
   return (

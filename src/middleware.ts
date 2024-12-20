@@ -22,7 +22,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (idToken && !isAdmin && (isAdminPage || isAuthPage)) {
-    url.pathname = Routes.Home
+    url.pathname = Routes.Dashboard
     return NextResponse.redirect(url)
   }
 
@@ -30,5 +30,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/auth/:path*', '/admin/:path*']
+  matcher: ['/dashboard/:path*', '/auth/:path*', '/admin/:path*']
 }

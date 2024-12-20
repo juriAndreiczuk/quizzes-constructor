@@ -1,5 +1,5 @@
 import useQuestions from '@/app/hooks/useQuestions'
-import QuestionPanel from '@/app/quizes/[id]/components/QuestionPanel'
+import QuestionPanel from '@/app/dashboard/quizes/[id]/components/QuestionPanel'
 import { IQuizDetails } from '@/types/question.types'
 import PageIntro from '@/app/components/layout/PageIntro'
 
@@ -10,7 +10,7 @@ const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
     <div>
       <PageIntro
         introTitle={ currentQuiz.label }
-        introButton={{ url: '/quizes', label: 'Return to Quizes list' }}
+        introButton={{ url: '/dashboard/quizes', label: 'Return to Quizes list' }}
       />
       {
         currentIndex <= allQuestions.length && (

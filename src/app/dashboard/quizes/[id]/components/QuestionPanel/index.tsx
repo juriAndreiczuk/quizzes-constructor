@@ -1,7 +1,7 @@
 import Button from '@/app/components/ui/Button'
 import { IQuestionDetails, IQuestionAnswer, IQuestionKind } from '@/types/question.types'
 import useUsersStore from '@/store/users.store'
-import useLogic from '@/app/quizes/[id]/components/QuestionPanel/useLogic'
+import useLogic from '@/app/dashboard/quizes/[id]/components/QuestionPanel/useLogic'
 import ContentCard from '@/app/components/layout/ContentCard'
 import { useState } from 'react'
 
