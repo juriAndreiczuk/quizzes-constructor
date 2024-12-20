@@ -4,7 +4,7 @@ import ContentCard from '@/app/components/layout/ContentCard'
 
 const BoxesList = ({ listItems }: { listItems: IBoxesList[] }) => {
   return (
-    <ul className='grid md:grid-cols-3 gap-5'>
+    <ul className={`grid md:grid-cols-${listItems.length < 3 ? '2' : '3'} gap-5`}>
     { listItems.map(box => (
       box && box.link && (
         <li
@@ -18,7 +18,7 @@ const BoxesList = ({ listItems }: { listItems: IBoxesList[] }) => {
                 <p className='text-12 text-white font-light mt-16'>{box.description}</p>
               </div>
               <div className='flex justify-center'>
-                <Button btnLink={box.link} btnMod='primary-small'>Show more</Button>
+                <Button btnLink={box.link} btnMod='primary-small'>Open</Button>
               </div>
             </div>
           </ContentCard>

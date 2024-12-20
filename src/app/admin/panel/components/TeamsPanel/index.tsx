@@ -3,9 +3,9 @@
 import { useEffect } from 'react'
 import { useTeamsCollectionStore } from '@/store/collections.store'
 import useUsersStore from '@/store/users.store'
-import TeamsForm from '@/app/admin/components/TeamsPanel/TeamsForm'
-import TeamsList from '@/app/admin/components/TeamsPanel/TeamsList'
-import TeamsUser from '@/app/admin/components/TeamsPanel/TeamsUser'
+import TeamsForm from '@/app/admin/panel/components/TeamsPanel/TeamsForm'
+import TeamsList from '@/app/admin/panel/components/TeamsPanel/TeamsList'
+import TeamsUser from '@/app/admin/panel/components/TeamsPanel/TeamsUser'
 import ContentCard from '@/app/components/layout/ContentCard'
 
 const TeamsPanel = () => {

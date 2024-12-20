@@ -3,9 +3,9 @@
 import { useEffect } from 'react'
 import { useQuizzesCollectionStore } from '@/store/collections.store'
 import useQuestionsStore from '@/store/questions.strore'
-import QuizzesForm from '@/app/admin/components/QuizzesPanel/QuizzesForm'
-import QuizzesList from '@/app/admin/components/QuizzesPanel/QuizzesList'
-import QuizzesQuestion from '@/app/admin/components/QuizzesPanel/QuizzesQuestion'
+import QuizzesForm from '@/app/admin/panel/components/QuizzesPanel/QuizzesForm'
+import QuizzesList from '@/app/admin/panel/components/QuizzesPanel/QuizzesList'
+import QuizzesQuestion from '@/app/admin/panel/components/QuizzesPanel/QuizzesQuestion'
 import ContentCard from '@/app/components/layout/ContentCard'
 
 const TeamsPanel = () => {

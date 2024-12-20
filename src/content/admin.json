@@ -1,0 +1,14 @@
+{
+  "boxesList": [
+    {
+      "title": "Panel CMS",
+      "description": "Manage the content",
+      "link": "/admin/panel"
+    },
+    {
+      "title": "Rating",
+      "description": "Compare team results",
+      "link": "/admin/rating"
+    }
+  ]
+}

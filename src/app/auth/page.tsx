@@ -1,4 +1,4 @@
-import AuthPanel from './AuthPanel'
+import AuthPanel from './components/AuthPanel'
 
 const Auth = () => (
   <AuthPanel />

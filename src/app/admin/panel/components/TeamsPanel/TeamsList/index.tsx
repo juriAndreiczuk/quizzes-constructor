@@ -35,7 +35,7 @@ const TeamsList = () => {
               <ul>
                 {getMembers(team)
                   .map(user => (
-                    <li className='flex items-center mb-8' key={user.displayName}>
+                    <li className='flex items-center mb-8 pb-4' key={user.displayName}>
                       <span className='text-16 text-white mr-16'>{user.displayName}</span>
                       <Button
                         buttonClick={() => setSelectedUser(user)}

@@ -13,7 +13,7 @@ const ProgresList = () => {
       <>
         <PageIntro
           introTitle='Your progres'
-          introButton={{ url: '/', label: 'Back to Home' }}
+          introButton={{ url: '/', label: 'Back Home' }}
         />
         <ContentCard>
           { completedQuestions.length ? (

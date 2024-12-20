@@ -1,18 +1,18 @@
-import UserProfile from '@/app/components/UserProfile'
-import TeamsPanel from '@/app/admin/components/TeamsPanel'
-import TestsPanel from '@/app/admin/components/QuizzesPanel'
-import Tabs from '@/app/components/ui/Tabs'
-import PageIntro from '@/app/components/layout/PageIntro'
+'use client'
 
-const Admin = () => (
-  <main className='py-32'>
+import StatusChecker from '@/app/components/StatusChecker'
+import UserProfile from '@/app/components/UserProfile'
+import pageContent from '@/content/admin.json'
+import BoxesList from '@/app/components/BoxesList'
+import { IBoxesList } from '@/types/content.types'
+
+const Home = () => (
+  <StatusChecker>
     <UserProfile />
-    <PageIntro introTitle='Admin panel' />
-    <Tabs tabsLabels={['Users and teams', 'Quizes and questions']}>
-      <TeamsPanel />
-      <TestsPanel />
-    </Tabs>
-  </main>
+    { pageContent.boxesList && (
+      <BoxesList listItems={pageContent.boxesList as IBoxesList[]} />
+    )}
+  </StatusChecker>
 )
 
-export default Admin
+export default Home

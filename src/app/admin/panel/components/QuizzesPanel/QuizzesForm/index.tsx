@@ -7,7 +7,7 @@ import { IQuizDetails } from '@/types/question.types'
 import { IFormContent } from '@/types/auth.types'
 import { Form, Formik, FormikHelpers } from 'formik'
 import FormInput from '@/app/components/ui/FormInput'
-import schema from '@/app/admin/components/QuizzesPanel/QuizzesForm/validationSchema'
+import schema from '@/app/admin/panel/components/QuizzesPanel/QuizzesForm/validationSchema'
 import Button from '@/app/components/ui/Button'
 
 const formData = quizzesData.createForm as IFormContent

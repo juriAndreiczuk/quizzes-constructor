@@ -30,7 +30,7 @@ const QuestionsList = () => {
               <ul>
                 {getQuestionsByQuiz(quiz)
                   .map(item => (
-                    <li className='flex items-center mb-8' key={item.question}>
+                    <li className='flex items-center mb-16' key={item.question}>
                       <span className='text-16 text-white mr-16'>{item.question}</span>
                       <Button
                         btnMod='accent-small'

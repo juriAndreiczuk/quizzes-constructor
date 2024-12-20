@@ -46,3 +46,8 @@ export interface ITeam {
   id?: string,
   members?: []
 }
+
+export interface ITeamRarting {
+  team: ITeam
+  points: number
+}

@@ -2,18 +2,18 @@
 
 import StatusChecker from '@/app/components/StatusChecker'
 import UserProfile from '@/app/components/UserProfile'
-import QuizesLinks from '@/app/quizes/components/QuizesLinks'
 import PageIntro from '@/app/components/layout/PageIntro'
+import RatingTable from '@/app/components/RatingTable'
 
-const Home = () => (
+const Rating = () => (
   <StatusChecker>
     <UserProfile />
     <PageIntro
-      introTitle='Choose a quiz'
+      introTitle='Rating'
       introButton={{ url: '/', label: 'Back Home' }}
     />
-    <QuizesLinks />
+    <RatingTable />
   </StatusChecker>
 )
 
-export default Home
+export default Rating
