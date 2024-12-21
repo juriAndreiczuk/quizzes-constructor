@@ -28,17 +28,19 @@ const UserProfile = () => {
 
   return (
     <ContentCard cardClasses='flex'>
-      {
-        user && (
-          <div className='text-16 w-2/3'>
-            <ProfileBox boxLabel='Name' boxText={currentUser?.displayName} />
-            <ProfileBox boxLabel='Team' boxText={userTeam?.name || 'Admin'} />
-            { userTeam?.name && (
-              <ProfileBox boxLabel='Points' boxText={`${currentUser?.points}`} />
-            ) }
-          </div>
-        )
-      }
+      <div className='text-16 w-2/3'>
+        {
+          user && (
+            <div>
+              <ProfileBox boxLabel='Name' boxText={currentUser?.displayName} />
+              <ProfileBox boxLabel='Team' boxText={userTeam?.name || 'Admin'} />
+              { userTeam?.name && (
+                <ProfileBox boxLabel='Points' boxText={`${currentUser?.points}`} />
+              ) }
+            </div>
+          )
+        }
+      </div>
       <div className='w-1/3 flex justify-end items-start'>
         <Button
           btnMod='accent'

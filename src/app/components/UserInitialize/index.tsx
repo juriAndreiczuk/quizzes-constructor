@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import useAuthStore from '@/store/auth.store'
 
 const UserInitialize = () => {
-  const initializeUser = useAuthStore(state => state.initializeUser)
+  const { initializeUser } = useAuthStore()
 
   useEffect(() => {
     initializeUser()

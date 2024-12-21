@@ -8,7 +8,7 @@ import useAuthStore from '@/store/auth.store'
 import Routes from '@/constants/routes'
 
 const StatusChecker = ({ children }: { children: ReactNode }) => {
-  const user = useAuthStore(state => state.user)
+  const { user } = useAuthStore()
   const router = useRouter()
   const { fetchItems: fetchQuizzes } = useQuizzesCollectionStore()
   const { fetchItems: fetchTeams } = useTeamsCollectionStore()
