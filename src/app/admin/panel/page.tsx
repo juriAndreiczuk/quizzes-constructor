@@ -1,4 +1,3 @@
-import UserProfile from '@/app/components/UserProfile'
 import TeamsPanel from '@/app/admin/panel/components/TeamsPanel'
 import TestsPanel from '@/app/admin/panel/components/QuizzesPanel'
 import Tabs from '@/app/components/ui/Tabs'
@@ -6,7 +5,6 @@ import PageIntro from '@/app/components/layout/PageIntro'
 
 const Panel = () => (
   <main className='py-32'>
-    <UserProfile />
     <PageIntro
       introTitle='Admin panel'
       introButton={{ url: '/admin', label: 'Back Home' }}

@@ -1,17 +1,9 @@
 'use client'
 
-import StatusChecker from '@/app/components/StatusChecker'
-import UserProfile from '@/app/components/UserProfile'
 import ProgresList from '@/app/dashboard/progres/components/ProgresList'
 
-const Progres = () => {
-  return (
-    <StatusChecker>
-      <UserProfile />
-      <ProgresList />
-    </StatusChecker>
-  )
-
-}
+const Progres = () => (
+  <ProgresList />
+)
 
 export default Progres
