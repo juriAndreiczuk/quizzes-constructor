@@ -12,6 +12,7 @@ const ProgresList = () => {
       <>
         <PageIntro
           introTitle='Your progres'
+          introIcon='/assets/graph-up.svg'
           introButton={{ url: '/dashboard', label: 'Back Home' }}
         />
         <ContentCard>

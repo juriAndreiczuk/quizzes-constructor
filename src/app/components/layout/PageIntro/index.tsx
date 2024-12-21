@@ -1,11 +1,21 @@
 import  Button from '@/app/components/ui/Button'
+import Image from 'next/image'
+import { IPageIntro } from '@/types/content.types'
 
-const PageIntro = (
-  { introTitle, introButton }:
-  { introTitle: string, introButton?: { url: string, label: string } }
-) => (
+const PageIntro = ( { introTitle, introButton, introIcon }: IPageIntro ) => (
   <div className='flex items-center justify-between mb-32'>
-    <h1 className='text-34 font-bold text-light'>{ introTitle }</h1>
+    <div className='flex items-center'>
+      { introIcon && (
+        <Image
+          className='mr-16'
+          src={ introIcon }
+          alt={introTitle}
+          width={30}
+          height={30}
+        />
+      ) }
+      <h1 className='text-34 font-medium text-light'>{ introTitle }</h1>
+    </div>
     { introButton && (
       <Button
         btnLink={ introButton.url }

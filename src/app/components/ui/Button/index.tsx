@@ -18,7 +18,7 @@ const Button = (
     'accent-small': 'from-accent to-addl text-14 py-4 px-8 shadow-accent border-accent'
   }
 
-  const classNames = `${btnColor[btnMod]} text-white block border-[1px] bg-gradient-to-br rounded-lg font-medium transition-all lg:hover:scale-[1.025]`
+  const classNames = `${btnColor[btnMod]} text-white block border-[1px] bg-gradient-to-br rounded-sm font-medium transition-all lg:hover:scale-[1.025]`
 
   return btnLink ? (
     <a

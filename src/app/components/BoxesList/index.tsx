@@ -1,6 +1,7 @@
 import Button from '@/app/components/ui/Button'
 import { IBoxesList } from '@/types/content.types'
 import ContentCard from '@/app/components/layout/ContentCard'
+import Image from 'next/image'
 
 const BoxesList = ({ listItems }: { listItems: IBoxesList[] }) => {
   return (
@@ -14,6 +15,14 @@ const BoxesList = ({ listItems }: { listItems: IBoxesList[] }) => {
           <ContentCard cardClasses='w-full h-full'>
             <div className="flex flex-col justify-between w-full p-16 h-full text-center">
               <div>
+                { box.icon && (
+                  <Image
+                    className='mx-auto mb-16'
+                    src={box.icon}
+                    alt={box.title}
+                    height={30}
+                    width={30}
+                  />)}
                 <h3 className='text-20 uppercase text-white font-medium'>{ box.title }</h3>
                 <p className='text-12 text-white font-light mt-16'>{box.description}</p>
               </div>

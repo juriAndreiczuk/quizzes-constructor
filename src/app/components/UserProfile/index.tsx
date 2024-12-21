@@ -10,6 +10,7 @@ import Button from '@/app/components/ui/Button'
 import { useEffect } from 'react'
 import ContentCard from '@/app/components/layout/ContentCard'
 import ProfileBox from '@/app/components/UserProfile/ProfileBox'
+import Image from 'next/image'
 
 const UserProfile = () => {
   const router = useRouter()
@@ -28,10 +29,11 @@ const UserProfile = () => {
 
   return (
     <ContentCard cardClasses='flex'>
-      <div className='text-16 w-2/3'>
+      <div className='text-16 w-2/3 flex items-start'>
+        <Image src='/assets/user.svg' alt='user' width={30} height={30} />
         {
           user && (
-            <div>
+            <div className='pl-16'>
               <ProfileBox boxLabel='Name' boxText={currentUser?.displayName} />
               <ProfileBox boxLabel='Team' boxText={userTeam?.name || 'Admin'} />
               { userTeam?.name && (

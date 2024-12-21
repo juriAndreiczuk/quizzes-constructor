@@ -8,7 +8,7 @@ const ContentCard = ({ children, cardClasses, cardMod = 'default' }
   cardMod?: string
 }
 ) => (
-  <div className={`${styles.card} ${cardClasses} shadow-accent border-[1px] border-accent p-16 rounded-xl mb-32  sm:${cardMod !== 'mini' && 'p-32'}`}>
+  <div className={`${styles.card} ${cardClasses} shadow-accent border-[1px] border-accent p-16 rounded-sm mb-32  sm:${cardMod !== 'mini' && 'p-32'}`}>
     { children }
   </div>
 )

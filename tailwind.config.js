@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        'accent': '0px 0px 9px -1px #FA58B6',
-        'addl': '0px 0px 9px -1px #7A0BC0',
+        'accent': '0px 0px 7px -1px #FA58B6',
+        'addl': '0px 0px 7px -1px #7A0BC0',
       },
       fontSize: {
         '14': '0.875rem',

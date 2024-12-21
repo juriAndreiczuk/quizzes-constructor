@@ -2,16 +2,19 @@
   "boxesList": [
     {
       "title": "Quizzes",
+      "icon": "assets/task-list.svg",
       "description": "All your quizzes",
       "link": "/dashboard/quizes"
     },
     {
       "title": "Progress",
+      "icon": "assets/graph-up.svg",
       "description": "Completed questions",
       "link": "/dashboard/progres"
     },
     {
       "title": "Rating",
+      "icon": "assets/medal1st.svg",
       "description": "Compare team results",
       "link": "/dashboard/rating"
     }

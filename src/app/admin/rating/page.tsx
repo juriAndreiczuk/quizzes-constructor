@@ -7,6 +7,7 @@ const Rating = () => (
   <>
     <PageIntro
       introTitle='Rating'
+      introIcon='/assets/medal1st.svg'
       introButton={{ url: '/admin', label: 'Back Home' }}
     />
     <RatingTable />

@@ -30,7 +30,7 @@ const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => 
     <ContentCard key={questionData.id} cardClasses='my-16'>
       <div className='flex items-center mb-16 fle-col flex-wrap sm:flex-row sm:justify-between'>
         <h2 className='text-20 font-bold text-white mr-16'>{ questionData.question }</h2>
-        <small className='text-14 font-bold text-dark block mt-16 sm:mt-0 py-8 px-16 bg-white border-[1px] border-accent shadow-accent rounded-3xl'>{questionData.cost} points</small>
+        <small className='text-14 font-bold text-dark block mt-16 sm:mt-0 py-8 px-16 bg-white border-[1px] border-accent shadow-accent rounded-md'>{questionData.cost} points</small>
       </div>
       { questionData.answers && questionData.answers.map((answer, index) => (
         <QuestionButton

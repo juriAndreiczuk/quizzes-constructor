@@ -20,7 +20,7 @@ const Input = (
       <Field
         id={inputData.name}
         type={inputData.type}
-        className='block w-full from-white to-light bg-gradient-to-r p-8 rounded-lg my-8 focus:outline-addl appearance-none cursor-pointer'
+        className='block w-full from-white to-light bg-gradient-to-r p-8 rounded-md my-8 focus:outline-addl appearance-none cursor-pointer'
         as={types[inputData.type]}
         name={inputData.name}
         component={types[inputData.type]}

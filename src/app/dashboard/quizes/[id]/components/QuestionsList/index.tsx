@@ -10,6 +10,7 @@ const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
     <div>
       <PageIntro
         introTitle={ currentQuiz.label }
+        introIcon='/assets/task-list.svg'
         introButton={{ url: '/dashboard/quizes', label: 'Return to Quizes list' }}
       />
       {

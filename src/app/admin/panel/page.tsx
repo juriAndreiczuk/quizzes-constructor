@@ -7,6 +7,7 @@ const Panel = () => (
   <main className='py-32'>
     <PageIntro
       introTitle='Admin panel'
+      introIcon='/assets/database-settings.svg'
       introButton={{ url: '/admin', label: 'Back Home' }}
     />
     <Tabs tabsLabels={['Users and teams', 'Quizes and questions']}>

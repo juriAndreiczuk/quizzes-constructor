@@ -5,7 +5,7 @@ const QuestionAlert  = ({ pointsAmount, showAlert }: {
   <div>
     { showAlert && (
       <div>
-        <div className='bg-white py-8 px-16 rounded-xl shadow-accent animate-pulse'>
+        <div className='bg-white py-8 px-16 rounded-md shadow-accent animate-pulse'>
           <p className='text-16 text-main font-medium'>
             You receive <span className='text-accent'>{ pointsAmount }%</span> of the points.
           </p>

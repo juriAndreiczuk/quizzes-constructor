@@ -2,11 +2,13 @@
   "boxesList": [
     {
       "title": "Panel CMS",
+      "icon": "assets/database-settings.svg",
       "description": "Manage the content",
       "link": "/admin/panel"
     },
     {
       "title": "Rating",
+      "icon": "assets/medal1st.svg",
       "description": "Compare team results",
       "link": "/admin/rating"
     }

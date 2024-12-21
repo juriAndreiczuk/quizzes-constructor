@@ -7,6 +7,7 @@ const Home = () => (
   <>
     <PageIntro
       introTitle='Choose a quiz'
+      introIcon='/assets/task-list.svg'
       introButton={{ url: '/dashboard', label: 'Back Home' }}
     />
     <QuizesLinks />
