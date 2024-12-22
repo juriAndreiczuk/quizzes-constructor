@@ -1,9 +1,8 @@
-import Button from '@/app/components/ui/Button'
-import { IQuestionDetails, IQuestionKind } from '@/types/question.types'
+import { IQuestionDetails } from '@/types/question.types'
 import useUsersStore from '@/store/users.store'
 import useLogic from '@/app/dashboard/quizes/[id]/components/QuestionPanel/useLogic'
 import ContentCard from '@/app/components/layout/ContentCard'
-import QuestionAlert from '@/app/dashboard/quizes/[id]/components/QuestionPanel/QuestionAlert'
+import QuestionControls from '@/app/dashboard/quizes/[id]/components/QuestionPanel/QuestionControls'
 import QuestionButton from '@/app/dashboard/quizes/[id]/components/QuestionPanel/QuestionButton'
 import { useState } from 'react'
 
@@ -42,18 +41,12 @@ const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => 
           isRight={result?.show && answer.right}
         />
       ))}
-      <div className='mt-16 flex justify-between items-center'>
-        <QuestionAlert
-          pointsAmount={result?.amount}
-          showAlert={result?.show}
-        />
-        <Button
-          btnDisabled={ userAnswer.length === 0 || result?.show }
-          buttonClick={() => { sendAnswers(questionData.id) }}
-        >
-          Send
-        </Button>
-      </div>
+      <QuestionControls
+        pointsAmount={result?.amount}
+        showAlert={result?.show}
+        isDisabled={userAnswer.length === 0 || result?.show}
+        onClick={() => { sendAnswers(questionData.id) }}
+      />
     </ContentCard>
   )
 }
