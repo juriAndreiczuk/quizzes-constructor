@@ -1,16 +1,7 @@
 'use client'
+import { IButton } from '@/types/components.types'
 
-const Button = (
-  { children, btnLink, btnMod = 'primary', btnDisabled = false, buttonClick = () => {} } :
-  { 
-    children: React.ReactNode,
-    btnLink?: string,
-    btnMod?: 'primary' | 'accent' | 'primary-small' | 'accent-small',
-    btnDisabled?: boolean,
-    buttonClick?: () => void
-  }
-) => {
-
+const Button = ({ children, btnLink, btnMod = 'primary', btnDisabled = false, buttonClick = () => {} } : IButton) => {
   const btnColor = {
     'primary': 'text-20 text-white from-addl to-main px-16 py-8 shadow-addl border-addl',
     'accent': 'from-accent to-addl text-20 py-8 px-16 shadow-accent border-accent',

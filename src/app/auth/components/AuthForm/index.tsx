@@ -1,26 +1,18 @@
 'use client'
 
-import * as Yup from 'yup'
 import { useRouter } from 'next/navigation'
 import { Form, Formik, FormikProps } from 'formik'
 import Image from 'next/image'
 import { userAuth } from '@/services/auth.service'
-import { IAuthLogin, AuthMode, IAuthRegister, IFormContent } from '@/types/auth.types'
+import { IAuthLogin, AuthMode, IAuthRegister } from '@/types/auth.types'
 import { UserTypes } from '@/types/user.types'
 import Routes from '@/constants/routes'
 import FormInput from '@/app/components/ui/FormInput'
 import Button from '@/app/components/ui/Button'
 import ContentCard from '@/app/components/layout/ContentCard'
+import { IAuthForm } from '@/types/components.types'
 
-const AuthForm = (
-  { mode, startValues, formContent, validation } :
-  {
-    mode: AuthMode,
-    startValues: IAuthLogin | IAuthRegister,
-    formContent: IFormContent,
-    validation: Yup.Schema
-  }
-) => {
+const AuthForm = ({ mode, startValues, formContent, validation } : IAuthForm ) => {
   const router = useRouter()
 
   const handleSubmit = async (values: IAuthLogin | IAuthRegister) => {

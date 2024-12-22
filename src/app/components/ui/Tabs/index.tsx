@@ -2,14 +2,9 @@
 
 import { useState } from 'react'
 import Button from '@/app/components/ui/Button'
+import { ITabs } from '@/types/components.types'
 
-const Tabs = (
-  { children, tabsLabels }:
-  {
-    children: React.ReactNode[],
-    tabsLabels: string[]
-  }
-) => {
+const Tabs = ({ children, tabsLabels }: ITabs) => {
   const [activeIndex, setActiveIndex] = useState<number>(0)
 
   return (

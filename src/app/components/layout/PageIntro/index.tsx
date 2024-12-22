@@ -3,8 +3,8 @@ import Image from 'next/image'
 import { IPageIntro } from '@/types/content.types'
 
 const PageIntro = ( { introTitle, introButton, introIcon }: IPageIntro ) => (
-  <div className='flex items-center justify-between mb-32'>
-    <div className='flex items-center'>
+  <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between mb-32'>
+    <div className='flex items-center mb-16 sm:mb-0'>
       { introIcon && (
         <Image
           className='mr-16'

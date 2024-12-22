@@ -4,6 +4,7 @@ import useLogic from '@/app/dashboard/quizes/[id]/components/QuestionPanel/useLo
 import ContentCard from '@/app/components/layout/ContentCard'
 import QuestionControls from '@/app/dashboard/quizes/[id]/components/QuestionPanel/QuestionControls'
 import QuestionButton from '@/app/dashboard/quizes/[id]/components/QuestionPanel/QuestionButton'
+import QuestionSwitcher from '@/app/dashboard/quizes/[id]/components/QuestionPanel/QuestionSwitcher'
 import { useState } from 'react'
 
 const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => {
@@ -27,20 +28,25 @@ const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => 
 
   return (
     <ContentCard key={questionData.id} cardClasses='my-16'>
-      <div className='flex items-center mb-16 fle-col flex-wrap sm:flex-row sm:justify-between'>
-        <h2 className='text-20 font-bold text-white mr-16'>{ questionData.question }</h2>
+      <div className='flex items-center mb-32 sm:mb-16 fle-col flex-wrap sm:flex-row sm:justify-between'>
+        <h2 className='text-20 w-3/4 font-bold text-white mr-16'>{ questionData.question }</h2>
         <small className='text-14 font-bold text-dark block mt-16 sm:mt-0 py-8 px-16 bg-white border-[1px] border-accent shadow-accent rounded-md'>{questionData.cost} points</small>
       </div>
-      { questionData.answers && questionData.answers.map((answer, index) => (
-        <QuestionButton
-          key={answer.answer}
-          buttonClick={() => { changeAnswer(answer) }}
-          isSelected={userAnswer.includes(answer)}
-          buttonIndex={index}
-          answerData={{ info: answer, kind: answerKind }}
-          isRight={result?.show && answer.right}
-        />
-      ))}
+      <div className={ questionData.answers.length > 2 ? 'block' : 'sm:flex flex-wrap' }>
+        { questionData.answers && questionData.answers.map((answer, index) => {
+          const Component = questionData.answers.length > 2 ? QuestionButton : QuestionSwitcher
+          return (
+            <Component
+              key={answer.answer}
+              buttonClick={() => { changeAnswer(answer) }}
+              isSelected={userAnswer.includes(answer)}
+              buttonIndex={index}
+              answerData={{ info: answer, kind: answerKind }}
+              isRight={result?.show && answer.right}
+            />
+          )
+        })}
+      </div>
       <QuestionControls
         pointsAmount={result?.amount}
         showAlert={result?.show}

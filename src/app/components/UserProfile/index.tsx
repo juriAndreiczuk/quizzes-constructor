@@ -28,8 +28,8 @@ const UserProfile = () => {
   useEffect(() => { setCurrentUser(user) }, [user])
 
   return (
-    <ContentCard cardClasses='flex'>
-      <div className='text-16 w-2/3 flex items-start'>
+    <ContentCard cardClasses='sm:flex'>
+      <div className='text-16 sm:w-2/3 flex items-start'>
         <Image src='/assets/user.svg' alt='user' width={30} height={30} />
         {
           user && (
@@ -43,7 +43,7 @@ const UserProfile = () => {
           )
         }
       </div>
-      <div className='w-1/3 flex justify-end items-start'>
+      <div className='sm:w-1/3 mt-8 sm:mt-0 flex justify-end items-start'>
         <Button
           btnMod='accent'
           buttonClick={handleLogOut}
