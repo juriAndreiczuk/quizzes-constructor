@@ -29,11 +29,19 @@ const useLogic = () => {
     setCompletedQuestions(result)
   }
 
+  const filteredQuestions = (txt?: string): IQuestionProgres[] => {
+    if(!txt) return completedQuestions
+
+    return completedQuestions.filter(({ questionData }) =>
+      questionData.question.toLowerCase().includes(txt.toLowerCase())
+    )    
+  }
+
   useEffect(() => {
     getCompletedQuestions()
   }, [currentUser])
 
-  return { completedQuestions }
+  return { completedQuestions, filteredQuestions }
 }
 
 export default useLogic

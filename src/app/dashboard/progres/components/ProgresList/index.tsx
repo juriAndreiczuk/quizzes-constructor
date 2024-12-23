@@ -1,52 +1,35 @@
 'use client'
 
+import { useState } from 'react'
 import useLogic from '@/app/dashboard/progres/components/ProgresList/useLogic'
 import ContentCard from '@/app/components/layout/ContentCard'
-import PageIntro from '@/app/components/layout/PageIntro'
+import ProgresSearch from '@/app/dashboard/progres/components/ProgresList/ProgresSearch'
+import ProgresItem from '@/app/dashboard/progres/components/ProgresList/ProgresItem'
 
 const ProgresList = () => {
-  const { completedQuestions } = useLogic()
+  const { filteredQuestions, completedQuestions } = useLogic()
+  const [search, setSearch] = useState<string>('')
 
   return (
-    completedQuestions && (
-      <>
-        <PageIntro
-          introTitle='Your progres'
-          introIcon='/assets/graph-up.svg'
-          introButton={{ url: '/dashboard', label: 'Back Home' }}
-        />
-        <ContentCard>
-          { completedQuestions.length ? (
-            <ul>
-              { completedQuestions.map((item, n) => (
-                <li
+    <>
+      <ProgresSearch
+        onSearchChange={setSearch}
+      />
+      <ContentCard>
+        { completedQuestions.length ? (
+          <ul>
+            { filteredQuestions(search).length ? filteredQuestions(search).map((item, n) => (
+              <ProgresItem
                 key={item.questionData.id}
-                className={`my-16 ${n && 'border-t-[1px] border-addl pt-16' } sm:mx-16`}
-                >
-                  <h2 className='text-27 text-white font-medium'>{item.questionData.question}</h2>
-                  <div className='sm:pl-32'>
-                    <h3 className='text-20 text-white font-normal my-8'>Your answer: </h3>
-                    <ul>
-                      { item.progres && item.progres.map(({answer}) => (
-                        <li
-                          className='text-18 text-light ml-16 pl-8 relative'
-                          key={answer}
-                        >
-                          <span className='absolute top-[.05rem] left-0'>&bull;</span>
-                          <span className='pl-8'>{answer}</span>
-                        </li>
-                      )) }
-                    </ul>
-                  </div>
-                </li>
-              )) }
-            </ul>
-          ) : <h2 className='text-27 text-white py-32 text-center font-medium'>You have not answered the questions yet</h2> }
-        </ContentCard>
-      </>
-    )
+                itemData={item}
+                itemIndex={n}
+              />
+            )) : <h2 className='text-27 text-white font-medium sm:pl-16 py-16'>Nothing found</h2> }
+          </ul>
+        ) : <h2 className='text-27 text-white py-32 text-center font-medium'>You have not answered the questions yet</h2> }
+      </ContentCard>
+    </>
   )
-
 }
 
 export default ProgresList
