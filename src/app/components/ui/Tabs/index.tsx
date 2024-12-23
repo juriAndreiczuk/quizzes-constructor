@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Button from '@/app/components/ui/Button'
 import { ITabs } from '@/types/components.types'
 
 const Tabs = ({ children, tabsLabels }: ITabs) => {
@@ -9,16 +8,17 @@ const Tabs = ({ children, tabsLabels }: ITabs) => {
 
   return (
     <div>
-      <div className='flex'>
+      <div className='flex flex-wrap'>
         { tabsLabels.length && tabsLabels.map((label, index) => (
           <div
             key={label}
-            className={`${index === activeIndex ? 'opacity-100' : 'opacity-50'} mb-16 mr-16`}
+            className={` mb-16 mr-16`}
           >
-            <Button
-              btnMod='primary-small'
-              buttonClick={() => { setActiveIndex(index) }}
-            >{ label }</Button>
+            <button
+              className={`${index === activeIndex ? 'bg-main' : 'bg-dark' } border-addl border-[1px] text-white py-8 px-16 rounded-sm`}
+              onClick={() => { setActiveIndex(index) }}
+            >{ label }
+            </button>
           </div>
         )) }
       </div>
