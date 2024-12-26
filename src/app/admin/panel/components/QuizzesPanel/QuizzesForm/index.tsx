@@ -27,7 +27,7 @@ const QuizzesForm = () => {
     <div className='mb-16'>
       <div className='mb-16 border-b-[1px] pb-16 border-b-addl'>
         <h4 className='text-18 font-bold my-16 text-white'>Create quiz</h4>
-        <Formik
+        <Formik<IQuizDetails>
           initialValues={{ label: '', description: '', items: [] }}
           validationSchema={schema}
           onSubmit={handleSubmit}
