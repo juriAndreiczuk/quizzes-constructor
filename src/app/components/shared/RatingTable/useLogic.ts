@@ -1,6 +1,6 @@
 import { useTeamsCollectionStore } from '@/store/collections.store'
 import useUsersStore from '@/store/users.store'
-import { ITeamRarting, ITeam, IUserDetails } from '@/types/user.types'
+import { IUserDetails, ITeam, ITeamRarting } from '@/types'
 import { useEffect, useState } from 'react'
 
 const useLogic = () => {

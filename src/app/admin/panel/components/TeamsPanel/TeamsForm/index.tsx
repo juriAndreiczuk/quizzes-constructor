@@ -2,14 +2,13 @@
 
 import { useTeamsCollectionStore } from '@/store/collections.store'
 import teamsData from '@/content/teams.json'
-import { ITeam } from '@/types/user.types'
-import { IFormContent } from '@/types/auth.types'
+import { ITeam, IFormContent } from '@/types'
 import { Form, Formik, FormikHelpers } from 'formik'
 import FormInput from '@/app/components/ui/FormInput'
 import schema from '@/app/admin/panel/components/TeamsPanel/TeamsForm/validationSchema'
 import Button from '@/app/components/ui/Button'
 
-const formData = teamsData.form as IFormContent
+const formData: IFormContent = teamsData.form
 
 const TeamsForm = () => {
   const { createItem: createTeam } = useTeamsCollectionStore()

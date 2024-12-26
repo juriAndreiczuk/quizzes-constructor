@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Source_Code_Pro } from 'next/font/google'
 import './globals.css'
-import UserInitialize from './components/UserInitialize'
+import UserInitialize from './components/shared/UserInitialize'
 import AlertBox from './components/ui/AlertBox'
 import SpaceGradient from '@/app/components/layout/SpaceGradient'
 

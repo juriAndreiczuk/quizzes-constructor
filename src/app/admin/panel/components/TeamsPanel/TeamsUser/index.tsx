@@ -4,7 +4,7 @@ import useUsersStore from '@/store/users.store'
 import FormInput from '@/app/components/ui/FormInput'
 import schema from '@/app/admin/panel/components/TeamsPanel/TeamsUser/validationSchema'
 import contentData from '@/content/teams.json'
-import { IUserUpdate } from '@/types/user.types'
+import { IUserUpdate } from '@/types'
 import Button from '@/app/components/ui/Button'
 import ContentCard from '@/app/components/layout/ContentCard'
 

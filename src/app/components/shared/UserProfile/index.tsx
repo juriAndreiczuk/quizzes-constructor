@@ -9,7 +9,7 @@ import Routes from '@/constants/routes'
 import Button from '@/app/components/ui/Button'
 import { useEffect } from 'react'
 import ContentCard from '@/app/components/layout/ContentCard'
-import ProfileBox from '@/app/components/UserProfile/ProfileBox'
+import ProfileBox from '@/app/components/shared/UserProfile/ProfileBox'
 import Image from 'next/image'
 
 const UserProfile = () => {

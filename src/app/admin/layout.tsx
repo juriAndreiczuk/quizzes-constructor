@@ -1,5 +1,5 @@
-import StatusChecker from '@/app/components/StatusChecker'
-import UserProfile from '@/app/components/UserProfile'
+import StatusChecker from '@/app/components/shared/StatusChecker'
+import UserProfile from '@/app/components/shared/UserProfile'
 
 const AdminLayout = (
   { children } : Readonly<{ children: React.ReactNode }>

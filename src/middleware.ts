@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { AuthTokens } from '@/types/auth.types'
-import { UserTypes } from '@/types/user.types'
+import { AuthTokens, UserTypes } from '@/types'
 import Routes from '@/constants/routes'
 
 export async function middleware(request: NextRequest) {

@@ -1,9 +1,7 @@
-import { IUserProgres } from '@/types/user.types'
-import { IQuestionDetails } from '@/types/question.types'
+import { IQuestionDetails, IQuestionProgres } from '@/types'
 import { useEffect, useState } from 'react'
 import useQuestionsStore from '@/store/questions.strore'
 import useUsersStore from '@/store/users.store'
-import { IQuestionProgres } from '@/types/question.types'
 
 const useLogic = () => {
   const { getQuestionsByIds } = useQuestionsStore()
@@ -23,7 +21,7 @@ const useLogic = () => {
     const result = currentQuestions
       .map(question => ({
         questionData: question,
-        progres: question.id && (currentUser.progres as IUserProgres)[question.id] || [],
+        progres: question.id && currentUser.progres && currentUser.progres[question.id] || [],
       }))
 
     setCompletedQuestions(result)

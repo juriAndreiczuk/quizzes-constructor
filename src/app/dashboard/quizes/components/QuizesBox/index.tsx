@@ -1,6 +1,6 @@
 import useQuestions from '@/app/hooks/useQuestions'
 import Button from '@/app/components/ui/Button'
-import { IQuizDetails } from '@/types/question.types'
+import { IQuizDetails } from '@/types'
 import ContentCard from '@/app/components/layout/ContentCard'
 
 const QuizesBox = ({ quizData }: { quizData: IQuizDetails }) => {

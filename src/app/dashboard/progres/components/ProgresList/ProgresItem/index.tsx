@@ -1,4 +1,4 @@
-import { IQuestionProgres } from '@/types/question.types'
+import { IQuestionProgres } from '@/types'
 
 const ProgresItem = ({ itemData, itemIndex }: { itemData: IQuestionProgres, itemIndex: number }) => (
   <li

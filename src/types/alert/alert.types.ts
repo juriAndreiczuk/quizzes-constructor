@@ -1,7 +1,4 @@
-export enum AlertKind {
-  Error = 'error',
-  Info = 'info'
-}
+import { AlertKind } from '@/types'
 
 export type IAlerts = {
   errors: {
@@ -13,9 +10,4 @@ export interface IAlert {
   kind: AlertKind
   message: string
   show: boolean
-}
-
-export interface IAlertState {
-  alert: IAlert
-  setAlert: (alert: IAlert) => void
 }

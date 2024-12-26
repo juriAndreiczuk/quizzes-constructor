@@ -1,6 +1,6 @@
 import  Button from '@/app/components/ui/Button'
 import Image from 'next/image'
-import { IPageIntro } from '@/types/content.types'
+import { IPageIntro } from '@/types'
 
 const PageIntro = ( { introTitle, introButton, introIcon }: IPageIntro ) => (
   <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between mb-32'>

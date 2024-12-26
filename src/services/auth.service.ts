@@ -4,16 +4,16 @@ import {
   createUserWithEmailAndPassword, onAuthStateChanged,
   signInWithEmailAndPassword, signOut, UserCredential, User
 } from 'firebase/auth'
-import { AuthMode, AuthTokens, IAuthLogin, IAuthRegister } from '@/types/auth.types'
-import { IAlerts } from '@/types/alert.types'
-import { UserTypes, IUserDetails } from '@/types/user.types'
-import { IUpdateOperation } from '@/types/collection.types'
+import { 
+  UserTypes, IUserDetails, AuthMode, IAlerts, AuthTokens,
+  IAuthLogin, IAuthRegister, IUpdateOperation
+} from '@/types'
 import alertsData from '@/content/auth.json'
 import { getDocument } from '@/services/docs.service'
 import { updateCollection } from '@/services/collections.service'
 import { setUserData } from './user.service'
 
-const alerts: IAlerts = alertsData as IAlerts
+const alerts: IAlerts = alertsData
 
 export const onAuthChange = (callback: (user: User | null) => void)
 : void => {

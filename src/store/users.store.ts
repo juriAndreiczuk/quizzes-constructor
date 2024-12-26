@@ -1,11 +1,12 @@
 import { create } from 'zustand'
-import { IUserDetails, IUserProgres, IUserUpdate, IUsersState } from '@/types/user.types'
-import { IQuestionAnswer } from '@/types/question.types'
+import {
+  IUserUpdate, IUserListState, IUserDetails,
+  IQuestionAnswer, IUpdateOperation, IUserProgres
+} from '@/types'
 import { updateDocument, getDocument } from '@/services/docs.service'
 import { getCollection, updateCollection } from '@/services/collections.service'
-import { IUpdateOperation } from '@/types/collection.types'
 
-const useTeamStore = create<IUsersState>(set => ({
+const useTeamStore = create<IUserListState>(set => ({
   selectedUser: null,
   users: [],
   currentUser: null,

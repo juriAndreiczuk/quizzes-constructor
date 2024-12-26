@@ -4,13 +4,11 @@ import { useRouter } from 'next/navigation'
 import { Form, Formik, FormikProps } from 'formik'
 import Image from 'next/image'
 import { userAuth } from '@/services/auth.service'
-import { IAuthLogin, AuthMode, IAuthRegister } from '@/types/auth.types'
-import { UserTypes } from '@/types/user.types'
+import { IAuthForm, AuthMode, UserTypes, IAuthLogin, IAuthRegister } from '@/types'
 import Routes from '@/constants/routes'
 import FormInput from '@/app/components/ui/FormInput'
 import Button from '@/app/components/ui/Button'
 import ContentCard from '@/app/components/layout/ContentCard'
-import { IAuthForm } from '@/types/components.types'
 
 const AuthForm = ({ mode, startValues, formContent, validation } : IAuthForm ) => {
   const router = useRouter()

@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { AuthMode } from '@/types/auth.types'
-import { UserTypes, ITeam } from '@/types/user.types'
+import { AuthMode, UserTypes, ITeam } from '@/types'
 import Button from '@/app/components/ui/Button'
 import formData from '@/content/auth.json'
 import AuthForm from '@/app/auth/components/AuthForm'

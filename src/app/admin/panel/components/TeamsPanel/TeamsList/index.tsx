@@ -4,7 +4,7 @@ import Tabs from '@/app/components/ui/Tabs'
 import { useTeamsCollectionStore } from '@/store/collections.store'
 import useUsersStore from '@/store/users.store'
 import PanelItem from '@/app/admin/panel/components/PanelItem'
-import { IUserDetails, ITeam } from '@/types/user.types'
+import { ITeam, IUserDetails } from '@/types'
 
 const TeamsList = () => {
   const { items, removeItem } = useTeamsCollectionStore()

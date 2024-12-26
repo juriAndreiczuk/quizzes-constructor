@@ -1,33 +1,4 @@
-export interface IQuizDetails {
-  id?: string
-  label: string,
-  description?: string,
-  items: string[]
-}
-
-export interface IQuestionAnswer {
-  answer: string
-  right: boolean
-}
-
-export enum IQuestionKind {
-  Swither,
-  Radio,
-  Checkbox
-}
-
-export interface IQuestionDetails {
-  id?: string
-  quizId: string
-  question: string
-  cost: number
-  answers: IQuestionAnswer[]
-}
-
-export interface IQuestionProgres {
-  questionData: IQuestionDetails
-  progres: IQuestionAnswer[] | []
-}
+import { IQuizDetails, IQuestionDetails } from '@/types'
 
 export interface IQuestionsState {
   questions: IQuestionDetails[]

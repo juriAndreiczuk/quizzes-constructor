@@ -1,5 +1,5 @@
 'use client'
-import { IButton } from '@/types/components.types'
+import { IButton } from '@/types'
 
 const Button = ({ children, btnLink, btnMod = 'primary', btnDisabled = false, buttonClick = () => {} } : IButton) => {
   const btnColor = {

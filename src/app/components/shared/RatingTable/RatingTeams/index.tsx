@@ -1,5 +1,5 @@
 import ContentCard from '@/app/components/layout/ContentCard'
-import { ITeamRarting } from '@/types/user.types'
+import { ITeamRarting } from '@/types'
 
 const RatingTeams = ({ teamList }: { teamList: ITeamRarting[] | null }) => (
   <ContentCard>

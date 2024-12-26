@@ -2,8 +2,7 @@ import { create } from 'zustand'
 import _chunk from 'lodash/chunk'
 import { updateDocument, removeDocument } from '@/services/docs.service'
 import { getCollection, addToCollection, updateCollection } from '@/services/collections.service'
-import { IQuestionDetails, IQuestionsState, IQuizDetails } from '@/types/question.types'
-import { IUpdateOperation } from '@/types/collection.types'
+import { IQuestionDetails, IQuizDetails, IQuestionsState, IUpdateOperation } from '@/types'
 
 const useQuestionsStore = create<IQuestionsState>(set => ({
   questions: [],

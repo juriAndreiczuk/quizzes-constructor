@@ -2,7 +2,7 @@ import { FieldArray, Field } from 'formik'
 import FormInput from '@/app/components/ui/FormInput'
 import useQuestionsStore from '@/store/questions.strore'
 import contentData from '@/content/quizzes.json'
-import { IQuestionDetails } from '@/types/question.types'
+import { IQuestionDetails } from '@/types'
 import Button from '@/app/components/ui/Button'
 
 const QuestionAnswers = ({ formValues }: { formValues: IQuestionDetails }) => {

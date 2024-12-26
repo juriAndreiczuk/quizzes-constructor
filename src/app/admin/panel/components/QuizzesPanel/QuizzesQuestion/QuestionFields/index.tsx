@@ -1,4 +1,4 @@
-import { IQuizDetails } from '@/types/question.types'
+import { IQuizDetails } from '@/types'
 import FormInput from '@/app/components/ui/FormInput'
 import { useQuizzesCollectionStore } from '@/store/collections.store'
 import useQuestionsStore from '@/store/questions.strore'

@@ -1,7 +1,8 @@
 import Button from '@/app/components/ui/Button'
-import { IPanelItem } from '@/types/components.types'
+import { IPanelItem } from '@/types'
 
-const PanelItem =  <T,>({ listLabel, listItems, listID, listSubitems, listItemSelect, listRemove }
+const PanelItem =  <T,>(
+{ listLabel, listItems, listID, listSubitems, listItemSelect, listRemove }
 : IPanelItem<T & { title: string }>
 ) => (
   <div className='text-14 mt-16 border-t-[1px] pt-16 border-t-addl'>

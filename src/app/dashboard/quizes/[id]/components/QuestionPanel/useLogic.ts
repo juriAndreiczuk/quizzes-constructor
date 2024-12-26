@@ -1,4 +1,4 @@
-import { IQuestionDetails, IQuestionKind, IQuestionAnswer } from '@/types/question.types'
+import { IQuestionKind, IQuestionDetails, IQuestionAnswer } from '@/types'
 import { useState, useEffect } from 'react'
 
 const useLogic = (questionData: IQuestionDetails): {

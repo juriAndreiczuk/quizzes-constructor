@@ -1,10 +1,10 @@
 'use client'
 
 import Tabs from '@/app/components/ui/Tabs'
+import { IQuestionDetails } from '@/types'
 import { useQuizzesCollectionStore } from '@/store/collections.store'
 import useQuestionsStore from '@/store/questions.strore'
 import PanelItem from '@/app/admin/panel/components/PanelItem'
-import { IQuestionDetails } from '@/types/question.types'
 
 const QuestionsList = () => {
   const { items, removeItem } = useQuizzesCollectionStore()

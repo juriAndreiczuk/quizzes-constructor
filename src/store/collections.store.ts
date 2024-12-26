@@ -1,9 +1,7 @@
 import { create } from 'zustand'
-import { IQuizDetails } from '@/types/question.types'
-import { ITeam } from '@/types/user.types'
+import { IQuizDetails, ITeam, ICollectionState } from '@/types'
 import { removeDocument, getDocument } from '@/services/docs.service'
 import { getCollection, addToCollection } from '@/services/collections.service'
-import { ICollectionState } from '@/types/collection.types'
 
 const createCollectionStore = <T extends { [key: string]: any }>(
   collectionName: string,

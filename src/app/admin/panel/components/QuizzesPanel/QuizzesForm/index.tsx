@@ -3,14 +3,13 @@
 import { useQuizzesCollectionStore } from '@/store/collections.store'
 import useQuestionsStore from '@/store/questions.strore'
 import quizzesData from '@/content/quizzes.json'
-import { IQuizDetails } from '@/types/question.types'
-import { IFormContent } from '@/types/auth.types'
+import { IQuizDetails, IFormContent } from '@/types'
 import { Form, Formik, FormikHelpers } from 'formik'
 import FormInput from '@/app/components/ui/FormInput'
 import schema from '@/app/admin/panel/components/QuizzesPanel/QuizzesForm/validationSchema'
 import Button from '@/app/components/ui/Button'
 
-const formData = quizzesData.createForm as IFormContent
+const formData: IFormContent = quizzesData.createForm
 
 const QuizzesForm = () => {
   const { createItem: createQuiz, items: quizzes } = useQuizzesCollectionStore()

@@ -1,4 +1,4 @@
-import { IQuestionButton }  from '@/types/components.types'
+import { IQuestionButton }  from '@/types'
 import Image from 'next/image'
 
 const QuestionSwitcher = ({ buttonClick, isSelected, buttonIndex, answerData, isRight }: IQuestionButton) => (

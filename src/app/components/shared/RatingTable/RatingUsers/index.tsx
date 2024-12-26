@@ -1,5 +1,5 @@
 import ContentCard from '@/app/components/layout/ContentCard'
-import { IUserDetails } from '@/types/user.types'
+import { IUserDetails } from '@/types'
 
 const RatingUsers = ({ userList }: { userList: IUserDetails[] | null }) => (
   <ContentCard>

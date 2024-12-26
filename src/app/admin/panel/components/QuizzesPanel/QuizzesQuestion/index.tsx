@@ -1,7 +1,7 @@
 import { Formik, Form } from 'formik'
 import useQuestionsStore from '@/store/questions.strore'
 import contentData from '@/content/quizzes.json'
-import { IQuestionDetails } from '@/types/question.types'
+import { IQuestionDetails } from '@/types'
 import schema from './validationSchema'
 import QuestionFields from './QuestionFields'
 import QuestionAnswers from './QuestionAnswers'

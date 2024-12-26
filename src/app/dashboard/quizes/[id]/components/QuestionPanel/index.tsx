@@ -1,4 +1,4 @@
-import { IQuestionDetails } from '@/types/question.types'
+import { IQuestionDetails } from '@/types'
 import useUsersStore from '@/store/users.store'
 import useLogic from '@/app/dashboard/quizes/[id]/components/QuestionPanel/useLogic'
 import ContentCard from '@/app/components/layout/ContentCard'

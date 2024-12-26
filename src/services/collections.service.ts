@@ -4,8 +4,7 @@ import {
   arrayUnion, arrayRemove, setDoc, query, where
 } from 'firebase/firestore'
 import alertsData from '@/content/auth.json'
-import { IAlerts } from '@/types/alert.types'
-import { IUpdateOperation } from '@/types/collection.types'
+import { IUpdateOperation, IAlerts } from '@/types'
 
 const alerts: IAlerts = alertsData as IAlerts
 

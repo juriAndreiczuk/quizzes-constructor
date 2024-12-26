@@ -1,5 +1,5 @@
 import Button from '@/app/components/ui/Button'
-import { IBoxesList } from '@/types/content.types'
+import { IBoxesList } from '@/types'
 import ContentCard from '@/app/components/layout/ContentCard'
 import Image from 'next/image'
 

@@ -1,5 +1,4 @@
-import { IQuestionKind } from '@/types/question.types'
-import { IQuestionButton }  from '@/types/components.types'
+import { IQuestionKind, IQuestionButton }  from '@/types'
 import Image from 'next/image'
 
 const QuestionButton = ({ buttonClick, isSelected, buttonIndex, answerData, isRight }: IQuestionButton) => (

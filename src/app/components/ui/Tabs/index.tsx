@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ITabs } from '@/types/components.types'
+import { ITabs } from '@/types'
 
 const Tabs = ({ children, tabsLabels }: ITabs) => {
   const [activeIndex, setActiveIndex] = useState<number>(0)

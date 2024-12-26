@@ -1,7 +1,7 @@
 'use client'
 
 import PageIntro from '@/app/components/layout/PageIntro'
-import RatingTable from '@/app/components/RatingTable'
+import RatingTable from '@/app/components/shared/RatingTable'
 
 const Rating = () => (
   <>

@@ -2,10 +2,8 @@ import { db } from '@/config/firebase'
 import {
   doc, setDoc, query, where, collection, getDocs
 } from 'firebase/firestore'
-import { IAuthRegister } from '@/types/auth.types'
-import { IUserDetails } from '@/types/user.types'
+import { IAuthRegister, IUserDetails, IAlerts } from '@/types'
 import alertsData from '@/content/auth.json'
-import { IAlerts } from '@/types/alert.types'
 
 const alerts: IAlerts = alertsData as IAlerts
 

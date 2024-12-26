@@ -1,5 +1,5 @@
 import Button from '@/app/components/ui/Button'
-import { IQuestionControls } from '@/types/components.types'
+import { IQuestionControls } from '@/types'
 
 const QuestionControls  = ({ pointsAmount, showAlert, isDisabled, onClick }: IQuestionControls) => (
   <div className='mt-16 flex flex-col-reverse sm:flex-row justify-between items-end sm:items-center'>

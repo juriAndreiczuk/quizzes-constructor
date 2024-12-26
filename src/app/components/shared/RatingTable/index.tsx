@@ -1,8 +1,8 @@
 'use client'
 
-import useLoginc from '@/app/components/RatingTable/useLogic'
-import RatingTeams from '@/app/components/RatingTable/RatingTeams'
-import RatingUsers from '@/app/components/RatingTable/RatingUsers'
+import useLoginc from '@/app/components/shared/RatingTable/useLogic'
+import RatingTeams from '@/app/components/shared/RatingTable/RatingTeams'
+import RatingUsers from '@/app/components/shared/RatingTable/RatingUsers'
 
 const RatingTable = () => {
   const { sortedTeams, mvp } = useLoginc()

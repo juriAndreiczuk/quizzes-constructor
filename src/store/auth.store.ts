@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { getDocument } from '@/services/docs.service'
 import { onAuthChange } from '@/services/auth.service'
-import { IUserDetails, IUserState } from '@/types/user.types'
+import { IUserDetails, IUserState } from '@/types'
 
 const useAuthStore = create<IUserState>(set => ({
   user: null,

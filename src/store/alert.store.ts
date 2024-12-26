@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { IAlert, IAlertState, AlertKind } from '@/types/alert.types'
+import { IAlert, IAlertState, AlertKind } from '@/types'
 
 const defaultAlert: IAlert = {
   message: '',

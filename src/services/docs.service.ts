@@ -1,9 +1,9 @@
 import { db } from '@/config/firebase'
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore'
 import alertsData from '@/content/auth.json'
-import { IAlerts } from '@/types/alert.types'
+import { IAlerts } from '@/types'
 
-const alerts: IAlerts = alertsData as IAlerts
+const alerts: IAlerts = alertsData
 
 export const getDocument = async <T>(uid: string, docName: string)
 : Promise<T | null | undefined> => {

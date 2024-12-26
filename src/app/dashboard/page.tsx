@@ -1,8 +1,8 @@
 'use client'
 
 import pageContent from '@/content/home.json'
-import BoxesList from '@/app/components/BoxesList'
-import { IBoxesList } from '@/types/content.types'
+import BoxesList from '@/app/components/shared/BoxesList'
+import { IBoxesList } from '@/types'
 
 const Home = () => (
   <BoxesList

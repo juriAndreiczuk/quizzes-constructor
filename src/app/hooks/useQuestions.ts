@@ -1,6 +1,6 @@
 import useQuestionsStore from '@/store/questions.strore'
 import useUsersStore from '@/store/users.store'
-import { IQuizDetails } from '@/types/question.types'
+import { IQuizDetails } from '@/types'
 import { useEffect } from 'react'
 
 const useQuestions = (currentQuiz: IQuizDetails) => {

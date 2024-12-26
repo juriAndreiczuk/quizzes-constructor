@@ -1,5 +1,5 @@
 import { Field, ErrorMessage } from 'formik'
-import { IAuthInput } from '@/types/auth.types'
+import { IAuthInput } from '@/types'
 
 const Input = (
   { inputData, children }
