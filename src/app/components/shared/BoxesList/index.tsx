@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import Button from '@/app/components/ui/Button'
 import { IBoxesList } from '@/types'
 import ContentCard from '@/app/components/layout/ContentCard'
@@ -5,7 +6,10 @@ import Image from 'next/image'
 
 const BoxesList = ({ listItems }: { listItems: IBoxesList[] }) => {
   return (
-    <ul className={`grid md:grid-cols-${listItems.length < 3 ? '2' : '3'} gap-5`}>
+    <ul className={clsx(
+      'grid gap-5',
+      listItems.length < 3 ? 'md:grid-cols-2' : 'md:grid-cols-3'
+    )}>
     { listItems.map(box => (
       box && box.link && (
         <li

@@ -1,7 +1,12 @@
 'use client'
+
+import clsx from 'clsx'
 import { IButton } from '@/types'
 
-const Button = ({ children, btnLink, btnMod = 'primary', btnDisabled = false, buttonClick = () => {} } : IButton) => {
+const Button = (
+  { children, btnLink, btnMod = 'primary', btnDisabled = false, buttonClick = () => {} }
+  : IButton
+) => {
   const btnColor = {
     'primary': 'text-20 text-white from-addl to-main px-16 py-8 shadow-addl border-addl',
     'accent': 'from-accent to-addl text-20 py-8 px-16 shadow-accent border-accent',
@@ -9,7 +14,10 @@ const Button = ({ children, btnLink, btnMod = 'primary', btnDisabled = false, bu
     'accent-small': 'from-accent to-addl text-14 py-4 px-8 shadow-accent border-accent'
   }
 
-  const classNames = `${btnColor[btnMod]} text-white block border-[1px] bg-gradient-to-br rounded-sm font-medium transition-all lg:hover:scale-[1.025]`
+  const classNames = clsx(
+    'text-white block border-[1px] bg-gradient-to-br rounded-sm font-medium transition-all lg:hover:scale-[1.025]',
+    btnColor[btnMod]
+  )
 
   return btnLink ? (
     <a

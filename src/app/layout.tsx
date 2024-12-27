@@ -4,6 +4,7 @@ import './globals.css'
 import UserInitialize from './components/shared/UserInitialize'
 import AlertBox from './components/ui/AlertBox'
 import SpaceGradient from '@/app/components/layout/SpaceGradient'
+import clsx from 'clsx'
 
 const sourceCodePro = Source_Code_Pro({
   weight: ['300', '400', '500', '700'],
@@ -22,7 +23,10 @@ const RootLayout = (
   { children } : Readonly<{ children: React.ReactNode }>
 ) => (
   <html lang="en">
-    <body className={`${sourceCodePro.className} min-h-screen`}>
+    <body className={clsx(
+      'min-h-screen',
+      sourceCodePro.className
+    )}>
       <SpaceGradient>
         <UserInitialize />
         <AlertBox />

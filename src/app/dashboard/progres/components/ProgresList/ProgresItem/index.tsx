@@ -1,8 +1,12 @@
 import { IQuestionProgres } from '@/types'
+import clsx from 'clsx'
 
 const ProgresItem = ({ itemData, itemIndex }: { itemData: IQuestionProgres, itemIndex: number }) => (
   <li
-    className={`my-16 ${itemIndex && 'border-t-[1px] border-addl pt-16' } sm:mx-16`}
+    className={clsx(
+      'my-16 sm:mx-16',
+      { 'border-t-[1px] border-addl pt-16' : itemIndex }
+    )}
   >
     <h2 className='text-27 text-white font-medium'>{itemData.questionData.question}</h2>
     <div className='sm:pl-32'>

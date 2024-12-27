@@ -32,7 +32,7 @@ const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => 
         <h2 className='text-20 w-3/4 font-bold text-white mr-16'>{ questionData.question }</h2>
         <small className='text-14 font-bold text-dark block mt-16 sm:mt-0 py-8 px-16 bg-white border-[1px] border-accent shadow-accent rounded-md'>{questionData.cost} points</small>
       </div>
-      <div className={ questionData.answers.length > 2 ? 'block' : 'sm:flex flex-wrap' }>
+      <div className={questionData.answers.length > 2 ? 'block' : 'sm:flex flex-wrap'}>
         { questionData.answers && questionData.answers.map((answer, index) => {
           const Component = questionData.answers.length > 2 ? QuestionButton : QuestionSwitcher
           return (

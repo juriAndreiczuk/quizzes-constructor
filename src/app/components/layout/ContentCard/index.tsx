@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import clsx from 'clsx'
 import styles from '@/app/components/layout/ContentCard/ContentCard.module.css'
 
 const ContentCard = ({ children, cardClasses, cardMod = 'default' }
@@ -8,7 +9,12 @@ const ContentCard = ({ children, cardClasses, cardMod = 'default' }
   cardMod?: string
 }
 ) => (
-  <div className={`${styles.card} ${cardClasses} shadow-accent border-[1px] border-accent p-16 rounded-sm mb-32  sm:${cardMod !== 'mini' && 'p-32'}`}>
+  <div className={clsx(
+    'shadow-accent border-[1px] border-accent p-16 rounded-sm mb-32',
+    styles.card,
+    cardClasses,
+    { 'sm:p-32': cardMod !== 'mini' }
+  )}>
     { children }
   </div>
 )
