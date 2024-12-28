@@ -6,7 +6,7 @@ import RatingUsers from '@/app/components/shared/RatingTable/RatingUsers'
 
 const RatingTable = () => {
   const { sortedTeams, mvp } = useLoginc()
- 
+
   return (
     <div className='grid md:grid-cols-2 gap-5'>
       <div className='col-span-1'>
@@ -17,7 +17,6 @@ const RatingTable = () => {
       </div>
     </div>
   )
-
 }
 
 export default RatingTable

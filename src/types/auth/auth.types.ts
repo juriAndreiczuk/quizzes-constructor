@@ -1,4 +1,4 @@
-import { IUserDetails } from '@/types'
+import type { IUserDetails } from '@/types'
 
 export interface IAuthLogin {
   email: string

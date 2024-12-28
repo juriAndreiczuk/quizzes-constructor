@@ -16,7 +16,9 @@ const Input = (
       <label
         className='block px-4 text-white text-16 font-normal mb-8 my-4'
         htmlFor={inputData.name}
-      >{inputData.label}</label>
+      >
+        {inputData.label}
+      </label>
       <Field
         id={inputData.name}
         type={inputData.type}

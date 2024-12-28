@@ -4,10 +4,13 @@ import { ITeamRarting } from '@/types'
 const RatingTeams = ({ teamList }: { teamList: ITeamRarting[] | null }) => (
   <ContentCard>
     <h2 className='text-27 font-medium text-light mb-16'>Best teams</h2>
-    { teamList ? teamList.map(({ team, points }, index) => (
+    { teamList ? teamList.map(({ team, points }) => (
       <div key={team.id} className='mb-16'>
         <h4 className='text-20 font-bold text-white mb-8'>{team.name}</h4>
-        <p className='text-16 text-white'>Points: {points}</p>
+        <p className='text-16 text-white'>
+          Points:&nbsp;
+          {points}
+        </p>
         <div
           className='h-[.5rem] bg-gradient-to-r from-addl to-light my-16'
           style={{ width: `${((points / teamList[0].points) * 100).toFixed()}%` }}

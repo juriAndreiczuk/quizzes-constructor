@@ -1,7 +1,10 @@
 import Button from '@/app/components/ui/Button'
 import { IQuestionControls } from '@/types'
 
-const QuestionControls  = ({ pointsAmount, showAlert, isDisabled, onClick }: IQuestionControls) => (
+const QuestionControls = (
+  { pointsAmount, showAlert, isDisabled, onClick }
+  : IQuestionControls
+) => (
   <div className='mt-16 flex flex-col-reverse sm:flex-row justify-between items-end sm:items-center'>
     <div>
       { showAlert && (
@@ -11,12 +14,12 @@ const QuestionControls  = ({ pointsAmount, showAlert, isDisabled, onClick }: IQu
               You receive <span className='text-accent'>{ pointsAmount }%</span> of the points.
             </p>
           </div>
-          <div className='h-[.2rem] w-full mt-8 bg-gradient-to-br from-accent to-light animate-loading-line origin-left'></div>
+          <div className='h-[.2rem] w-full mt-8 bg-gradient-to-br from-accent to-light animate-loading-line origin-left' />
         </div>
       )}
     </div>
     <Button
-      btnDisabled={ isDisabled }
+      btnDisabled={isDisabled}
       buttonClick={onClick}
     >
       Send

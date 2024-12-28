@@ -1,4 +1,4 @@
-export interface IPanelItem<T>   {
+export interface IPanelItem<T> {
   listLabel: string
   listID: string | undefined
   listItems: T[]

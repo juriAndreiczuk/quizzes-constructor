@@ -1,3 +1,8 @@
+export interface ICollectionItem {
+  id: string
+  [key: string]: unknown
+}
+
 export interface ICollectionState<T> {
   items: T[]
   currentItem: null | T,

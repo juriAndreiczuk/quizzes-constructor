@@ -1,9 +1,9 @@
 import Button from '@/app/components/ui/Button'
 import { IPanelItem } from '@/types'
 
-const PanelItem =  <T,>(
-{ listLabel, listItems, listID, listSubitems, listItemSelect, listRemove }
-: IPanelItem<T & { title: string }>
+const PanelItem = <T, >(
+  { listLabel, listItems, listID, listSubitems, listItemSelect, listRemove }
+  : IPanelItem<T & { title: string }>
 ) => (
   <div className='text-14 mt-16 border-t-[1px] pt-16 border-t-addl'>
     <h5 className='text-20 font-bold mb-8 text-white'>{listLabel}</h5>
@@ -31,6 +31,6 @@ const PanelItem =  <T,>(
       </ul>
     )}
   </div>
-)
+  )
 
 export default PanelItem

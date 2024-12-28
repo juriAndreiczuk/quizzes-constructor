@@ -1,4 +1,4 @@
-export interface IButton { 
+export interface IButton {
   children: React.ReactNode,
   btnLink?: string,
   btnMod?: 'primary' | 'accent' | 'primary-small' | 'accent-small',

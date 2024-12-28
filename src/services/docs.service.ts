@@ -13,7 +13,7 @@ export const getDocument = async <T>(uid: string, docName: string)
       const data = {
         id: uid,
         ...document.data()
-      } 
+      }
       return data as T
     }
     return null

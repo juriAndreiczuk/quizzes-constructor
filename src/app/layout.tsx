@@ -1,18 +1,17 @@
 import type { Metadata } from 'next'
-import { Source_Code_Pro } from 'next/font/google'
+import clsx from 'clsx'
+import SpaceGradient from '@/app/components/layout/SpaceGradient'
 import './globals.css'
+import { Source_Code_Pro as sourceCodeProFont } from 'next/font/google'
 import UserInitialize from './components/shared/UserInitialize'
 import AlertBox from './components/ui/AlertBox'
-import SpaceGradient from '@/app/components/layout/SpaceGradient'
-import clsx from 'clsx'
 
-const sourceCodePro = Source_Code_Pro({
+const sourceCodePro = sourceCodeProFont({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
   fallback: ['Arial', 'sans-serif']
 })
-
 
 export const metadata: Metadata = {
   title: 'Quizzes Builder',
@@ -23,10 +22,12 @@ const RootLayout = (
   { children } : Readonly<{ children: React.ReactNode }>
 ) => (
   <html lang="en">
-    <body className={clsx(
-      'min-h-screen',
-      sourceCodePro.className
-    )}>
+    <body
+      className={clsx(
+        'min-h-screen',
+        sourceCodePro.className
+      )}
+    >
       <SpaceGradient>
         <UserInitialize />
         <AlertBox />

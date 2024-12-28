@@ -3,7 +3,7 @@ import { IQuizDetails, ITeam, ICollectionState } from '@/types'
 import { removeDocument, getDocument } from '@/services/docs.service'
 import { getCollection, addToCollection } from '@/services/collections.service'
 
-const createCollectionStore = <T extends { [key: string]: any }>(
+const createCollectionStore = <T>(
   collectionName: string,
   uniqueField: keyof T
 ) => create<ICollectionState<T>>(set => ({

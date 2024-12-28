@@ -9,19 +9,17 @@ const useQuestions = (currentQuiz: IQuizDetails) => {
 
   const allQuestions = getQuestionsByQuiz(currentQuiz)
 
-  const newQuestions = !currentUser?.progres ? allQuestions : allQuestions.filter(item =>
-    item.id && !currentUser.progres?.[item.id]
-  )
+  const newQuestions = !currentUser?.progres
+    ? allQuestions : allQuestions.filter(item => item.id && !currentUser.progres?.[item.id])
 
   const currentIndex = allQuestions.length - newQuestions.length
-  const currentProgres = (currentIndex / allQuestions.length * 100).toFixed(0)
-  
+  const currentProgres = ((currentIndex / allQuestions.length) * 100).toFixed(0)
+
   useEffect(() => {
     fetchQuestions()
-  }, [ currentQuiz ])
+  }, [currentQuiz])
 
   return { allQuestions, newQuestions, currentIndex, currentProgres }
-
 }
 
 export default useQuestions

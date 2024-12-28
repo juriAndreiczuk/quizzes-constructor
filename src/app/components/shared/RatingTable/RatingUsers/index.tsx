@@ -13,12 +13,15 @@ const RatingUsers = ({ userList }: { userList: IUserDetails[] | null }) => (
               <h4>
                 <span className='text-16 font-bold text-white'>{user.displayName}</span>
               </h4>
-              <p className='text-14 text-white'>Points: {user.points}</p>
+              <p className='text-14 text-white'>
+                Points:&nbsp;
+                {user.points}
+              </p>
             </div>
           </div>
         </div>
       </div>
-    )) : <p className='text-20 leading-[1.1] text-white font-bold my-16'>No data</p> } 
+    )) : <p className='text-20 leading-[1.1] text-white font-bold my-16'>No data</p> }
   </ContentCard>
 )
 

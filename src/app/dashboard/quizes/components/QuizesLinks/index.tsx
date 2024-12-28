@@ -1,9 +1,8 @@
 import { useQuizzesCollectionStore } from '@/store/collections.store'
 import QuizesBox from '../QuizesBox'
-import Button from '@/app/components/ui/Button'
 
 const QuizesLinks = () => {
-  const { items: quizes } = useQuizzesCollectionStore() 
+  const { items: quizes } = useQuizzesCollectionStore()
 
   return quizes && (
     <section className='pb-32'>
@@ -15,7 +14,7 @@ const QuizesLinks = () => {
                 key={quiz.id}
                 className='col-span-1'
               >
-               <QuizesBox quizData={quiz} />
+                <QuizesBox quizData={quiz} />
               </li>
             )
           )) }

@@ -1,7 +1,7 @@
 import { db } from '@/config/firebase'
 import {
   doc, getDoc, collection, getDocs, updateDoc, DocumentData,
-  arrayUnion, arrayRemove, setDoc, query, where
+  arrayUnion, arrayRemove, setDoc, query, where, WithFieldValue
 } from 'firebase/firestore'
 import alertsData from '@/content/auth.json'
 import { IUpdateOperation, IAlerts } from '@/types'
@@ -12,8 +12,8 @@ export const getCollection = async <T>(docName: string, ids?: string[])
 : Promise<T[]> => {
   try {
     const documents: T[] = []
-    const q = ids && ids.length > 0 
-      ? query(collection(db, docName), where('__name__', 'in', ids)) 
+    const q = ids && ids.length > 0
+      ? query(collection(db, docName), where('__name__', 'in', ids))
       : collection(db, docName)
 
     const snapshot = await getDocs(q)
@@ -32,19 +32,22 @@ export const getCollection = async <T>(docName: string, ids?: string[])
   }
 }
 
-export const addToCollection = async <T extends { [key: string]: any }>(docName: string, data: T, uniqueField: string)
+export const addToCollection = async <T>(
+  docName: string, data: T, uniqueField: string
+)
 : Promise<void | DocumentData> => {
   try {
     const collectionRef = collection(db, docName)
     const documentRef = doc(collectionRef)
 
-    const q = query(collectionRef, where(uniqueField, '==', (data as any)[uniqueField]))
+    const q = query(collectionRef, where(uniqueField, '==', data[uniqueField as keyof T]))
     const querySnapshot = await getDocs(q)
 
     if (querySnapshot.size > 0) {
       throw new Error(alerts.errors.createDoc)
     } else {
-      await setDoc(documentRef, data)
+      await setDoc(documentRef, data as WithFieldValue<DocumentData>)
+
       return getDoc(documentRef)
     }
   } catch (err) {

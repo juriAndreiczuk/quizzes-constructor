@@ -5,7 +5,7 @@ import BoxesList from '@/app/components/shared/BoxesList'
 import { IBoxesList } from '@/types'
 
 const Home = () => (
-  <BoxesList 
+  <BoxesList
     listItems={pageContent.boxesList as IBoxesList[]}
   />
 )

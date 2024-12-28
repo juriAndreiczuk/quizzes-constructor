@@ -1,4 +1,5 @@
-const ProfileBox = ({ boxLabel, boxText }
+const ProfileBox = (
+  { boxLabel, boxText }
   : { boxLabel: string, boxText: string | undefined }
 ) => (
   <div className='flex mb-4'>

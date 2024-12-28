@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useTeamsCollectionStore, useQuizzesCollectionStore } from '@/store/collections.store'
 import useAuthStore from '@/store/auth.store'
 import Routes from '@/constants/routes'
+import Button from '@/app/components/ui/Button'
 
 const StatusChecker = ({ children }: { children: ReactNode }) => {
   const { user } = useAuthStore()
@@ -28,12 +29,16 @@ const StatusChecker = ({ children }: { children: ReactNode }) => {
       { user?.isBlocked
         ? (
           <div>
-            <p>Your account has been blocked</p>
-            <button onClick={handleLogOut}>Logout</button>
+            <p className='text-20 font-medium mb-32 text-white'>Your account has been blocked</p>
+            <Button
+              buttonClick={handleLogOut}
+              btnMod='accent'
+            >
+              Logout
+            </Button>
           </div>
         )
-        : children
-        }
+        : children }
     </main>
   )
 }

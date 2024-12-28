@@ -13,11 +13,11 @@ const QuizzesPage = ({ params } : { params: Promise<{ id: string }> }) => {
   }, [id])
 
   return (
-    <>
+    <div>
       { currentQuiz ? (
         <QuestionsList currentQuiz={currentQuiz} />
       ) : <p className='text-16 text-white font-bold mt-32'>Quiz not founded</p> }
-    </>
+    </div>
   )
 }
 

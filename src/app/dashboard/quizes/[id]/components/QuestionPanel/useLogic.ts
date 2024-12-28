@@ -11,30 +11,32 @@ const useLogic = (questionData: IQuestionDetails): {
   const [answerKind, setAnswerKind] = useState<IQuestionKind>(IQuestionKind.Swither)
 
   const changeAnswer = (answer?: IQuestionAnswer): void => {
-    if(answerKind !== IQuestionKind.Checkbox || !answer) setUserAnswer([])
+    if (answerKind !== IQuestionKind.Checkbox || !answer) setUserAnswer([])
 
-    if(!answer) return
+    if (!answer) return
 
-    userAnswer.includes(answer) 
+    userAnswer.includes(answer)
       ? setUserAnswer(prev => prev.filter(item => item !== answer))
       : setUserAnswer(prev => [...prev, answer])
   }
 
   const getQuestionKind = (): IQuestionKind => {
     if (questionData.answers.length <= 2) return IQuestionKind.Swither
-  
+
     return questionData.answers.filter((answer) => answer.right).length > 1
       ? IQuestionKind.Checkbox
       : IQuestionKind.Radio
   }
 
   const pointsCounter = (): { percents: number, points: number } => {
-    const answerCost =  Math.round(questionData.cost / questionData.answers.filter(a => a.right).length)
+    const answerCost = Math.round(
+      questionData.cost / questionData.answers.filter(a => a.right).length
+    )
     const rightAnswers = Math.round(answerCost * userAnswer.filter(a => a.right).length)
     const falseAnswers = Math.round(answerCost * userAnswer.filter(a => !a.right).length)
 
-    const points = rightAnswers - falseAnswers 
-    const percents = Math.round(points / questionData.cost * 100)
+    const points = rightAnswers - falseAnswers
+    const percents = Math.round((points / questionData.cost) * 100)
 
     return {
       percents: percents < 0 ? 0 : percents,

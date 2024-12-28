@@ -1,4 +1,4 @@
-import { IAlert } from '@/types'
+import type { IAlert } from '@/types'
 
 export interface IAlertState {
   alert: IAlert

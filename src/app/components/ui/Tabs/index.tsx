@@ -21,7 +21,8 @@ const Tabs = ({ children, tabsLabels }: ITabs) => {
                 index === activeIndex ? 'bg-main' : 'bg-dark'
               )}
               onClick={() => { setActiveIndex(index) }}
-            >{ label }
+            >
+              { label }
             </button>
           </div>
         )) }

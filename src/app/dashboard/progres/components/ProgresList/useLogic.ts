@@ -10,7 +10,7 @@ const useLogic = () => {
 
   const getCompletedQuestions = async () => {
     const userQuestionsIds = currentUser?.progres && Object.keys(currentUser.progres)
-  
+
     if (!userQuestionsIds) {
       setCompletedQuestions([])
       return
@@ -21,18 +21,18 @@ const useLogic = () => {
     const result = currentQuestions
       .map(question => ({
         questionData: question,
-        progres: question.id && currentUser.progres && currentUser.progres[question.id] || [],
+        progres: (question.id && currentUser.progres && currentUser.progres[question.id]) || [],
       }))
 
     setCompletedQuestions(result)
   }
 
   const filteredQuestions = (txt?: string): IQuestionProgres[] => {
-    if(!txt) return completedQuestions
+    if (!txt) return completedQuestions
 
-    return completedQuestions.filter(({ questionData }) =>
-      questionData.question.toLowerCase().includes(txt.toLowerCase())
-    )    
+    return completedQuestions.filter(({ questionData }) => questionData.question
+      .toLowerCase()
+      .includes(txt.toLowerCase()))
   }
 
   useEffect(() => {

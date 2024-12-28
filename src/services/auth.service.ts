@@ -4,7 +4,7 @@ import {
   createUserWithEmailAndPassword, onAuthStateChanged,
   signInWithEmailAndPassword, signOut, UserCredential, User
 } from 'firebase/auth'
-import { 
+import {
   UserTypes, IUserDetails, AuthMode, IAlerts, AuthTokens,
   IAuthLogin, IAuthRegister, IUpdateOperation
 } from '@/types'

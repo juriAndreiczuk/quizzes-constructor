@@ -1,4 +1,4 @@
-import { IQuestionAnswer, IQuestionKind } from '@/types'
+import type { IQuestionAnswer, IQuestionKind } from '@/types'
 
 export interface IQuestionButton {
   buttonClick: () => void,

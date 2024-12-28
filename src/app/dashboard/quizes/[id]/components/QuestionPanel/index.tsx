@@ -15,8 +15,8 @@ const QuestionPanel = ({ questionData }: { questionData: IQuestionDetails }) => 
 
   const sendAnswers = (questionID: string | undefined): void => {
     if (!questionID) return
-  
-    const { points: answerPoints, percents } =  pointsCounter()
+
+    const { points: answerPoints, percents } = pointsCounter()
     setResult({ show: true, amount: percents })
 
     setTimeout(() => {

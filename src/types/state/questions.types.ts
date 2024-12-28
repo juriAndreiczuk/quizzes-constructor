@@ -1,4 +1,4 @@
-import { IQuizDetails, IQuestionDetails } from '@/types'
+import type { IQuizDetails, IQuestionDetails } from '@/types'
 
 export interface IQuestionsState {
   questions: IQuestionDetails[]

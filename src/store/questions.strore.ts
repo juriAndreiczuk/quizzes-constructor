@@ -43,7 +43,7 @@ const useQuestionsStore = create<IQuestionsState>(set => ({
     }
   },
 
-  getQuestionsByQuiz: (quiz: IQuizDetails): IQuestionDetails[]  => {
+  getQuestionsByQuiz: (quiz: IQuizDetails): IQuestionDetails[] => {
     const { questions } = useQuestionsStore.getState()
     return questions.length ? questions.filter(q => q.quizId === quiz.id) : []
   },

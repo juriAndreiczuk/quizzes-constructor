@@ -1,5 +1,5 @@
 import * as Yup from 'yup'
-import { IAuthLogin, IAuthRegister, AuthMode, IFormContent } from '@/types'
+import type { IAuthLogin, IAuthRegister, AuthMode, IFormContent } from '@/types'
 
 export interface IAuthForm {
   mode: AuthMode,

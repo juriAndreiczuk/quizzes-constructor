@@ -1,4 +1,4 @@
-import { IQuestionAnswer } from '@/types'
+import type { IQuestionAnswer } from '@/types'
 
 export enum UserTypes {
   Admin,

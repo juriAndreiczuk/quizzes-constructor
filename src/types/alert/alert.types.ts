@@ -1,4 +1,4 @@
-import { AlertKind } from '@/types'
+import type { AlertKind } from '@/types'
 
 export type IAlerts = {
   errors: {

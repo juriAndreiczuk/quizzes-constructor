@@ -1,4 +1,4 @@
-import { IUserDetails, IUserProgres } from '@/types'
+import type { IUserDetails, IUserProgres } from '@/types'
 
 export interface IUserUpdate extends Pick<IUserDetails, 'displayName' | 'teamId' | 'isBlocked'> {}
 

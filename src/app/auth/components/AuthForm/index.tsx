@@ -4,13 +4,18 @@ import { useRouter } from 'next/navigation'
 import { Form, Formik, FormikProps } from 'formik'
 import Image from 'next/image'
 import { userAuth } from '@/services/auth.service'
-import { IAuthForm, AuthMode, UserTypes, IAuthLogin, IAuthRegister } from '@/types'
+import {
+  IAuthForm, AuthMode, UserTypes, IAuthLogin, IAuthRegister
+} from '@/types'
 import Routes from '@/constants/routes'
 import FormInput from '@/app/components/ui/FormInput'
 import Button from '@/app/components/ui/Button'
 import ContentCard from '@/app/components/layout/ContentCard'
 
-const AuthForm = ({ mode, startValues, formContent, validation } : IAuthForm ) => {
+const AuthForm = (
+  { mode, startValues, formContent, validation }
+  : IAuthForm
+) => {
   const router = useRouter()
 
   const handleSubmit = async (values: IAuthLogin | IAuthRegister) => {
@@ -33,7 +38,7 @@ const AuthForm = ({ mode, startValues, formContent, validation } : IAuthForm ) =
         validationSchema={validation}
         onSubmit={handleSubmit}
       >
-        { (props: FormikProps<any>) => (
+        { (props: FormikProps<IAuthLogin | IAuthRegister>) => (
           <ContentCard cardClasses='w-full sm:w-2/3 mx-auto'>
             <Form>
               {Object.keys(formContent.fields).map((key: string, n: number) => {
@@ -42,14 +47,16 @@ const AuthForm = ({ mode, startValues, formContent, validation } : IAuthForm ) =
                 return field.type !== 'select' ? (
                   <FormInput key={`${field.name}--${n}`} inputData={field} />
                 ) : (
-                  props.values.userType === UserTypes[0] && field.name === 'teamId' ? '' : (
+                  'userType' in props.values
+                  && props.values.userType === UserTypes[0]
+                  && field.name === 'teamId' ? '' : (
                     <FormInput key={field.name} inputData={field}>
                       <option value="" disabled>{field.label}</option>
                       { 'options' in field && field.options?.map(opt => (
                         <option key={`${opt.name}-option--${opt.id}`} value={opt.id}>{opt.name}</option>
                       )) }
                     </FormInput>
-                  )
+                    )
                 )
               }) }
               <div className='mt-32'>

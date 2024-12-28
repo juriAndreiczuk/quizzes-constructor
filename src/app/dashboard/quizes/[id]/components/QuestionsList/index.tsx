@@ -9,7 +9,7 @@ const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
   return (
     <div>
       <PageIntro
-        introTitle={ currentQuiz.label }
+        introTitle={currentQuiz.label}
         introIcon='/assets/task-list.svg'
         introButton={{ url: '/dashboard/quizes', label: 'Return to Quizes list' }}
       />
@@ -18,19 +18,17 @@ const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
           <>
             <p className='text-20 font-light text-white'>Progres: <span className='font-normal text-accent'>{currentProgres}%</span></p>
             <div
-              style={{width: `${currentProgres}.1%` }}
+              style={{ width: `${currentProgres}.1%` }}
               className='h-[4px] transition-all from-white to-addl bg-gradient-to-r mt-16'
-            ></div>
+            />
           </>
         )
       }
       { currentQuiz.items ? (
-        newQuestions.length ? 
-        <QuestionPanel
-          questionData={newQuestions[0]}
-        /> : <p className='text-34 text-center text-white font-bold mt-32'>Quiz completed !</p>
-      ) : (<p className='text-16 text-white font-bold mt-32'>Questions not founded</p>)
-      }
+        newQuestions.length
+          ? <QuestionPanel questionData={newQuestions[0]} />
+          : <p className='text-34 text-center text-white font-bold mt-32'>Quiz completed !</p>
+      ) : (<p className='text-16 text-white font-bold mt-32'>Questions not founded</p>)}
     </div>
   )
 }
