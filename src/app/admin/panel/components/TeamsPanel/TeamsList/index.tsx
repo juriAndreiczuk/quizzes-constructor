@@ -17,7 +17,7 @@ const TeamsList = () => {
     <div>
       { items && items.length > 0 && (
         <>
-          <h4 className='text-20 font-bold text-white mb-16'>Quizes</h4>
+          <h4 className='text-20 font-bold text-white mb-16'>Teams</h4>
           <Tabs tabsLabels={[...items.map(item => item.name)]}>
             { items.map(item => (
               <PanelItem<IUserDetails>

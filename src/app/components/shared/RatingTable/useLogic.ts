@@ -11,7 +11,7 @@ const useLogic = () => {
 
   const getTeamPoints = (team: ITeam): number => (
     users.length ? users
-      .filter(user => user.teamId === team.id)
+      .filter(user => user.teamId === team.id && !user.isBlocked)
       .reduce((acc, user) => acc + user.points, 0) : 0
   )
 
@@ -24,6 +24,7 @@ const useLogic = () => {
 
   const getMVPs = () => (
     users
+      .filter(user => !user.isBlocked)
       .sort((a, b) => b.points - a.points)
       .slice(0, 3)
   )
