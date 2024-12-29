@@ -1,0 +1,14 @@
+{
+  "list": {
+      "check": "error: check the data",
+      "fail": "error: operation failed",
+      "success": "success",
+      "logout": "you have logged out",
+      "unexpected": "unexpected error",
+      "alreadyExist": "the name already in use",
+      "logged": "you have logged in",
+      "removed": "successfully removed",
+      "added": "successfully added",
+      "updated": "successfully updated"
+    }
+}

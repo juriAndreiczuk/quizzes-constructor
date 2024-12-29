@@ -1,13 +1,7 @@
-import type { AlertKind } from '@/types'
-
-export type IAlerts = {
-  errors: {
-    [key: string]: string
-  }
-}
+import type { AlertKind, AlertTime } from '@/types'
 
 export interface IAlert {
   kind: AlertKind
-  message: string
-  show: boolean
+  text: string | null
+  time?: AlertTime
 }

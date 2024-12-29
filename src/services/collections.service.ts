@@ -3,10 +3,11 @@ import {
   doc, getDoc, collection, getDocs, updateDoc, DocumentData,
   arrayUnion, arrayRemove, setDoc, query, where, WithFieldValue
 } from 'firebase/firestore'
-import alertsData from '@/content/auth.json'
-import { IUpdateOperation, IAlerts } from '@/types'
+import alertsData from '@/content/alerts.json'
+import { IUpdateOperation, AlertKind } from '@/types'
+import useAlertStore from '@/store/alert.store'
 
-const alerts: IAlerts = alertsData as IAlerts
+const { setAlert } = useAlertStore.getState()
 
 export const getCollection = async <T>(docName: string, ids?: string[])
 : Promise<T[]> => {
@@ -28,7 +29,8 @@ export const getCollection = async <T>(docName: string, ids?: string[])
 
     return documents
   } catch (err) {
-    throw new Error(alerts.errors.getDoc)
+    setAlert({ text: alertsData.list.unexpected, kind: AlertKind.Error })
+    throw err
   }
 }
 
@@ -44,14 +46,15 @@ export const addToCollection = async <T>(
     const querySnapshot = await getDocs(q)
 
     if (querySnapshot.size > 0) {
-      throw new Error(alerts.errors.createDoc)
+      throw new Error(alertsData.list.alreadyExist)
     } else {
       await setDoc(documentRef, data as WithFieldValue<DocumentData>)
-
+      setAlert({ text: alertsData.list.added, kind: AlertKind.Success })
       return getDoc(documentRef)
     }
   } catch (err) {
-    throw new Error(alerts.errors.createDoc)
+    setAlert({ text: alertsData.list.alreadyExist, kind: AlertKind.Error })
+    throw err
   }
 }
 
@@ -74,6 +77,7 @@ export const updateCollection = async (
       })
     }
   } catch (err) {
-    throw new Error(alertsData.errors.updateDoc)
+    setAlert({ text: alertsData.list.fail, kind: AlertKind.Error })
+    throw err
   }
 }

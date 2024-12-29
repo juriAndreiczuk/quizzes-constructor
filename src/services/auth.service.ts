@@ -1,19 +1,20 @@
 import Cookies from 'js-cookie'
 import { auth } from '@/config/firebase'
+import useAlertStore from '@/store/alert.store'
 import {
   createUserWithEmailAndPassword, onAuthStateChanged,
   signInWithEmailAndPassword, signOut, UserCredential, User
 } from 'firebase/auth'
 import {
-  UserTypes, IUserDetails, AuthMode, IAlerts, AuthTokens,
-  IAuthLogin, IAuthRegister, IUpdateOperation
+  UserTypes, IUserDetails, AuthMode, AuthTokens,
+  IAuthLogin, IAuthRegister, IUpdateOperation, AlertKind
 } from '@/types'
-import alertsData from '@/content/auth.json'
+import alertsData from '@/content/alerts.json'
 import { getDocument } from '@/services/docs.service'
 import { updateCollection } from '@/services/collections.service'
 import { setUserData } from './user.service'
 
-const alerts: IAlerts = alertsData
+const { setAlert } = useAlertStore.getState()
 
 export const onAuthChange = (callback: (user: User | null) => void)
 : void => {
@@ -47,9 +48,11 @@ export const userAuth = async (
     const user = await getDocument<IUserDetails>(userData.user?.uid, 'users')
     Cookies.set(AuthTokens.ID_TOKEN, token)
     Cookies.set(AuthTokens.USER_ROLE, user?.userType || UserTypes[1])
+    setAlert({ text: alertsData.list.logged, kind: AlertKind.Success })
     return userData.user
   } catch (err) {
-    throw new Error(alerts.errors.auth)
+    setAlert({ text: alertsData.list.check, kind: AlertKind.Error })
+    throw err
   }
 }
 
@@ -59,7 +62,9 @@ export const logOut = async ()
     signOut(auth)
     Cookies.remove(AuthTokens.ID_TOKEN)
     Cookies.remove(AuthTokens.USER_ROLE)
+    setAlert({ text: alertsData.list.logout, kind: AlertKind.Info })
   } catch (err) {
-    throw new Error(alerts.errors.auth)
+    setAlert({ text: alertsData.list.unexpected, kind: AlertKind.Error })
+    throw err
   }
 }

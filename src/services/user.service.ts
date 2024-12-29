@@ -1,11 +1,12 @@
 import { db } from '@/config/firebase'
+import useAlertStore from '@/store/alert.store'
 import {
   doc, setDoc, query, where, collection, getDocs
 } from 'firebase/firestore'
-import { IAuthRegister, IUserDetails, IAlerts } from '@/types'
-import alertsData from '@/content/auth.json'
+import { IAuthRegister, IUserDetails, AlertKind } from '@/types'
+import alertsData from '@/content/alerts.json'
 
-const alerts: IAlerts = alertsData as IAlerts
+const { setAlert } = useAlertStore.getState()
 
 export const setUserData = async (data: IAuthRegister, uid: string)
 : Promise<void> => {
@@ -15,7 +16,8 @@ export const setUserData = async (data: IAuthRegister, uid: string)
       displayName, teamId, userType, isBlocked: false, points: 0
     })
   } catch (err) {
-    throw new Error(alerts.errors.setUser)
+    setAlert({ text: alertsData.list.fail, kind: AlertKind.Error })
+    throw err
   }
 }
 
@@ -31,6 +33,7 @@ export const getUsersByTeam = async (teamId: string)
     })
     return users
   } catch (err) {
-    throw new Error(alerts.errors.getDoc)
+    setAlert({ text: alertsData.list.fail, kind: AlertKind.Error })
+    throw err
   }
 }

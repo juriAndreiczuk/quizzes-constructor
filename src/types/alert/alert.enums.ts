@@ -5,5 +5,6 @@ export enum AlertTime {
 
 export enum AlertKind {
   Error = 'error',
-  Info = 'info'
+  Info = 'info',
+  Success = 'success'
 }

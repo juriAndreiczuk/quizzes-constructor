@@ -20,7 +20,10 @@ export default {
         main: '#270082',
         addl: '#7A0BC0',
         light: '#c9a1f7',
-        accent: '#FA58B6'
+        accent: '#FA58B6',
+        error: '#ef4544',
+        warning: '#eab20a',
+        success: '#22c560'
       },
       fontWeight: {
         light: 300,
@@ -46,6 +49,7 @@ export default {
     },
     animation: {
       'loading-line': 'line 2s linear',
+      'allert-line': 'line 5s linear'
     },
     container: {
       center: true,

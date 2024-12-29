@@ -2,9 +2,8 @@ import { create } from 'zustand'
 import { IAlert, IAlertState, AlertKind } from '@/types'
 
 const defaultAlert: IAlert = {
-  message: '',
-  kind: AlertKind.Info,
-  show: false
+  text: null,
+  kind: AlertKind.Info
 }
 
 const useAlertStore = create<IAlertState>(set => ({
