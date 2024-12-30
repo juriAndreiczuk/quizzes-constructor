@@ -6,7 +6,7 @@ import PageIntro from '@/app/components/layout/PageIntro'
 const Progres = () => (
   <>
     <PageIntro
-      introTitle='Your progres'
+      introTitle='Info & progres'
       introIcon='/assets/graph-up.svg'
       introButton={{ url: '/dashboard', label: 'Back Home' }}
     />

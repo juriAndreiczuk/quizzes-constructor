@@ -15,7 +15,7 @@ const Button = (
   }
 
   const classNames = clsx(
-    'text-white block border-[1px] bg-gradient-to-br rounded-sm font-medium transition-all lg:hover:scale-[1.025]',
+    'text-white block border-[1px] bg-gradient-to-br rounded-sm font-medium flex items-center transition-all lg:hover:scale-[1.025]',
     btnColor[btnMod]
   )
 

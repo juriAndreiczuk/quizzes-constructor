@@ -11,7 +11,7 @@ const ProgresItem = (
       { 'border-t-[1px] border-addl pt-16': itemIndex }
     )}
   >
-    <h2 className='text-27 text-white font-medium'>{itemData.questionData.question}</h2>
+    <h2 className='text-20 sm:text-27 text-white font-medium'>{itemData.questionData.question}</h2>
     <div className='sm:pl-32'>
       <h3 className='text-20 text-white font-normal my-8'>Your answer: </h3>
       <ul>

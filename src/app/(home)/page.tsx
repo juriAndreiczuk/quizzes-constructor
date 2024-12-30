@@ -1,5 +1,23 @@
+import PageHeader from '@/app/components/layout/PageHeader'
+import Button from '@/app/components/ui/Button'
+import Image from 'next/image'
+
 const Home = () => (
-  <p>Homepage</p>
+  <PageHeader>
+    <Button
+      btnLink='/auth'
+      btnMod='accent-small'
+    >
+      <span className='hidden sm:block'>Start</span>
+      <Image
+        className='sm:ml-8'
+        src='/assets/rocket.svg'
+        width={20}
+        height={20}
+        alt='house'
+      />
+    </Button>
+  </PageHeader>
 )
 
 export default Home

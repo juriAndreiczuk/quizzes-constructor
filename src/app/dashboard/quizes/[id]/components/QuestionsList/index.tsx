@@ -2,6 +2,7 @@ import useQuestions from '@/app/hooks/useQuestions'
 import QuestionPanel from '@/app/dashboard/quizes/[id]/components/QuestionPanel'
 import { IQuizDetails } from '@/types'
 import PageIntro from '@/app/components/layout/PageIntro'
+import Image from 'next/image'
 
 const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
   const { allQuestions, newQuestions, currentIndex, currentProgres } = useQuestions(currentQuiz)
@@ -27,7 +28,18 @@ const QuestionsList = ({ currentQuiz }: { currentQuiz: IQuizDetails }) => {
       { currentQuiz.items ? (
         newQuestions.length
           ? <QuestionPanel questionData={newQuestions[0]} />
-          : <p className='text-34 text-center text-white font-bold mt-32'>Quiz completed !</p>
+          : (
+            <>
+              <p className='text-34 text-center text-white font-bold mt-32'>Quiz completed !</p>
+              <Image
+                className='mx-auto mt-32'
+                src='/assets/clipboard-check.svg'
+                width={100}
+                height={100}
+                alt='completed quiz'
+              />
+            </>
+          )
       ) : (<p className='text-16 text-white font-bold mt-32'>Questions not founded</p>)}
     </div>
   )

@@ -7,7 +7,7 @@
       "link": "/dashboard/quizes"
     },
     {
-      "title": "Progress",
+      "title": "Info & Progress",
       "icon": "assets/graph-up.svg",
       "description": "Completed questions",
       "link": "/dashboard/progres"

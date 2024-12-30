@@ -7,7 +7,7 @@ import ProgresSearch from '@/app/dashboard/progres/components/ProgresList/Progre
 import ProgresItem from '@/app/dashboard/progres/components/ProgresList/ProgresItem'
 
 const ProgresList = () => {
-  const { filteredQuestions, completedQuestions } = useLogic()
+  const { filteredQuestions, points, completedQuestions, userTeam } = useLogic()
   const [search, setSearch] = useState<string>('')
 
   return (
@@ -17,16 +17,24 @@ const ProgresList = () => {
       />
       <ContentCard>
         { completedQuestions.length ? (
-          <ul>
-            { filteredQuestions(search).length ? filteredQuestions(search).map((item, n) => (
-              <ProgresItem
-                key={item.questionData.id}
-                itemData={item}
-                itemIndex={n}
-              />
-            )) : <h2 className='text-27 text-white font-medium sm:pl-16 py-16'>Nothing found</h2> }
-          </ul>
-        ) : <h2 className='text-27 text-white py-32 text-center font-medium'>You have not answered the questions yet</h2> }
+          <>
+            <h2 className='text-20 text-white font-medium sm:pl-16'>
+              Team: <span className='text-accent'>{userTeam.name}</span>
+            </h2>
+            <h3 className='text-20 text-white font-medium sm:pl-16 py-16 border-b-[1px] border-addl'>
+              Points: <span className='text-accent'>{points}</span>
+            </h3>
+            <ul>
+              { filteredQuestions(search).length ? filteredQuestions(search).map((item, n) => (
+                <ProgresItem
+                  key={item.questionData.id}
+                  itemData={item}
+                  itemIndex={n}
+                />
+              )) : <h2 className='text-20 sm:text-27 text-white font-medium sm:pl-16 py-16'>Nothing found</h2> }
+            </ul>
+          </>
+        ) : <h2 className='text-20 sm:text-27 text-white py-32 text-center font-medium'>You have not answered the questions yet</h2> }
       </ContentCard>
     </>
   )

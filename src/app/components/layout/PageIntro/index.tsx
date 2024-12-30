@@ -14,12 +14,12 @@ const PageIntro = ({ introTitle, introButton, introIcon }: IPageIntro) => (
           height={30}
         />
       ) }
-      <h1 className='text-34 font-medium text-light'>{ introTitle }</h1>
+      <h1 className='text-27 sm:text-34 font-medium text-light'>{ introTitle }</h1>
     </div>
     { introButton && (
       <Button
         btnLink={introButton.url}
-        btnMod='accent-small'
+        btnMod='primary-small'
       >
         { introButton.label }
       </Button>

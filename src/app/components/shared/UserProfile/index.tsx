@@ -2,21 +2,16 @@
 
 import { logOut } from '@/services/auth.service'
 import useAuthStore from '@/store/auth.store'
-import { useTeamsCollectionStore } from '@/store/collections.store'
 import useUsersStore from '@/store/users.store'
 import { useRouter } from 'next/navigation'
 import Routes from '@/constants/routes'
 import Button from '@/app/components/ui/Button'
 import { useEffect } from 'react'
-import ContentCard from '@/app/components/layout/ContentCard'
-import ProfileBox from '@/app/components/shared/UserProfile/ProfileBox'
 import Image from 'next/image'
 
 const UserProfile = () => {
   const router = useRouter()
   const user = useAuthStore(state => state.user)
-  const { items: teams } = useTeamsCollectionStore()
-  const userTeam = teams.filter(team => team.id === user?.teamId)[0]
 
   const { setCurrentUser, currentUser } = useUsersStore()
 
@@ -28,30 +23,31 @@ const UserProfile = () => {
   useEffect(() => { setCurrentUser(user) }, [user])
 
   return (
-    <ContentCard cardClasses='sm:flex'>
-      <div className='text-16 sm:w-2/3 flex items-start'>
-        <Image src='/assets/user.svg' alt='user' width={30} height={30} />
-        {
-          user && (
-            <div className='pl-16'>
-              <ProfileBox boxLabel='Name' boxText={currentUser?.displayName} />
-              <ProfileBox boxLabel='Team' boxText={userTeam?.name || 'Admin'} />
-              { userTeam?.name && (
-                <ProfileBox boxLabel='Points' boxText={`${currentUser?.points}`} />
-              ) }
-            </div>
-          )
-        }
-      </div>
-      <div className='sm:w-1/3 mt-8 sm:mt-0 flex justify-end items-start'>
+    <div className='w-full flex-col items-end'>
+      {
+        user && (
+          <div className='mb-4 w-full hidden md:flex justify-end'>
+            <h3 className='font-medium text-light text-18'>User:</h3>
+            <p className='font-light pl-8 text-white text-18 capitalize'>{currentUser?.displayName}</p>
+          </div>
+        )
+      }
+      <div className='flex justify-end mt-8'>
         <Button
-          btnMod='accent'
+          btnMod='accent-small'
           buttonClick={handleLogOut}
         >
-          Logout
+          <span className='hidden sm:block'>Logout</span>
+          <Image
+            src='/assets/user-white.svg'
+            className='sm:ml-8'
+            width={20}
+            height={20}
+            alt='user x'
+          />
         </Button>
       </div>
-    </ContentCard>
+    </div>
   )
 }
 
