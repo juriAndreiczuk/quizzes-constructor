@@ -1,11 +1,7 @@
 .card {
-  background: radial-gradient(#2d2d6f36 50px, transparent 0)
-  no-repeat left -120px top -150px / 400px 400px,
-  radial-gradient(#2d2d6f48 100px, transparent 0)
-  no-repeat left -120px top -150px / 400px 400px,
-  radial-gradient(#2d2d6f41 140px, transparent 0)
-  no-repeat left -120px top -150px / 400px 400px,
-  radial-gradient(#2d2d6f27 180px, transparent 0)
-  no-repeat left -120px top -150px / 400px 400px,
-  linear-gradient(#1A1A40, #1A1A40);
+  background-color: black;
+  background:
+  linear-gradient(#ffffff06 1px, transparent 0) repeat-y top / 100% 30px,
+  linear-gradient(to right, #ffffff06 1px, transparent 0) repeat-x left / 30px 100%,
+  linear-gradient(to top, #1A1A40 50%, #270082cc);
 }
