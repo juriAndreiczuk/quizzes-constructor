@@ -1,5 +1,5 @@
 import { useQuizzesCollectionStore } from '@/store/collections.store'
-import QuizesBox from '../QuizesBox'
+import QuizesBox from '@/app/dashboard/quizes/components/QuizesBox'
 
 const QuizesLinks = () => {
   const { items: quizes } = useQuizzesCollectionStore()

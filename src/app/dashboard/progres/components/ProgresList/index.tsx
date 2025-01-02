@@ -1,13 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import useLogic from '@/app/dashboard/progres/components/ProgresList/useLogic'
 import ContentCard from '@/app/components/layout/ContentCard'
 import ProgresSearch from '@/app/dashboard/progres/components/ProgresList/ProgresSearch'
 import ProgresItem from '@/app/dashboard/progres/components/ProgresList/ProgresItem'
+import { IProgresList } from '@/types'
 
-const ProgresList = () => {
-  const { filteredQuestions, points, completedQuestions, userTeam } = useLogic()
+const ProgresList = ({ completedQuestions, filteredQuestions }: IProgresList) => {
   const [search, setSearch] = useState<string>('')
 
   return (
@@ -17,23 +16,15 @@ const ProgresList = () => {
       />
       <ContentCard>
         { completedQuestions.length ? (
-          <>
-            <h2 className='text-20 text-white font-medium sm:pl-16'>
-              Team: <span className='text-accent'>{userTeam.name}</span>
-            </h2>
-            <h3 className='text-20 text-white font-medium sm:pl-16 pt-16 pb-32 border-b-[1px] border-addl'>
-              Points: <span className='text-accent'>{points}</span>
-            </h3>
-            <ul>
-              { filteredQuestions(search).length ? filteredQuestions(search).map((item, n) => (
-                <ProgresItem
-                  key={item.questionData.id}
-                  itemData={item}
-                  itemIndex={n}
-                />
-              )) : <h2 className='text-20 sm:text-27 text-white font-medium sm:pl-16 py-16'>Nothing found</h2> }
-            </ul>
-          </>
+          <ul>
+            { filteredQuestions(search).length ? filteredQuestions(search).map((item, n) => (
+              <ProgresItem
+                key={item.questionData.id}
+                itemData={item}
+                itemIndex={n}
+              />
+            )) : <h2 className='text-20 sm:text-27 text-white font-medium sm:pl-16 py-16'>Nothing found</h2> }
+          </ul>
         ) : <h2 className='text-20 sm:text-27 text-white py-32 text-center font-medium'>You have not answered the questions yet</h2> }
       </ContentCard>
     </>

@@ -1,17 +1,24 @@
-import { IQuestionDetails, IQuestionProgres } from '@/types'
+import { IQuestionDetails, IQuestionProgres, IProgresData } from '@/types'
 import { useEffect, useState } from 'react'
 import useQuestionsStore from '@/store/questions.strore'
 import useUsersStore from '@/store/users.store'
 import { useTeamsCollectionStore } from '@/store/collections.store'
 
-const useLogic = () => {
+const useLogic = (): {
+  completedQuestions: IQuestionProgres[]
+  filteredQuestions: (txt?: string) => IQuestionProgres[]
+  userData: IProgresData
+} => {
   const { getQuestionsByIds } = useQuestionsStore()
   const { currentUser } = useUsersStore()
   const [completedQuestions, setCompletedQuestions] = useState<IQuestionProgres[]>([])
   const { items: teams } = useTeamsCollectionStore()
 
-  const points = currentUser?.points ?? 0
-  const userTeam = teams.filter(team => team.id === currentUser?.teamId)[0]
+  const userData = {
+    points: currentUser?.points ?? 0,
+    name: currentUser?.displayName ?? '',
+    team: teams.filter(team => team.id === currentUser?.teamId)[0]?.name
+  }
 
   const getCompletedQuestions = async () => {
     const userQuestionsIds = currentUser?.progres && Object.keys(currentUser.progres)
@@ -44,7 +51,7 @@ const useLogic = () => {
     getCompletedQuestions()
   }, [currentUser])
 
-  return { completedQuestions, filteredQuestions, points, userTeam }
+  return { completedQuestions, filteredQuestions, userData }
 }
 
 export default useLogic

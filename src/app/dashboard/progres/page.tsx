@@ -1,6 +1,6 @@
 'use client'
 
-import ProgresList from '@/app/dashboard/progres/components/ProgresList'
+import ProgresPanel from '@/app/dashboard/progres/components/ProgresPanel'
 import PageIntro from '@/app/components/layout/PageIntro'
 
 const Progres = () => (
@@ -10,7 +10,7 @@ const Progres = () => (
       introIcon='/assets/graph-up.svg'
       introButton={{ url: '/dashboard', label: 'Back Home' }}
     />
-    <ProgresList />
+    <ProgresPanel />
   </>
 )
 
