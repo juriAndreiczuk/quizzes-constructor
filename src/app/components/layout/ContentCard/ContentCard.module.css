@@ -1,7 +1,7 @@
 .card {
   background-color: black;
   background:
-  linear-gradient(#ffffff06 1px, transparent 0) repeat-y top / 100% 30px,
-  linear-gradient(to right, #ffffff06 1px, transparent 0) repeat-x left / 30px 100%,
+  linear-gradient(#ffffff0a 1px, transparent 0) repeat-y top / 100% 30px,
+  linear-gradient(to right, #ffffff0a 1px, transparent 0) repeat-x left / 30px 100%,
   linear-gradient(to top, #1A1A40 50%, #270082cc);
 }

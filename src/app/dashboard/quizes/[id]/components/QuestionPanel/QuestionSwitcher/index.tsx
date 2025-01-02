@@ -9,7 +9,7 @@ const QuestionSwitcher = (
   <div className='sm:px-8 w-full sm:w-1/2'>
     <button
       className={clsx(
-        'mb-8 flex flex-col h-full text-center w-full border-[1px]',
+        'mb-8 flex flex-col h-full text-center w-full border-[1px] bg-dark',
         isSelected ? 'border-accent' : 'border-addl'
       )}
       onClick={buttonClick}
