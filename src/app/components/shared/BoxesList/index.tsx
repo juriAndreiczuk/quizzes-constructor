@@ -6,17 +6,21 @@ import Image from 'next/image'
 
 const BoxesList = ({ listItems }: { listItems: IBoxesList[] }) => (
   <ul className={clsx(
-    'grid gap-5',
-    listItems.length < 3 ? 'md:grid-cols-2' : 'md:grid-cols-3'
+    'grid gap-5 sm:grid-cols-2',
+    listItems.length < 3 ? '' : 'lg:grid-cols-3'
   )}
   >
     { listItems.map(box => (
       box && box.link && (
         <li
           key={box.link}
-          className='col-span-1'
+          className='col-span-1 md:grid-cols-2'
         >
-          <ContentCard cardClasses='w-full h-full' cardMod='mini'>
+          <ContentCard
+            cardClasses='w-full h-full'
+            cardMod='mini'
+            cardParalax
+          >
             <div className="flex flex-col justify-between w-full p-16 h-full text-center">
               <div>
                 { box.icon && (

@@ -7,7 +7,11 @@ const QuizesBox = ({ quizData }: { quizData: IQuizDetails }) => {
   const { currentProgres } = useQuestions(quizData)
 
   return quizData && (
-    <ContentCard cardMod='mini' cardClasses='block w-full h-full'>
+    <ContentCard
+      cardMod='mini'
+      cardClasses='block w-full h-full'
+      cardParalax
+    >
       <div className="flex flex-col justify-between w-full px-8 h-full">
         <div>
           <p className='text-16 mb-8 text-white font-medium'>Progres: <span className='text-accent'>{currentProgres}%</span></p>
