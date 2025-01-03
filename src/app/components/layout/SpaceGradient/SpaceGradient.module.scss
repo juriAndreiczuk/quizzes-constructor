@@ -1,0 +1,10 @@
+$stars-color: #14be8e;
+$gradient-from: #272727;
+$gradient-to: #22016e;
+
+.space {
+  background: 
+    radial-gradient($stars-color 1px, transparent 0)
+    repeat left / 200px 200px,
+    linear-gradient(to right, $gradient-from, $gradient-to);
+}

@@ -6,5 +6,36 @@
       "slider": "Analyze, Discover, Learn, Assess, Engage, Measure, Improve",
       "button": { "title": "Start", "url": "/auth" },
       "image": "/assets/banner-bg.png"
+    },
+  "info": {
+    "intro": {
+      "title": "Discover the Features of",
+      "description": "Quesearch combines interactive quizzes and anonymous surveys to engage teams, assess progress, and make informed decisions."
+    },
+    "boxes": {
+      "quizzesBox": {
+        "title": "Quizzes",
+        "description": "Create interactive quizzes, divide users into teams, track progress, and compare results between users and teams."
+      },
+      "surveysBox": {
+        "title": "Surveys",
+        "description": "Design anonymous surveys to gather insights, assess situations, and support decision-making with data."
+      }
+    },
+    "roles": {
+      "title": "User Roles and Permissions",
+      "list": [
+        {
+          "title": "Admin",
+          "text": "Admins can create and manage quizzes, surveys, teams, and user data. They have full access to user responses and can monitor results.",
+          "icon": "/assets/user-star.svg"
+        },
+        {
+          "title": "Player",
+          "text": "Players can track their progress, view their answer history, and engage with materials prepared by admins.",
+          "icon": "/assets/user.svg"
+        }
+      ]
     }
+  }
 }

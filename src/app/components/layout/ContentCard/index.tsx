@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import clsx from 'clsx'
-import styles from '@/app/components/layout/ContentCard/ContentCard.module.css'
+import styles from '@/app/components/layout/ContentCard/ContentCard.module.scss'
 import Tilt from 'react-parallax-tilt'
 
 const ContentCard = ({ children, cardClasses, cardMod = 'default', cardParalax = false }

@@ -1,0 +1,11 @@
+
+$lines-color: #ffffff09;
+$gradient-from: #1A1A40;
+$gradient-to: #270082cc;
+
+.card {
+  background:
+  linear-gradient($lines-color 1px, transparent 0) repeat-y top / 100% 30px,
+  linear-gradient(to right, $lines-color 1px, transparent 0) repeat-x left / 30px 100%,
+  linear-gradient(to top, $gradient-from 50%, $gradient-to);
+}

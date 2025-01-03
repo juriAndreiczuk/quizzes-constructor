@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import clsx from 'clsx'
-import styles from './SpaceGradient.module.css'
+import styles from './SpaceGradient.module.scss'
 
 const SpaceGradient = ({ children }: { children: ReactNode }) => (
   <div className={clsx(

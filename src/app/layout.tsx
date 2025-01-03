@@ -31,7 +31,7 @@ const RootLayout = (
       <SpaceGradient>
         <UserInitialize />
         <AlertBox />
-        <div className='container max-w-[850px]'>
+        <div className='container max-w-[950px]'>
           {children}
         </div>
       </SpaceGradient>

@@ -39,7 +39,7 @@ const AuthForm = (
         onSubmit={handleSubmit}
       >
         { (props: FormikProps<IAuthLogin | IAuthRegister>) => (
-          <ContentCard cardClasses='w-full sm:w-2/3 mx-auto'>
+          <ContentCard cardClasses='w-full sm:w-3/5 mx-auto'>
             <Form>
               {Object.keys(formContent.fields).map((key: string, n: number) => {
                 const field = formContent.fields[key]

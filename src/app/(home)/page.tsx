@@ -1,5 +1,6 @@
 import PageHeader from '@/app/components/layout/PageHeader'
 import HomeBanner from '@/app/(home)/HomeBanner'
+import HomeInfo from '@/app/(home)/HomeInfo'
 import Button from '@/app/components/ui/Button'
 import Image from 'next/image'
 
@@ -21,6 +22,7 @@ const Home = () => (
       </Button>
     </PageHeader>
     <HomeBanner />
+    <HomeInfo />
   </>
 )
 

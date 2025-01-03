@@ -8,8 +8,8 @@ gsap.registerPlugin(ScrollToPlugin)
 
 const BannerButton = () => (
   <button
-    onClick={() => { gsap.to(window, { duration: 0.7, scrollTo: 500 }) }}
-    className='mx-auto mt-64 block'
+    onClick={() => { gsap.to(window, { duration: 0.7, scrollTo: 700 }) }}
+    className='mx-auto mt-64 pt-16 block'
   >
     <Image
       className='relative block animate-bounce'
