@@ -18,14 +18,16 @@ const TeamsPanel = () => {
   }, [fetchTeams, fetchUsers])
 
   return (
-    <ContentCard>
-      <h2 className='text-27 font-bold text-light'>Teams panel</h2>
-      <TeamsForm />
+    <>
+      <ContentCard>
+        <h2 className='text-27 font-bold text-light'>Teams panel</h2>
+        <TeamsForm />
+        <TeamsList />
+      </ContentCard>
       <TeamsUser
         key={selectedUser ? selectedUser.displayName : 'default'}
       />
-      <TeamsList />
-    </ContentCard>
+    </>
   )
 }
 

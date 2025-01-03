@@ -18,14 +18,16 @@ const TeamsPanel = () => {
   }, [fetchQuizzes, fetchQuestions])
 
   return (
-    <ContentCard>
-      <h2 className='text-27 font-bold text-light'>Quizzez panel</h2>
-      <QuizzesForm />
-      <QuizzesList />
+    <>
+      <ContentCard>
+        <h2 className='text-27 font-bold text-light'>Quizzez panel</h2>
+        <QuizzesForm />
+        <QuizzesList />
+      </ContentCard>
       <QuizzesQuestion
         key={selectedQuestion?.question}
       />
-    </ContentCard>
+    </>
   )
 }
 

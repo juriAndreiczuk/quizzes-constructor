@@ -27,7 +27,7 @@ const TeamsUser = () => {
       <div className='fixed w-full h-screen top-0 left-0 overflow-auto'>
         <div className='relative py-32'>
           <div className='absolute bg-main w-full h-full min-h-screen top-0 left-0 z-10 opacity-50' />
-          <div className='container relative z-20'>
+          <div className='container max-w-[750px] relative z-20'>
             <ContentCard>
               <div className='flex justify-between mb-16'>
                 <h3 className='text-27 font-bold text-white'>
