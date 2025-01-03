@@ -1,22 +1,10 @@
 {
-  "boxesList": [
+  "banner":
     {
-      "title": "Quizzes",
-      "icon": "assets/task-list.svg",
-      "description": "All your quizzes",
-      "link": "/dashboard/quizes"
-    },
-    {
-      "title": "Info & Progress",
-      "icon": "assets/graph-up.svg",
-      "description": "Completed questions",
-      "link": "/dashboard/progres"
-    },
-    {
-      "title": "Rating",
-      "icon": "assets/medal1st.svg",
-      "description": "Compare team results",
-      "link": "/dashboard/rating"
+      "title": "Quesearch",
+      "description": "An innovative platform for creating quizzes, surveys, and research tools to enhance employee engagement and organizational growth.",
+      "slider": "Analyze, Discover, Learn, Assess, Engage, Measure, Improve",
+      "button": { "title": "Start", "url": "/auth" },
+      "image": "/assets/banner-bg.png"
     }
-  ]
 }

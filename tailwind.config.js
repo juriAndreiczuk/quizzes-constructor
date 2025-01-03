@@ -13,7 +13,9 @@ export default {
         '18': '1.12rem',
         '20': '1.25rem',
         '27': '1.68rem',
-        '34': '2.125rem'
+        '34': '2.125rem',
+        '50': '3.125rem',
+        '71': '4.438rem'
       },
       colors: {
         dark: '#1A1A40',
@@ -45,11 +47,21 @@ export default {
       'line': {
         '0%': { transform: 'scaleX(1)' },
         '100%': { transform: 'scaleX(0)' },
+      },
+      'bounce': {
+        '0%, 100%': { transform: 'translateY(-25%)', animationTimingFunction: 'cubic-bezier(0.8,0,1,1)' },
+        '50%': { transform: 'translateY(0)', animationTimingFunction: 'cubic-bezier(0,0,0.2,1)' },
+      },
+      'pulse': {
+        '0%, 100%': { opacity: '1' },
+        '50%': { opacity: '0.5' },
       }
     },
     animation: {
       'loading-line': 'line 2s linear',
-      'allert-line': 'line 5s linear'
+      'allert-line': 'line 5s linear',
+      'bounce': 'bounce 1.5s infinite',
+      'pulse': 'pulse 3s infinite'
     },
     container: {
       center: true,

@@ -1,6 +1,6 @@
 'use client'
 
-import pageContent from '@/content/home.json'
+import pageContent from '@/content/dashboard.json'
 import BoxesList from '@/app/components/shared/BoxesList'
 import { IBoxesList } from '@/types'
 

@@ -12,7 +12,7 @@ const PageHeader = ({ children }: { children: React.ReactNode }) => (
           alt='astronaut'
         />
         <div className='flex flex-col justify-center pl-8 md:pl-32'>
-          <h1 className='font-bold text-light text-27 md:text-34 leading-[1.3]'>Quesearch</h1>
+          <h1 className='font-bold text-27 leading-[1.3] bg-gradient-to-t from-accent to-light bg-clip-text text-transparent'>Quesearch</h1>
           <p className='font-normal text-16 hidden sm:block md:text-18 text-white pb-4'>Quizzes & researches</p>
         </div>
       </div>
