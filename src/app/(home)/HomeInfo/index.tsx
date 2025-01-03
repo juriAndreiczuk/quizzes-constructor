@@ -2,6 +2,7 @@ import InfoRoles from '@/app/(home)/HomeInfo/InfoRoles'
 import InfoIntro from '@/app/(home)/HomeInfo/InfoIntro'
 import InfoBox from '@/app/(home)/HomeInfo/InfoBox'
 import homeContent from '@/content/home.json'
+import AtomAnimation from '@/app/(home)/HomeInfo/InfoAnimations/AtomAnimation'
 
 const HomeInfo = () => {
   const { boxes, intro, roles } = homeContent.info
@@ -26,7 +27,7 @@ const HomeInfo = () => {
             boxTitle={boxes.surveysBox.title}
             boxText={boxes.surveysBox.description}
           >
-            <p>Decoration placeholder</p>
+            <AtomAnimation />
           </InfoBox>
         </div>
       </div>
